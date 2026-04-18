@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block non-essential paths
+Disallow: /api/
+Disallow: /tmp/
+
+# Sitemap
+Sitemap: https://esclinical.com/sitemap.xml

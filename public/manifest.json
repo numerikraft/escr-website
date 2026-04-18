@@ -1,0 +1,17 @@
+{
+  "name": "ES Clinical Research",
+  "short_name": "ESCR",
+  "description": "ES Clinical Research is a Contract Research Organization (CRO) providing clinical studies, pharmacoeconomic studies, real-world evidence, medical writing, and expert support services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7f2191",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

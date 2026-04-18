@@ -1,0 +1,86 @@
+/* Font loaded via index.html with preconnect + preload + display=swap for optimal CLS */
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #5E176E;
+  --color-primary-hover: #4A1259;
+  --color-primary-light: #8A2BE2;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════ */
+/* CUSTOM BRANDED CURSORS                     */
+/* ═══════════════════════════════════════════ */
+
+/* Default cursor — Purple outlined arrow */
+* {
+  cursor: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 21 4 4l17 7-6.265 2.685a2 2 0 0 0-1.05 1.05z' stroke='%236f1888' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.1' fill='white'/%3E%3C/svg%3E") 4 4, default;
+}
+
+/* Pointer cursor — Purple outlined hand */
+a, button, [role="button"], input[type="submit"], input[type="button"],
+label[for], select, .cursor-pointer,
+a *, button *, [role="button"] * {
+  cursor: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 76 76' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M52.197 47.528q0 2.926-.965 5.397t-2.663 4.251a12.1 12.1 0 0 1-4.008 2.782q-2.31 1-5.005 1-1.539 0-2.809-.362a11.4 11.4 0 0 1-2.393-.982 13.6 13.6 0 0 1-2.143-1.476 41 41 0 0 1-2.06-1.852q-1.223-1.764-2.654-3.676-.611-.82-1.316-1.745-.703-.927-1.484-1.921a119 119 0 0 0-1.624-2.022 93 93 0 0 0-1.716-2.03l-.077-.06a2.2 2.2 0 0 1-.59-.647 2.15 2.15 0 0 1-.3-.873l-.018-.237q0-.41.148-.781a2.17 2.17 0 0 1 1.033-1.134q.363-.187.784-.24l.208-.019q.332 0 .724.149.386.07.926.36.54.287 1.161.706.62.419 1.288.92a112 112 0 0 1 2.598 2.013q.612.489 1.093.864V20.25q0-.576.095-1.152t.317-1.04q.224-.462.603-.76.38-.296.932-.296.558 0 .947.297.39.297.633.76t.353 1.039.11 1.152v16.643q.077.35.225.629.13.244.315.427a.63.63 0 0 0 .463.185q.54 0 .763-.398t.223-.843v-7.945q0-.552.1-1.092.102-.541.333-.956.232-.416.612-.677t.938-.261.947.261.62.677q.233.416.333.956t.101 1.092v7.945q0 .446.279.843.279.398.706.398.225 0 .41-.184a1.8 1.8 0 0 0 .315-.428q.148-.279.279-.63v-5.955q0-.558.1-1.095a3.2 3.2 0 0 1 .333-.956 1.94 1.94 0 0 1 .612-.677q.38-.258.938-.258.576 0 .956.258t.611.677q.233.419.336.956.105.537.104 1.095v7.012q0 .428.315.698t.742.27q.22 0 .389-.148a1.7 1.7 0 0 0 .294-.339q.13-.201.243-.48v-5.012q0-.463.1-.991.102-.529.336-.974.236-.445.624-.733.39-.288.947-.288.552 0 .932.261t.615.677.335.956.101 1.092z' fill='%23ffffff' stroke='%236f1888' stroke-width='2.96' stroke-linejoin='round' paint-order='stroke'/%3E%3C/svg%3E") 14 4, pointer !important;
+}
+
+/* Custom Scrollbar */
+html {
+  /* Firefox */
+  scrollbar-color: #7f2191 #fdfbff;
+  scrollbar-width: auto;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fdfbff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7f2191;
+  border-radius: 4px;
+  border: 4px solid #fdfbff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a0f6b;
+}
+
+/* ═══════════════════════════════════════════ */
+/* GLOBAL TYPOGRAPHY                          */
+/* ═══════════════════════════════════════════ */
+
+h2 {
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 42px;
+  }
+}
+
+/* ═══════════════════════════════════════════ */
+/* ANIMATED MARQUEE                           */
+/* ═══════════════════════════════════════════ */
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: scroll-left 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
