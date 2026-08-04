@@ -1,0 +1,94 @@
+export const realWorldTranslations = {
+  en: {
+    heroTitle: "Real-World Evidence",
+    seoDescription: "Generate actionable real-world evidence with ES-CR: Phase IV studies, observational research, patient registries, surveys, and pharmaco-epidemiological analysis.",
+    seoKeywords: "real-world evidence, RWE, Phase IV studies, observational studies, patient registries, pharmaco-epidemiology, post-marketing surveillance",
+    topTitle: "How do we generate insights\ngrounded in real-world practice?",
+    topParagraphs: [
+      "ES-CR conducts real-world studies that capture the full patient journey, care pathways, treatments, and clinical practices outside of controlled clinical trials.",
+      "Through Phase IV, observational studies, patient registries, surveys, and pharmaco-epidemiological analyses, we generate data based on real-world conditions and clinical practices.",
+      "Our approach supports patient safety monitoring by providing reliable data that help inform public health policies and improve care pathways."
+    ],
+    topSubTitle: "Reliable insights from\nreal-world settings",
+    topList: [
+      "Real-life treatment evidence",
+      "Structured observational workflows",
+      "Clear population insights",
+      "Consistent data collection",
+      "Strong outcome interpretation"
+    ],
+    banners: [
+      {
+        title: "Phase IV Studies",
+        description: "We design and manage Phase IV studies to assess treatment effectiveness, safety, and adherence in real-world clinical practice settings.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Observational Studies",
+        description: "We conduct research that captures patient pathways and treatment patterns to generate data and insights reflecting real-world clinical practice.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Patient Registries",
+        description: "We design and manage registries to collect data supporting long-term outcome evaluation and trend monitoring in routine clinical practice.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Patient Surveys & Questionnaires",
+        description: "We Implement surveys to capture patient perceptions and behaviours, providing complementary evidence to support real-world understanding.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Pharmaco-epidemiology & RMP",
+        description: "We perform epidemiological analyses and support RMP development to ensure continuous safety evaluation and risk mitigation.",
+        linkText: "Schedule a Meeting"
+      }
+    ]
+  },
+  fr: {
+    heroTitle: "Données de vie réelle (RWE)",
+    seoDescription: "Générez des données de vie réelle avec ES-CR : études de phase IV, recherche observationnelle, registres patients, enquêtes et analyses pharmaco-épidémiologiques.",
+    seoKeywords: "données de vie réelle, RWE, études phase IV, études observationnelles, registres patients, pharmaco-épidémiologie, surveillance post-commercialisation",
+    topTitle: "Comment générons-nous des preuves\nancrées dans la pratique réelle ?",
+    topParagraphs: [
+      "ES-CR mène des études en vie réelle qui capturent l'ensemble du parcours patient, des parcours de soins, des traitements et des pratiques cliniques en dehors des essais cliniques contrôlés.",
+      "À travers des études de Phase IV, des études observationnelles, des registres de patients, des enquêtes et des analyses pharmaco-épidémiologiques, nous générons des données basées sur les conditions réelles et les pratiques cliniques.",
+      "Notre approche soutient la surveillance de la sécurité des patients en fournissant des données fiables qui aident à informer les politiques de santé publique et à améliorer les parcours de soins."
+    ],
+    topSubTitle: "Des données fiables issues\ndu monde réel",
+    topList: [
+      "Preuves de traitement en vie réelle",
+      "Processus observationnels structurés",
+      "Aperçus clairs des populations",
+      "Collecte de données cohérente",
+      "Interprétation robuste des résultats"
+    ],
+    banners: [
+      {
+        title: "Études de Phase IV",
+        description: "Nous concevons et gérons des études de Phase IV pour évaluer l'efficacité, la sécurité et l'observance des traitements dans la pratique clinique quotidienne.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Études Observationnelles",
+        description: "Nous menons des recherches qui capturent les parcours des patients et les schémas de traitement afin de générer des données reflétant la pratique clinique réelle.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Registres de Patients",
+        description: "Nous concevons et gérons des registres pour collecter des données permettant d'évaluer les résultats à long terme et de suivre les tendances de la pratique courante.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Enquêtes & Questionnaires Patients",
+        description: "Nous mettons en place des enquêtes pour capter les perceptions et comportements des patients, offrant ainsi des preuves complémentaires pour une meilleure compréhension de la vie réelle.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Pharmaco-épidémiologie & PGR",
+        description: "Nous réalisons des analyses épidémiologiques et soutenons l'élaboration de Plans de Gestion des Risques (PGR) pour assurer une évaluation continue de la sécurité et la minimisation des risques.",
+        linkText: "Prendre Rendez-vous"
+      }
+    ]
+  }
+};

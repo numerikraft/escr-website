@@ -10,6 +10,7 @@ import ShadowBox from './ShadowBox';
 import GeneralButton from './Button';
 import SEO from './SEO';
 import StructuredData from './StructuredData';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Animation Variants
 const fadeUp = (delay = 0) => ({
@@ -38,13 +39,15 @@ interface ServiceLayoutProps {
 }
 
 export default function ServiceLayout({ data }: ServiceLayoutProps) {
+  const { language } = useLanguage();
+
   const serviceStructuredData = {
     '@type': 'Service',
     'name': data.heroTitle,
-    'description': data.seoDescription || `${data.heroTitle} services by ES Clinical Research`,
+    'description': data.seoDescription || `${data.heroTitle} services by ES-CR`,
     'provider': {
       '@type': 'Organization',
-      'name': 'ES Clinical Research',
+      'name': 'ES-CR',
       'url': 'https://esclinical.com'
     },
     'url': data.seoUrl ? `https://esclinical.com${data.seoUrl}` : undefined
@@ -53,13 +56,13 @@ export default function ServiceLayout({ data }: ServiceLayoutProps) {
   return (
     <div className="bg-white font-sans overflow-hidden">
       <SEO
-        title={`${data.heroTitle} | ES Clinical Research`}
-        description={data.seoDescription || `${data.heroTitle} services provided by ES Clinical Research, a trusted CRO in Algeria.`}
-        keywords={data.seoKeywords || `${data.heroTitle}, CRO services, clinical research, ES Clinical Research`}
+        title={`${data.heroTitle} | ES-CR`}
+        description={data.seoDescription || `${data.heroTitle} services provided by ES-CR, a trusted CRO in Algeria.`}
+        keywords={data.seoKeywords || `${data.heroTitle}, CRO services, clinical research, ES-CR`}
         image="/escr-og.png"
         breadcrumbs={[
-          { name: 'Home', url: '/' },
-          { name: 'Services', url: '/services' },
+          { name: language === 'en' ? 'Home' : 'Accueil', url: '/' },
+          { name: language === 'en' ? 'Services' : 'Services', url: '/services' },
           { name: data.heroTitle, url: data.seoUrl || '/services' }
         ]}
       />
@@ -67,7 +70,7 @@ export default function ServiceLayout({ data }: ServiceLayoutProps) {
       
       {/* 1. HERO SECTION */}
       <PageHero
-        tag="#SERVICE DETAILS"
+        tag={language === 'en' ? "#SERVICE DETAILS" : "#DÉTAILS DU SERVICE"}
         title={data.heroTitle}
       />
 
@@ -103,7 +106,7 @@ export default function ServiceLayout({ data }: ServiceLayoutProps) {
                   {/* Mobile Image (Visible only on mobile, placed between paragraphs and list) */}
                   <div className="lg:hidden relative rounded-[2rem] overflow-hidden shadow-sm h-[450px] my-4">
                     <motion.div {...curtainReveal(0.2)} className="absolute top-0 left-0 w-full bg-[#620f78] z-20 origin-top" />
-                    <img src={data.topImage} alt={`${data.heroTitle} — ES Clinical Research CRO service overview`} loading="lazy" className="w-full h-full object-cover" />
+                    <img src={data.topImage} alt={`${data.heroTitle} — ES-CR CRO service overview`} loading="lazy" className="w-full h-full object-cover" />
                   </div>
 
                   {/* Checklist */}
@@ -135,7 +138,7 @@ export default function ServiceLayout({ data }: ServiceLayoutProps) {
                       <div className="bg-white p-1.5 rounded-[2rem] w-full h-[220px] lg:h-[390px] shadow-sm">
                         <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
                           <motion.div {...curtainReveal(0.3)} className="absolute top-0 left-0 w-full bg-[#620f78] z-20 origin-top" />
-                        <motion.img {...imageZoom} src={banner.image} alt={`${banner.title} — ${data.heroTitle} service by ES Clinical Research`} loading="lazy" className="w-full h-full object-cover" />
+                        <motion.img {...imageZoom} src={banner.image} alt={`${banner.title} — ${data.heroTitle} service by ES-CR`} loading="lazy" className="w-full h-full object-cover" />
                         </div>
                       </div>
                       <div className="flex flex-col justify-center lg:pr-10">
@@ -153,7 +156,7 @@ export default function ServiceLayout({ data }: ServiceLayoutProps) {
                             iconSize={16}
                             iconContainerSize="w-8 h-8"
                           >
-                            {banner.linkText || 'Schedule a Meeting'}
+                            {banner.linkText || (language === 'en' ? 'Schedule a Meeting' : 'Prendre Rendez-vous')}
                           </GeneralButton>
                         </motion.div>
                       </div>
@@ -184,13 +187,13 @@ export default function ServiceLayout({ data }: ServiceLayoutProps) {
                             iconSize={16}
                             iconContainerSize="w-8 h-8"
                           >
-                            {banner.linkText || 'Schedule a Meeting'}
+                            {banner.linkText || (language === 'en' ? 'Schedule a Meeting' : 'Prendre Rendez-vous')}
                           </GeneralButton>
                         </motion.div>
                       </div>
                       <div className="relative rounded-[2rem] overflow-hidden w-full h-[220px] lg:h-[390px] order-1 lg:order-2 shadow-sm">
                         <motion.div {...curtainReveal(0.3)} className="absolute top-0 left-0 w-full bg-[#620f78] z-20 origin-top" />
-                        <motion.img {...imageZoom} src={banner.image} alt={`${banner.title} — ${data.heroTitle} service by ES Clinical Research`} loading="lazy" className="w-full h-full object-cover" />
+                        <motion.img {...imageZoom} src={banner.image} alt={`${banner.title} — ${data.heroTitle} service by ES-CR`} loading="lazy" className="w-full h-full object-cover" />
                       </div>
                     </div>
                   </motion.div>

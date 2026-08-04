@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'motion/react';
-import { Award, Clock, Handshake, Linkedin, ArrowUpRight, ShieldCheck, Zap, Users, Shuffle, Scale, Lock, BookOpen, Shield } from 'lucide-react';
+import { Award, Clock, Handshake, Linkedin, ArrowUpRight, Shuffle, Scale, Lock, BookOpen, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button, { NavbarButton } from '../components/Button';
 import ServiceBottom from '../components/ServiceBottom';
@@ -9,100 +9,39 @@ import BlogCard from '../components/BlogCard';
 import { ServiceParagraph, ServiceH3 } from '../components/Typography';
 import SEO from '../components/SEO';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { useLanguage } from '../contexts/LanguageContext';
+import { homeTranslations } from '../data/translations/home';
 
-function AnimatedNumber({ value, suffix = "" }: { value: number, suffix?: string }) {
+function AnimatedNumber({ value, prefix = "", suffix = "", formatSpace = false, overrideValue }: { value: number, prefix?: string, suffix?: string, formatSpace?: boolean, overrideValue?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (isInView && ref.current) {
       const node = ref.current;
+      if (overrideValue) {
+        node.textContent = overrideValue;
+        return;
+      }
       const controls = animate(0, value, {
         duration: 2.5,
         ease: "easeOut",
         onUpdate(v) {
-          node.textContent = Math.round(v) + suffix;
+          const rounded = Math.round(v);
+          const numStr = formatSpace 
+            ? rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+            : rounded.toString();
+          node.textContent = prefix + numStr + suffix;
         }
       });
       return () => controls.stop();
     }
-  }, [isInView, value, suffix]);
+  }, [isInView, value, prefix, suffix, formatSpace, overrideValue]);
 
-  return <span ref={ref}>0{suffix}</span>;
+  return <span ref={ref}>{overrideValue || `${prefix}0${suffix}`}</span>;
 }
 
-const slides = [
-  {
-    id: 0,
-    badge: "Clinical Studies",
-    title: (
-        <>
-          Trusted Partner, reliable studies and precise outcomes.
-        </>
-    ),
-    image: "/hero/hero-clinical-studies-cro-algeria.png"
-  },
-  {
-    id: 1,
-    badge: "Pharmacoeconomic Studies",
-    title: (
-        <>
-          Transforming data into strategic economic insights.
-        </>
-    ),
-    image: "/hero/hero-pharmacoeconomic-studies-cro.png"
-  },
-  {
-    id: 2,
-    badge: "Patient Support Program",
-    title: (
-        <>
-          Empowering patient journeys through supportive guidance.
-        </>
-    ),
-    image: "/hero/hero-patient-support-program-cro.png"
-  },
-  {
-    id: 3,
-    badge: "Real-World Evidence",
-    title: (
-        <>
-          Turning real-world data into scientific evidence.
-        </>
-    ),
-    image: "/hero/hero-real-world-evidence-cro.png"
-  },
-  {
-    id: 4,
-    badge: "Medical Writing",
-    title: (
-        <>
-          Turning data into communication and publication.
-        </>
-    ),
-    image: "/hero/hero-medical-writing-cro.png"
-  },
-  {
-    id: 5,
-    badge: "Expert Support",
-    title: (
-        <>
-          Bring specialized expertise to add value at every phase.
-        </>
-    ),
-    image: "/hero/hero-expert-support-cro.png"
-  },
-  {
-    id: 6,
-    badge: "Training",
-    title: (
-        <>
-          Advancing professional skills via targeted training.
-        </>
-    ),
-    image: "/hero/hero-training-clinical-research.png"
-  }
-];
+// We'll move the slides definition inside the component to access translations
 
 function CountUp({ target, suffix = '+', duration = 2 }: { target: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -136,6 +75,54 @@ function CountUp({ target, suffix = '+', duration = 2 }: { target: number; suffi
 }
 
 export default function Home() {
+  const { language } = useLanguage();
+  const tData = homeTranslations[language];
+
+  const slides = [
+    {
+      id: 0,
+      badge: tData.hero.slides[0].badge,
+      title: <>{tData.hero.slides[0].title}</>,
+      image: "/hero/hero-clinical-studies-cro-algeria.png"
+    },
+    {
+      id: 1,
+      badge: tData.hero.slides[1].badge,
+      title: <>{tData.hero.slides[1].title}</>,
+      image: "/hero/hero-pharmacoeconomic-studies-cro.png"
+    },
+    {
+      id: 2,
+      badge: tData.hero.slides[2].badge,
+      title: <>{tData.hero.slides[2].title}</>,
+      image: "/hero/hero-patient-support-program-cro.png"
+    },
+    {
+      id: 3,
+      badge: tData.hero.slides[3].badge,
+      title: <>{tData.hero.slides[3].title}</>,
+      image: "/hero/hero-real-world-evidence-cro.png"
+    },
+    {
+      id: 4,
+      badge: tData.hero.slides[4].badge,
+      title: <>{tData.hero.slides[4].title}</>,
+      image: "/hero/hero-medical-writing-cro.png"
+    },
+    {
+      id: 5,
+      badge: tData.hero.slides[5].badge,
+      title: <>{tData.hero.slides[5].title}</>,
+      image: "/hero/hero-expert-support-cro.png"
+    },
+    {
+      id: 6,
+      badge: tData.hero.slides[6].badge,
+      title: <>{tData.hero.slides[6].title}</>,
+      image: "/hero/hero-training-clinical-research.png"
+    }
+  ];
+
   const[currentSlide, setCurrentSlide] = useState(0);
   const featuredPosts = BLOG_POSTS.slice(0, 2);
 
@@ -164,11 +151,11 @@ export default function Home() {
   return (
       <div className="pt-4 sm:pt-12">
         <SEO
-          title="ES Clinical Research | Leading CRO in Algeria"
-          description="ES Clinical Research is a trusted CRO in Algeria offering clinical studies, pharmacoeconomic analysis, real-world evidence, medical writing, and expert support."
-          keywords="CRO Algeria, contract research organization, clinical research, clinical studies, pharmacoeconomic studies, real-world evidence, medical writing, expert support, ESCR, clinical trials Algeria"
+          title={tData.seo.title}
+          description={tData.seo.description}
+          keywords={tData.seo.keywords}
           image="/escr-og.png"
-          breadcrumbs={[{ name: 'Home', url: '/' }]}
+          breadcrumbs={[{ name: language === 'en' ? 'Home' : 'Accueil', url: '/' }]}
         />
         {/* Hero Section */}
         {/* FIX: 10px outer gap for container */}
@@ -200,7 +187,7 @@ export default function Home() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                      className="inline-flex items-center bg-transparent text-[#7f2191] border border-[#7f2191] px-4 sm:px-5 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8"
+                      className="inline-flex items-center bg-transparent text-[#7f2191] border border-[#7f2191] px-4.5 sm:px-6 py-1.5 sm:py-2 rounded-full text-[13px] sm:text-[15px] font-bold tracking-wide mb-6 sm:mb-8"
                   >
                     {slides[currentSlide].badge}
                   </motion.div>
@@ -224,7 +211,7 @@ export default function Home() {
                       transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
                   >
                     <NavbarButton to="/contact" className="shadow-lg hover:shadow-xl">
-                      Start Your Project
+                      {tData.hero.button}
                     </NavbarButton>
                   </motion.div>
                 </motion.div>
@@ -257,11 +244,11 @@ export default function Home() {
         <section className="py-12 sm:py-24 bg-gray-50/50 overflow-hidden">
           <div className="max-w-7xl mx-auto px-[30px] text-center">
             <AnimatedSection>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[0.7rem] font-bold tracking-widest uppercase mb-6">
-                # OUR DNA
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-6">
+                # {tData.dna.badge}
               </div>
               <h2 className="text-[28px] md:text-[42px] font-normal text-[#50298e] mb-8 sm:mb-20 leading-[1.15] tracking-tight max-w-4xl mx-auto">
-                Patients and partners are our priority
+                {tData.dna.title}
               </h2>
             </AnimatedSection>
 
@@ -300,19 +287,19 @@ export default function Home() {
                 {[
                   {
                     icon: <Scale size={52} strokeWidth={1.8} />,
-                    text: "Ethical Integrity & Transparency"
+                    text: tData.dna.items[0]
                   },
                   {
                     icon: <Handshake size={52} strokeWidth={1.8} />,
-                    text: "Expert Sharing & Communication"
+                    text: tData.dna.items[1]
                   },
                   {
                     icon: <Clock size={52} strokeWidth={1.8} />,
-                    text: "Reliability & Proactivity"
+                    text: tData.dna.items[2]
                   },
                   {
                     icon: <Lock size={52} strokeWidth={1.8} />,
-                    text: "Secure Confidentiality & Trust"
+                    text: tData.dna.items[3]
                   }
                 ].map((item, idx) => (
                   <AnimatedSection key={idx} delay={0.2 + idx * 0.15}>
@@ -343,100 +330,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
-        <section className="py-12 sm:py-24 bg-white">
-          {/* Increased to 1440px for a very wide look while staying centered */}
-          <div className="max-w-[1440px] mx-auto px-[10px]">
 
-            {/* Outer Purple Container */}
-            {/* FIX: Content starts 30px inside the container */}
-            {/* Outer Purple Container — Spacing Refined for Mobile */}
-            <div
-                className="rounded-[2rem] px-[20px] sm:px-[30px] py-8 sm:py-12 md:py-24 lg:py-36 relative overflow-hidden"
-                style={{
-                  background: 'radial-gradient(circle at 0% 0%, #7f2191 0%, #4c005a 100%)'
-                }}
-            >
-              <img src="/escr-pattern-top-right.png" alt="" className="absolute top-0 right-0 w-64 sm:w-96 md:w-[440px] lg:w-[500px] object-contain object-right-top opacity-30 pointer-events-none select-none z-0" />
-              <AnimatedSection>
-                          {/* Tag */}
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-white text-[0.7rem] font-bold tracking-widest uppercase mb-8">
-                              # WHY CHOOSE US
-                            </div>
-
-                            {/* Heading */}
-                            <h2 className="text-[28px] md:text-[42px] font-normal mb-6 sm:mb-16 leading-[1.15] max-w-2xl text-white">
-                              The key reasons leading<br />
-                              partners rely on us
-                            </h2>
-              </AnimatedSection>
-
-              {/* Unified White Container with Overlapping Cards */}
-              <div className="bg-white rounded-[2rem] sm:rounded-[2.5rem] flex flex-col lg:flex-row w-full relative overflow-hidden lg:h-[400px]">
-
-                {/* Card 1 - No left shadow */}
-                <AnimatedSection delay={0.1} className="flex-1 bg-white relative z-10 p-8 flex flex-col items-start justify-start">
-                  <div className="w-[4.25rem] h-[4.25rem] rounded-full bg-[#f9effb] flex items-center justify-center text-[#6f1888] mb-6">
-                    <ShieldCheck size={32} strokeWidth={2} />
-                  </div>
-                  <ServiceH3>
-                    Compliant<br />Methodologies
-                  </ServiceH3>
-                  <ServiceParagraph>
-                    We use scientifically and ethically validated methods, aligned ICH guidelines and local requirements, to produce reliable and practical results.
-                  </ServiceParagraph>
-                </AnimatedSection>
-
-                {/* Card 2 - Centered Brand Shadow */}
-                <AnimatedSection
-                    delay={0.2}
-                    className="flex-1 bg-white relative z-20 p-8 shadow-[0_0_25px_rgba(80,41,142,0.18)] max-lg:border-t border-gray-50 flex flex-col items-start justify-start"
-                >
-                  <div className="w-[4.25rem] h-[4.25rem] rounded-full bg-[#f9effb] flex items-center justify-center text-[#6f1888] mb-6">
-                    <Zap size={32} strokeWidth={2} />
-                  </div>
-                  <ServiceH3>
-                    Effective and<br />Prompt Outputs
-                  </ServiceH3>
-                  <ServiceParagraph>
-                    Our processes are set up to deliver projects on schedule, with accuracy and consistent quality.
-                  </ServiceParagraph>
-                </AnimatedSection>
-
-                {/* Card 3 - Centered Brand Shadow */}
-                <AnimatedSection
-                    delay={0.3}
-                    className="flex-1 bg-white relative z-30 p-8 shadow-[0_0_25px_rgba(80,41,142,0.18)] max-lg:border-t border-gray-50 flex flex-col items-start justify-start"
-                >
-                  <div className="w-[4.25rem] h-[4.25rem] rounded-full bg-[#f9effb] flex items-center justify-center text-[#6f1888] mb-6">
-                    <Users size={32} strokeWidth={2} />
-                  </div>
-                  <ServiceH3>
-                    Trusted<br />Partnerships
-                  </ServiceH3>
-                  <ServiceParagraph>
-                    We collaborate closely with our partners, ensuring open communication at every stage of the project.
-                  </ServiceParagraph>
-                </AnimatedSection>
-
-                {/* Right Image - Narrower column (22%) with White Frame */}
-                <AnimatedSection
-                    delay={0.4}
-                    className="flex-none lg:w-[22%] relative z-40 bg-white p-3 h-[280px] lg:h-full"
-                >
-                  <img
-                      src="/escr-cro-why-choose-us.png"
-                      alt="ES Clinical Research team collaboration and clinical expertise"
-                      loading="lazy"
-                      className="w-full h-full object-cover rounded-[1.5rem] lg:rounded-l-none"
-                      referrerPolicy="no-referrer"
-                  />
-                </AnimatedSection>
-
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Services Section */}
         <ServiceBottom />
@@ -452,67 +346,81 @@ export default function Home() {
             >
               {/* Patterns */}
               <img src="/escr-pattern-top-left.png" alt="" className="absolute top-0 left-0 w-32 sm:w-48 md:w-[240px] lg:w-[300px] object-contain object-left-top opacity-45 pointer-events-none select-none z-0" />
-              <img src="/escr-pattern-bottom-right.png" alt="" className="absolute bottom-0 right-0 w-16 sm:w-24 md:w-[120px] lg:w-[150px] object-contain object-right-bottom opacity-30 pointer-events-none select-none z-0" />
               
               <AnimatedSection>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-white text-[0.7rem] font-bold tracking-widest uppercase mb-6">
-                  # COMPANY IN NUMBERS
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-white text-[13px] font-bold tracking-widest uppercase mb-6">
+                  # {tData.trackRecord.badge}
                 </div>
                 <h2 className="text-[28px] md:text-[42px] font-normal text-white mb-10 sm:mb-16 leading-[1.15] tracking-tight">
-                  Our Scientific Impact
+                  {tData.trackRecord.title}
                 </h2>
               </AnimatedSection>
-              <div className="grid grid-cols-2 md:grid-cols-5 max-w-7xl mx-auto mt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto mt-6 gap-y-10 md:gap-y-14 gap-x-6">
+                {/* Row 1, Col 1 */}
                 <AnimatedSection delay={0.1} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={2} suffix="+" />
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={20} prefix="+" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Years of Experience</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{tData.trackRecord.labels[0]}</p>
                   </div>
                   {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
 
+                {/* Row 1, Col 2 */}
                 <AnimatedSection delay={0.2} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={12} suffix="+" />
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={9} prefix="+" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Clinical Studies</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{tData.trackRecord.labels[1]}</p>
                   </div>
                   {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
 
-                <AnimatedSection delay={0.3} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={15} suffix="+" />
+                {/* Row 1, Col 3 */}
+                <AnimatedSection delay={0.3}>
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={7000} prefix="+" formatSpace={true} />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Trusted Partners</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{tData.trackRecord.labels[2]}</p>
                   </div>
-                  {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
-                
+
+                {/* Row 2, Col 1 */}
                 <AnimatedSection delay={0.4} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={500} suffix="+" />
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={144} prefix="+" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Patients Managed</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{tData.trackRecord.labels[3]}</p>
                   </div>
                   {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
 
-                <AnimatedSection delay={0.5}>
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={37} suffix="+" />
+                {/* Row 2, Col 2 */}
+                <AnimatedSection delay={0.5} className="relative">
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={7} prefix="+0" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Scientific Publication</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{tData.trackRecord.labels[4]}</p>
+                  </div>
+                  {/* Vertical Line */}
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                </AnimatedSection>
+
+                {/* Row 2, Col 3 */}
+                <AnimatedSection delay={0.6}>
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={2} prefix="+0" />
+                    </div>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{tData.trackRecord.labels[5]}</p>
                   </div>
                 </AnimatedSection>
               </div>
@@ -527,31 +435,30 @@ export default function Home() {
 
             {/* --- HEADER AREA --- */}
             <div className="mb-10 sm:mb-20">
-              <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[0.7rem] font-bold tracking-widest uppercase mb-6">
-                # BLOG
+              <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-6">
+                # {tData.blog.badge}
               </motion.div>
 
               <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                 <motion.h2 {...fadeUp(0.2)} className="text-[28px] md:text-[42px] font-normal text-[#392874] leading-[1.15]">
-                  Our Production & insights
+                  {tData.blog.title}
                 </motion.h2>
 
                 <motion.div {...fadeUp(0.3)} className="hidden md:block">
                   <Button to="/blog" variant="primary">
-                    Check All Blog
+                    {tData.blog.button}
                   </Button>
                 </motion.div>
               </div>
             </div>
 
-            {/* --- BLOG GRID --- */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-2">
               {featuredPosts.map((post, index) => (
                 <BlogCard
                   key={post.id}
-                  date={post.date}
-                  title={post.title}
-                  description={post.description}
+                  date={language === 'fr' && post.dateFr ? post.dateFr : post.date}
+                  title={language === 'fr' ? post.titleFr : post.title}
+                  description={language === 'fr' ? post.descriptionFr : post.description}
                   image={post.img}
                   link={`/blog/${post.id}`}
                   delay={0.4 + index * 0.1}
@@ -565,7 +472,7 @@ export default function Home() {
                className="mt-10 flex justify-start md:hidden"
             >
               <Button to="/blog" variant="primary">
-                Check All Blog
+                {tData.blog.button}
               </Button>
             </motion.div>
           </div>

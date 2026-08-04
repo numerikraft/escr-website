@@ -34,7 +34,7 @@ const NotFound = React.lazy(() => import('./pages/NotFound'));
 // Global Structured Data
 const organizationData = {
   '@type': 'Organization',
-  'name': 'ES Clinical Research',
+  'name': 'ES-CR',
   'url': 'https://esclinical.com',
   'logo': 'https://esclinical.com/logo.svg',
   'description': 'Contract Research Organization (CRO) specializing in clinical studies, pharmacoeconomic studies, real-world evidence, medical writing, expert support, and training.',
@@ -59,7 +59,7 @@ const organizationData = {
 
 const websiteData = {
   '@type': 'WebSite',
-  'name': 'ES Clinical Research',
+  'name': 'ES-CR',
   'url': 'https://esclinical.com',
   'potentialAction': {
     '@type': 'SearchAction',

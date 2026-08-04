@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Footer() {
+  const { language } = useLanguage();
   // Variant for the "Rising" effect
   const riseUp = (delay = 0) => ({
     initial: { opacity: 0, y: 40 },
@@ -25,25 +27,14 @@ export default function Footer() {
                 background: 'radial-gradient(circle at 0% 0%, #7f2191 0%, #4c005a 100%)'
               }}
           >
-            {/* FOOTER PATTERN — Static opacity, moves with parent trigger */}
-            <div
-                className="absolute right-0 top-0 h-full pointer-events-none select-none z-0 overflow-hidden opacity-45 hidden sm:block"
-            >
-              <img
-                  src="/escr-footer-pattern.png"
-                  alt=""
-                  className="h-full w-auto object-contain object-right-top"
-              />
-            </div>
- 
             {/* Col 1: Left Column - Logo & Address */}
             <motion.div {...riseUp(0.2)} className="relative z-10 w-full lg:w-1/3 flex flex-col justify-between h-auto self-stretch">
               <div>
                 <div>
                   <Link to="/" className="inline-block transition-transform hover:scale-105 duration-300">
                     <img
-                        src="/footer-logo.svg"
-                        alt="ES Clinical Research — Contract Research Organization logo"
+                        src="/logo-es-cr-white.svg"
+                        alt="ES-CR — Contract Research Organization logo"
                         className="h-14 sm:h-16 w-auto object-contain object-left"
                     />
                   </Link>
@@ -58,7 +49,7 @@ export default function Footer() {
 
               {/* Follow Us Section - Pushed to bottom with mt-auto */}
               <div className="mt-5 lg:mt-auto flex items-center gap-4 pt-1 pb-0">
-                <span className="text-white/90 text-[15px] sm:text-[16px] font-medium">Follow us on</span>
+                <span className="text-white/90 text-[15px] sm:text-[16px] font-medium">{language === 'en' ? 'Follow us on' : 'Suivez-nous sur'}</span>
                 <a href="http://linkedin.com/company/es-clinical-research" target="_blank" rel="noopener noreferrer" aria-label="Visit our LinkedIn page" className="hover:scale-105 transition-transform duration-300 flex items-center -ml-1">
                   <img src="/linkedin-footer.svg" alt="" aria-hidden="true" className="h-[22px] w-auto" />
                 </a>
@@ -69,7 +60,9 @@ export default function Footer() {
             <motion.div {...riseUp(0.3)} className="relative z-10 w-full lg:w-[35%] flex justify-start lg:-ml-10 mt-5 lg:mt-0">
               <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-[#50298e] w-full lg:max-w-[340px] shadow-lg flex flex-col justify-between h-full group transition-all duration-500 hover:shadow-xl">
                 <p className="text-[15px] sm:text-[17px] mb-8 sm:mb-12 leading-relaxed font-medium">
-                  Expert research support, easily scheduled at your convenience
+                  {language === 'en' 
+                    ? 'Expert research support, easily scheduled at your convenience'
+                    : 'Un accompagnement expert en recherche, facilement planifié à votre convenance'}
                 </p>
                 <div className="space-y-3 sm:space-y-4">
                   <a href="tel:+21320339120" aria-label="Call us at +213 20 33 91 20" className="flex items-center gap-3 text-[15px] sm:text-[17.5px] tracking-wide font-medium hover:text-[#7f2191] transition-colors">
@@ -84,18 +77,18 @@ export default function Footer() {
               </div>
             </motion.div>
 
-            <motion.div {...riseUp(0.4)} className="relative z-10 w-full lg:w-[30%] lg:pl-0 mt-5 lg:mt-0">
-              <div className="flex flex-row gap-x-12 sm:gap-x-12">
+            <motion.div {...riseUp(0.4)} className="relative z-10 w-full lg:w-[30%] lg:ml-auto lg:pl-12 mt-5 lg:mt-0">
+              <div className="flex flex-row gap-x-12 sm:gap-x-16">
                 {/* Column 3.1: Navigate */}
                 <div>
-                  <h3 className="text-white/80 text-[16px] sm:text-[17px] mb-6 sm:mb-8 font-medium">Explore</h3>
+                  <h3 className="text-white/80 text-[16px] sm:text-[17px] mb-6 sm:mb-8 font-medium">{language === 'en' ? 'Explore' : 'Explorer'}</h3>
                   <div className="flex flex-col space-y-4 sm:space-y-5">
                     {[
-                      { label: 'Home', path: '/' },
-                      { label: 'About', path: '/about' },
-                      { label: 'Services', path: '/services' },
-                      { label: 'Blog', path: '/blog' },
-                      { label: 'Contact', path: '/contact' }
+                      { label: language === 'en' ? 'Home' : 'Accueil', path: '/' },
+                      { label: language === 'en' ? 'About' : 'À propos', path: '/about' },
+                      { label: language === 'en' ? 'Services' : 'Services', path: '/services' },
+                      { label: language === 'en' ? 'Blog' : 'Blog', path: '/blog' },
+                      { label: language === 'en' ? 'Contact' : 'Contact', path: '/contact' }
                     ].map((item) => (
                         <Link
                             key={item.label}
@@ -110,12 +103,12 @@ export default function Footer() {
 
                 {/* Column 3.2: Compliance */}
                 <div>
-                  <h3 className="text-white/80 text-[16px] sm:text-[17px] mb-6 sm:mb-8 font-medium">Legal</h3>
+                  <h3 className="text-white/80 text-[16px] sm:text-[17px] mb-6 sm:mb-8 font-medium">{language === 'en' ? 'Legal' : 'Légal'}</h3>
                   <div className="flex flex-col space-y-4 sm:space-y-5">
                     {[
-                      { label: 'Terms of Use', path: '/terms-of-use' },
-                      { label: 'Privacy Policy', path: '/privacy-policy' },
-                      { label: 'Legal Notice', path: '/legal-notice' }
+                      { label: language === 'en' ? 'Terms of Use' : "Conditions d'utilisation", path: '/terms-of-use' },
+                      { label: language === 'en' ? 'Privacy Policy' : 'Politique de confidentialité', path: '/privacy-policy' },
+                      { label: language === 'en' ? 'Legal Notice' : 'Mentions légales', path: '/legal-notice' }
                     ].map((item) => (
                         <Link
                             key={item.label}
@@ -140,10 +133,10 @@ export default function Footer() {
               }}
           >
             <p className="text-white/90">
-              © 2026. ES Clinical Research. All rights reserved.
+              © 2026. ES-CR. {language === 'en' ? 'All rights reserved.' : 'Tous droits réservés.'}
             </p>
             <div className="flex items-center gap-2.5 text-white/90">
-              <span className="text-[13px] sm:text-[14px]">Designed & Developed by</span>
+              <span className="text-[13px] sm:text-[14px]">{language === 'en' ? 'Designed & Developed by' : 'Conçu & Développé par'}</span>
               <a href="https://numerikraft.com/" target="_blank" rel="noopener noreferrer" aria-label="Designed & Developed by Numerikraft" className="hover:scale-105 transition-transform duration-300 flex items-center -mt-[5px]">
                 <img
                     src="/Logo-NK-White.svg"

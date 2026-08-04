@@ -6,8 +6,10 @@ import Button from './Button';
 import ShadowBox from './ShadowBox';
 import { ServiceH3 } from './Typography';
 import { SERVICES_DATA } from '../data/services';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function ServiceBottom() {
+  const { language } = useLanguage();
 
   // Logic for the "Rectangle Cut" reveal
   const cutReveal = (delay = 0) => ({
@@ -31,17 +33,26 @@ export default function ServiceBottom() {
               className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 sm:mb-[80px] gap-6"
           >
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#712b8b] text-[#712b8b] text-[0.7rem] font-bold tracking-widest uppercase mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#712b8b] text-[#712b8b] text-[13px] font-bold tracking-widest uppercase mb-6">
                 # SERVICES
               </div>
               <h2 className="text-[28px] md:text-[42px] font-normal text-[#50298e] leading-[1.15] max-w-4xl">
-                Scientific and operational expertise for<br className="hidden md:block" />
-                pharma and healthcare stakeholders.
+                {language === 'en' ? (
+                  <>
+                    Scientific and operational expertise for<br className="hidden md:block" />
+                    pharma and healthcare stakeholders.
+                  </>
+                ) : (
+                  <>
+                    Expertise scientifique et opérationnelle pour<br className="hidden md:block" />
+                    les acteurs de la pharma et de la santé.
+                  </>
+                )}
               </h2>
             </div>
             <div className="shrink-0 lg:pb-2 hidden lg:block">
               <Button to="/services" variant="primary">
-                More Services
+                {language === 'en' ? 'More Services' : 'Plus de Services'}
               </Button>
             </div>
           </motion.div>
@@ -69,7 +80,7 @@ export default function ServiceBottom() {
                         className="block w-full transition-all hover:translate-x-2 duration-300"
                     >
                       <ServiceH3 className="mb-0 text-[#50298e] hover:text-[#7f2191] transition-colors">
-                        {service.title}
+                        {language === 'fr' ? service.titleFr : service.title}
                       </ServiceH3>
                     </Link>
                   </motion.div>
@@ -84,7 +95,7 @@ export default function ServiceBottom() {
                   className="mt-10 flex justify-start lg:hidden"
               >
                 <Button to="/services" variant="primary">
-                  More Services
+                  {language === 'en' ? 'More Services' : 'Plus de Services'}
                 </Button>
               </motion.div>
             </div>
@@ -106,7 +117,7 @@ export default function ServiceBottom() {
                   viewport={{ once: true }}
                   transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
                   src="/escr-cro-services-team-meeting.png"
-                  alt="ES Clinical Research multidisciplinary team planning clinical operations"
+                  alt="ES-CR multidisciplinary team planning clinical operations"
                   className="w-full h-full object-cover rounded-[2rem]"
                   referrerPolicy="no-referrer"
               />
@@ -123,10 +134,14 @@ export default function ServiceBottom() {
               >
                 <ShadowBox className="bg-white rounded-[2rem] p-7">
                   <p className="text-[#392874] italic text-[1rem] leading-relaxed mb-5 font-normal">
-                    "Every clinical study is a step forward for those waiting to heal."
+                    {language === 'en' 
+                      ? '"Every clinical study is a step forward for those waiting to heal."'
+                      : '"Chaque étude clinique est un pas en avant pour ceux qui attendent de guérir."'}
                   </p>
                   <div>
-                    <p className="text-[#712b8b] text-[0.95rem] font-medium mb-0.5">Team ES Clinical Research</p>
+                    <p className="text-[#712b8b] text-[0.95rem] font-medium mb-0.5">
+                      {language === 'en' ? 'Team ES-CR' : "L'équipe ES-CR"}
+                    </p>
                   </div>
                 </ShadowBox>
               </motion.div>

@@ -8,6 +8,7 @@ import { ServiceParagraph, ServiceH3 } from './Typography';
 
 import { SERVICES_DATA } from '../data/services';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function Navbar() {
     const location = useLocation();
     const { scrollY } = useScroll();
     const latestPost = BLOG_POSTS[BLOG_POSTS.length - 1];
+    const { language, setLanguage, t } = useLanguage();
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious() ?? 0;
@@ -48,10 +50,10 @@ export default function Navbar() {
     };
 
     const links = [
-        { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
-        { name: 'Services', path: '/services' },
-        { name: 'Blog', path: '/blog' },
+        { name: language === 'en' ? 'Home' : 'Accueil', path: '/' },
+        { name: language === 'en' ? 'About' : 'À propos', path: '/about' },
+        { name: language === 'en' ? 'Services' : 'Services', path: '/services' },
+        { name: language === 'en' ? 'Blog' : 'Blog', path: '/blog' },
     ];
 
     return (
@@ -69,14 +71,14 @@ export default function Navbar() {
                 <div className="flex justify-between items-center h-16 sm:h-24">
                     {/* Logo */}
                     <Link to="/" className="flex items-center transition-transform hover:scale-105 duration-300">
-                        <img src="/logo.svg" alt="ES Clinical Research" className="h-[52px] sm:h-12 w-auto" />
+                        <img src="/logo-es-cr-primary.svg" alt="ES-CR" className="h-[48px] sm:h-12 w-auto" />
                     </Link>
 
                     {/* Desktop Nav */}
                     <div className="hidden lg:flex items-center gap-2">
                         {links.map((link) => {
                             const isActive = location.pathname === link.path || (link.path === '/' && location.pathname === '');
-                            const isServices = link.name === 'Services';
+                            const isServices = link.path === '/services';
 
                             if (isServices) {
                                 return (
@@ -124,22 +126,38 @@ export default function Navbar() {
                     <div className="hidden lg:flex items-center gap-8">
                         <div className="relative group">
                             <button className="flex items-center gap-2 text-[15px] font-medium text-[#50298e] hover:text-[#7f2191] transition-colors py-2">
-                                <img src="https://flagcdn.com/w20/us.png" srcSet="https://flagcdn.com/w40/us.png 2x" alt="English" className="w-5 object-cover rounded-[2px]" />
-                                English <ChevronDown size={14} strokeWidth={2.5} className="group-hover:rotate-180 transition-transform duration-300" />
+                                {language === 'en' ? (
+                                    <>
+                                        <img src="https://flagcdn.com/w20/us.png" srcSet="https://flagcdn.com/w40/us.png 2x" alt="English" className="w-5 object-cover rounded-[2px]" />
+                                        English
+                                    </>
+                                ) : (
+                                    <>
+                                        <img src="https://flagcdn.com/w20/fr.png" srcSet="https://flagcdn.com/w40/fr.png 2x" alt="Français" className="w-5 object-cover rounded-[2px]" />
+                                        Français
+                                    </>
+                                )}
+                                <ChevronDown size={14} strokeWidth={2.5} className="group-hover:rotate-180 transition-transform duration-300" />
                             </button>
                             
                             <ShadowBox className="absolute right-0 top-full mt-1 w-[140px] bg-white rounded-xl border border-gray-100 overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50">
-                                <button className="flex items-center gap-3 w-full px-4 py-3 text-[14px] font-medium text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191] transition-colors">
+                                <button 
+                                    onClick={() => setLanguage('en')}
+                                    className={`flex items-center gap-3 w-full px-4 py-3 text-[14px] font-medium transition-colors ${language === 'en' ? 'bg-[#f9effb] text-[#7f2191]' : 'text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191]'}`}
+                                >
                                     <img src="https://flagcdn.com/w20/us.png" srcSet="https://flagcdn.com/w40/us.png 2x" alt="English" className="w-[18px] object-cover rounded-[2px]" />
                                     English
                                 </button>
-                                <button className="flex items-center gap-3 w-full px-4 py-3 text-[14px] font-medium text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191] transition-colors border-t border-gray-50">
+                                <button 
+                                    onClick={() => setLanguage('fr')}
+                                    className={`flex items-center gap-3 w-full px-4 py-3 text-[14px] font-medium transition-colors border-t border-gray-50 ${language === 'fr' ? 'bg-[#f9effb] text-[#7f2191]' : 'text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191]'}`}
+                                >
                                     <img src="https://flagcdn.com/w20/fr.png" srcSet="https://flagcdn.com/w40/fr.png 2x" alt="Français" className="w-[18px] object-cover rounded-[2px]" />
                                     Français
                                 </button>
                             </ShadowBox>
                         </div>
-                        <NavbarButton to="/contact">Get Support</NavbarButton>
+                        <NavbarButton to="/contact">{language === 'en' ? 'Get Support' : 'Nous Contacter'}</NavbarButton>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -176,14 +194,20 @@ export default function Navbar() {
                                 <div className="col-span-4 flex flex-col justify-between pr-4">
                                     <div>
                                         <h3 className="text-[1.75rem] font-light text-[#50298e] leading-snug mb-4">
-                                            <span className="font-semibold text-[#620f78]">CRO</span> services aligned with your projects
+                                            {language === 'en' ? (
+                                                <><span className="font-semibold text-[#620f78]">CRO</span> services aligned with your projects</>
+                                            ) : (
+                                                <>Des services <span className="font-semibold text-[#620f78]">CRO</span> alignés avec vos projets</>
+                                            )}
                                         </h3>
                                         <ServiceParagraph className="leading-relaxed mb-10 opacity-80 pt-[18px]">
-                                            Explore our clinical research services designed to support every phase of your project.
+                                            {language === 'en' 
+                                                ? 'Explore our clinical research services designed to support every phase of your project.' 
+                                                : 'Découvrez nos services de recherche clinique conçus pour soutenir chaque phase de votre projet.'}
                                         </ServiceParagraph>
                                     </div>
                                     <NavbarButton to="/services" className="w-fit">
-                                        See our expertise
+                                        {language === 'en' ? 'See our expertise' : 'Voir notre expertise'}
                                     </NavbarButton>
                                 </div>
 
@@ -198,7 +222,7 @@ export default function Navbar() {
                                                 className="group flex items-center justify-between py-1.5 transition-all duration-300"
                                             >
                                                 <span className="text-[14.5px] font-medium text-[#50298e] group-hover:text-[#7f2191] transition-transform duration-300 transform group-hover:translate-x-2">
-                                                    {service.title}
+                                                    {language === 'fr' ? service.titleFr : service.title}
                                                 </span>
                                                 <ChevronRight size={16} strokeWidth={2} className="text-[#7f2191] opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all duration-300" />
                                             </Link>
@@ -208,7 +232,9 @@ export default function Navbar() {
 
                                 {/* RIGHT — Latest Blog Post */}
                                 <div className="col-span-4 border-l border-[#e2dced] pl-12 flex flex-col">
-                                    <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#7f2191] mb-6 pt-2">Latest Insight</p>
+                                    <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#7f2191] mb-6 pt-2">
+                                        {language === 'en' ? 'Latest Insight' : 'Dernière Publication'}
+                                    </p>
                                     <Link to={`/blog/${latestPost.id}`} className="group flex flex-col transition-all duration-300">
                                         <div className="w-full shrink-0 rounded-[1.5rem] overflow-hidden relative h-[150px] mb-5">
                                             {/* Deep purple overlay that reveals on hover to match main blog cards */}
@@ -220,9 +246,9 @@ export default function Navbar() {
                                             />
                                         </div>
                                         <div className="flex flex-col gap-3 px-2">
-                                            <p className="text-[12px] font-medium text-[#712b8b]">{latestPost.date}</p>
+                                            <p className="text-[12px] font-medium text-[#712b8b]">{language === 'fr' && latestPost.dateFr ? latestPost.dateFr : latestPost.date}</p>
                                             <ServiceH3 className="text-[16px] !font-bold text-[#392874] leading-snug group-hover:text-[#7f2191] transition-colors duration-300 line-clamp-2 !mb-0">
-                                                {latestPost.title}
+                                                {language === 'fr' ? latestPost.titleFr : latestPost.title}
                                             </ServiceH3>
                                             <div className="mt-3">
                                                 <div className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border border-[#712b8b] text-[#712b8b] group-hover:bg-[#6f1888] group-hover:text-white">
@@ -254,7 +280,7 @@ export default function Navbar() {
                         <div className="px-4 sm:px-[30px] pt-4 pb-[30px] sm:pt-6 sm:pb-8 space-y-1">
                             {links.map((link) => {
                                 const isActive = location.pathname === link.path || (link.path === '/' && location.pathname === '');
-                                const isServices = link.name === 'Services';
+                                const isServices = link.path === '/services';
 
                                 if (isServices) {
                                     return (
@@ -291,7 +317,7 @@ export default function Navbar() {
                                                                     onClick={() => setIsOpen(false)}
                                                                     className="group flex items-center justify-between px-4 py-1.5 rounded-xl text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191] transition-all duration-300"
                                                                 >
-                                                                    <span className="text-[14px] font-medium group-hover:translate-x-1 transition-transform duration-300">{service.title}</span>
+                                                                    <span className="text-[14px] font-medium group-hover:translate-x-1 transition-transform duration-300">{language === 'fr' ? service.titleFr : service.title}</span>
                                                                     <ChevronRight size={14} strokeWidth={2.5} className="text-[#7f2191] opacity-0 group-hover:opacity-100 transition-all duration-300" />
                                                                 </Link>
                                                             ))}
@@ -301,7 +327,7 @@ export default function Navbar() {
                                                                 onClick={() => setIsOpen(false)}
                                                                 className="flex items-center gap-2 px-4 py-1.5 mt-2 text-[13px] font-bold tracking-wider uppercase text-[#7f2191] hover:text-[#620f78] transition-colors duration-300"
                                                             >
-                                                                See all services
+                                                                {language === 'en' ? 'See all services' : 'Voir tous les services'}
                                                                 <ArrowUpRight size={14} strokeWidth={2.5} />
                                                             </Link>
                                                         </div>

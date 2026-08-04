@@ -1,0 +1,106 @@
+export const expertSupportTranslations = {
+  en: {
+    heroTitle: "Expert Support",
+    seoDescription: "ES-CR organizes advisory boards, KOL engagement, recommendation synthesis, and scientific content preparation for pharmaceutical and healthcare stakeholders.",
+    seoKeywords: "expert support, advisory boards, KOL engagement, scientific experts, healthcare professional support, expert recommendation, CRO consulting",
+    topTitle: "How do we enhance your\nscientific strategy?",
+    topParagraphs: [
+      "ES-CR provides scientific expertise and supports the organization of advisory boards through structured expert engagement and coordinated communication processes.",
+      "We identify relevant experts, capture their insights, prepare discussion materials and translate recommendations into actionable outcomes.",
+      "Our team ensures smooth logistics, transparent workflows, and synthesis of expert contributions."
+    ],
+    topSubTitle: "Specialized support for\nscientific strategy",
+    topList: [
+      "Organized scientific discussions",
+      "Structured advisory workflows",
+      "Clear expert selection",
+      "Strong insight synthesis",
+      "Reliable coordination support",
+      "Showcasing Scientific Expertise"
+    ],
+    banners: [
+      {
+        title: "Advisory Board Management",
+        description: "We organize and manage advisory boards, ensuring structured discussions, clear agendas, and efficient communication flow to capture expert insights effectively.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Expert Identification & Engagement",
+        description: "We select relevant experts, evaluate profiles, and coordinate invitations to assemble the most qualified participants for each scientific or strategic topic.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Recommendation Synthesis",
+        description: "We compile expert opinions into clear summaries, capturing perspectives, priorities, and actionable recommendations for internal or external decision-making.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Health Care Professional Support",
+        description: "We assist investigators with practical organization, documentation, and communication needs to ensure smooth study involvement and alignment with project requirements.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Scientific Content Preparation",
+        description: "We prepare briefing materials, slides, and structured documents to support expert discussions and ensure each session is productive and well-aligned.",
+        linkText: "Schedule a Meeting"
+      },
+      {
+        title: "Scientific Publications",
+        description: "Writing of abstracts and scientific manuscripts, with full management of submission and follow-up until acceptance.",
+        linkText: "Schedule a Meeting"
+      }
+    ]
+  },
+  fr: {
+    heroTitle: "Support d'Experts",
+    seoDescription: "ES-CR organise des comités consultatifs, l'engagement des KOL, la synthèse des recommandations et la préparation de contenu scientifique pour les acteurs de la santé.",
+    seoKeywords: "support d'experts, comités consultatifs, engagement KOL, experts scientifiques, soutien aux professionnels de la santé, recommandation d'experts, conseil CRO",
+    topTitle: "Comment améliorons-nous votre\nstratégie scientifique ?",
+    topParagraphs: [
+      "ES-CR apporte une expertise scientifique et soutient l'organisation de comités consultatifs (advisory boards) grâce à un engagement structuré des experts et des processus de communication coordonnés.",
+      "Nous identifions les experts pertinents, recueillons leurs points de vue, préparons les supports de discussion et traduisons les recommandations en actions concrètes.",
+      "Notre équipe assure une logistique fluide, des flux de travail transparents et la synthèse des contributions des experts."
+    ],
+    topSubTitle: "Appui stratégique\nspécialisé",
+    topList: [
+      "Discussions scientifiques organisées",
+      "Processus consultatifs structurés",
+      "Sélection claire des experts",
+      "Synthèse rigoureuse des perspectives",
+      "Support de coordination fiable",
+      "Mise en valeur de l'expertise scientifique"
+    ],
+    banners: [
+      {
+        title: "Gestion des Comités Consultatifs",
+        description: "Nous organisons et gérons des comités consultatifs (advisory boards), en garantissant des discussions structurées, des ordres du jour clairs et une communication efficace pour capter au mieux les avis des experts.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Identification et Engagement des Experts (KOL)",
+        description: "Nous sélectionnons les experts pertinents, évaluons les profils et coordonnons les invitations pour réunir les participants les plus qualifiés pour chaque sujet scientifique ou stratégique.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Synthèse des Recommandations",
+        description: "Nous compilons les avis des experts en résumés clairs, capturant les perspectives, les priorités et les recommandations exploitables pour la prise de décision interne ou externe.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Soutien aux Professionnels de la Santé",
+        description: "Nous assistons les investigateurs dans l'organisation pratique, la documentation et les besoins de communication pour assurer une implication fluide dans l'étude et un alignement avec les exigences du projet.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Préparation de Contenu Scientifique",
+        description: "Nous préparons les documents de briefing, les présentations et les documents structurés pour soutenir les discussions des experts et faire en sorte que chaque session soit productive et bien ciblée.",
+        linkText: "Prendre Rendez-vous"
+      },
+      {
+        title: "Publications Scientifiques",
+        description: "Rédaction de résumés et de manuscrits scientifiques, avec une gestion complète de la soumission et du suivi jusqu'à l'acceptation.",
+        linkText: "Prendre Rendez-vous"
+      }
+    ]
+  }
+};

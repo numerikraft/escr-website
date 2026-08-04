@@ -6,6 +6,8 @@ import BlogCard from '../components/BlogCard';
 import { GeneralButton } from '../components/Button';
 import SEO from '../components/SEO';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { useLanguage } from '../contexts/LanguageContext';
+import { blogPostTwoTranslations } from '../data/translations/blogPost2';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -34,6 +36,9 @@ const blogTwoSections = [
 ];
 
 export default function BlogPostTwo() {
+  const { language } = useLanguage();
+  const t = blogPostTwoTranslations[language as keyof typeof blogPostTwoTranslations] || blogPostTwoTranslations.en;
+
   const relatedPosts = BLOG_POSTS.filter((post) => post.id !== 2).slice(0, 2);
   const handleTocClick = (event: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     event.preventDefault();
@@ -54,9 +59,9 @@ export default function BlogPostTwo() {
   return (
       <div className="bg-white font-sans">
         <SEO
-          title="Cancer Burden in the Maghreb | Regional Analysis — ESCR"
-          description="Regional analysis of cancer epidemiology and economic burden in Algeria, Morocco, and Tunisia. GLOBOCAN 2022 data and cost-of-illness estimates by ESCR."
-          keywords="cancer burden, Maghreb, Algeria, Morocco, Tunisia, GLOBOCAN 2022, epidemiology, economic burden, healthcare, cancer registry"
+          title={t.seo.title}
+          description={t.seo.description}
+          keywords={t.seo.keywords}
           image="/blog/2/hero-cancer-epidemiology-maghreb.png"
           type="article"
         />
@@ -80,16 +85,16 @@ export default function BlogPostTwo() {
                 <div className="flex items-center gap-4 mb-8">
                   <motion.div
                       {...fadeUp(0.1)}
-                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[11px] font-bold tracking-widest uppercase"
+                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[13px] font-bold tracking-widest uppercase"
                   >
-                    RESEARCH INSIGHTS
+                    {t.meta.tag}
                   </motion.div>
                   <motion.div
                       {...fadeUp(0.2)}
-                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[11px] font-bold tracking-widest uppercase"
+                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[13px] font-bold tracking-widest uppercase"
                   >
                     <Clock size={14} />
-                    3 MIN READ
+                    {t.meta.readTime}
                   </motion.div>
                 </div>
 
@@ -97,7 +102,7 @@ export default function BlogPostTwo() {
                     {...fadeUp(0.3)}
                     className="text-[36px] sm:text-4xl md:text-[3.5rem] font-normal text-white tracking-tight mb-10 leading-[1.15]"
                 >
-                  Overview of the Epidemiological and Economic Burden of Cancer in the Maghreb
+                  {t.meta.title}
                 </motion.h1>
 
                 <motion.div
@@ -105,9 +110,9 @@ export default function BlogPostTwo() {
                     className="text-white/90 text-[13px] flex flex-wrap items-center gap-6 font-medium"
                 >
                   <div className="flex flex-wrap items-center gap-4 md:gap-6">
-                    <span>Published by <span className="font-bold ml-1 text-white">Samy Bekrar</span></span>
+                    <span>{t.meta.publishedBy} <span className="font-bold ml-1 text-white">{t.meta.author}</span></span>
                     <span className="opacity-40 hidden md:block">•</span>
-                    <span>Published on <span className="font-bold ml-1 text-white">May 02, 2026</span></span>
+                    <span>{t.meta.publishedOn} <span className="font-bold ml-1 text-white">{t.meta.date}</span></span>
                   </div>
                 </motion.div>
               </div>
@@ -120,9 +125,9 @@ export default function BlogPostTwo() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
               <motion.div {...fadeUp(0.1)} className="lg:col-span-8">
                 <div className="lg:hidden mb-16 px-6 py-5 bg-[#faf8fc] rounded-2xl border border-[#e2dced]">
-                  <h3 className="text-[11px] font-bold text-[#9b8bb0] mb-4 uppercase tracking-widest">Table of content</h3>
+                  <h3 className="text-[11px] font-bold text-[#9b8bb0] mb-4 uppercase tracking-widest">{t.ui.toc}</h3>
                   <ul className="space-y-4 text-[14px] font-semibold text-[#50298e]">
-                    {blogTwoSections.map((section) => (
+                    {t.sections.map((section) => (
                       <li key={section.id}>
                         <a
                           href={`#${section.id}`}
@@ -136,35 +141,35 @@ export default function BlogPostTwo() {
                   </ul>
                 </div>
 
-                <h2 id="abstract" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">Abstract</h2>
+                <h2 id="abstract" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[0].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-6 font-medium">
-                  This regional analysis provides an updated overview of cancer burden in Algeria, Morocco, and Tunisia, combining GLOBOCAN 2022 data, national cancer registry insights, and published societal cost-of-illness estimates.
+                  {t.content.abstract_p1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-6 font-medium">
-                  In 2022, the Maghreb recorded nearly 149,000 new cancer cases, with breast cancer remaining the leading cancer among women and lung cancer among men. Colorectal cancer ranked among the top three cancers across both sexes.
+                  {t.content.abstract_p2}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-6 font-medium">
-                  Age-standardized incidence rates ranged from 135 to 150 per 100,000, while mortality remained substantial across the region. The 5-year prevalence reached approximately 384,000 patients, reflecting the growing long-term healthcare needs related to cancer management.
+                  {t.content.abstract_p3}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-6 font-medium">
-                  From an economic perspective, the societal cost of cancer was estimated at US$565 million in Algeria and US$573 million in Morocco, highlighting the significant impact of both direct medical costs and productivity losses. Comparable estimates are still lacking for Tunisia.
+                  {t.content.abstract_p4}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-20 font-medium">
-                  These findings underline the urgent need to strengthen cancer registries, improve resource allocation, and support evidence-based investment strategies to reduce mortality and the overall economic burden across the Maghreb region.
+                  {t.content.abstract_p5}
                 </p>
 
-                <h2 id="full-analysis" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">Full analysis</h2>
+                <h2 id="full-analysis" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[1].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  Read the full analysis here: <a href="https://www.ispor.org/heor-resources/presentations-database/presentation-cti/ispor-2026/poster-session-2-4/overview-of-the-epidemiological-and-economic-burden-of-cancer-in-the-maghreb" target="_blank" rel="noopener noreferrer" className="text-[#7f2191] hover:underline transition-colors">View full analysis</a>
+                  {t.content.full_analysis_text} <a href="https://www.ispor.org/heor-resources/presentations-database/presentation-cti/ispor-2026/poster-session-2-4/overview-of-the-epidemiological-and-economic-burden-of-cancer-in-the-maghreb" target="_blank" rel="noopener noreferrer" className="text-[#7f2191] hover:underline transition-colors">{t.content.full_analysis_link}</a>
                 </p>
               </motion.div>
 
               <motion.div {...fadeUp(0.2)} className="lg:col-span-4 sticky top-28 self-start mb-10 lg:mb-24">
                 <div className="flex flex-col gap-6">
                   <div className="hidden lg:block bg-white rounded-2xl px-6 py-5 border border-[#d8cfe3]">
-                    <h3 className="text-[11px] font-medium text-[#9b8bb0] mb-4">Table of content</h3>
+                    <h3 className="text-[11px] font-medium text-[#9b8bb0] mb-4">{t.ui.toc}</h3>
                     <ul className="space-y-3.5 text-[13px] font-semibold text-[#50298e]">
-                      {blogTwoSections.map((section) => (
+                      {t.sections.map((section) => (
                         <li key={section.id}>
                           <a
                             href={`#${section.id}`}
@@ -180,7 +185,7 @@ export default function BlogPostTwo() {
 
                   <div className="px-1">
                     <div className="flex items-center justify-end gap-5 mb-5">
-                      <span className="text-[13px] font-semibold text-[#50298e]">Share this post</span>
+                      <span className="text-[13px] font-semibold text-[#50298e]">{t.ui.share}</span>
                       <div className="flex gap-2">
                         <button
                             onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`)}
@@ -213,14 +218,14 @@ export default function BlogPostTwo() {
                           const span = e.currentTarget.querySelector('span');
                           if (span) {
                             const original = span.innerText;
-                            span.innerText = "COPIED!";
+                            span.innerText = t.ui.copied;
                             setTimeout(() => { span.innerText = original; }, 2000);
                           }
                         }}
                         aria-label="Copy link to this article"
                         className="cursor-pointer w-full flex items-center justify-between px-6 py-2.5 rounded-full border border-[#e2dced] text-[11px] font-semibold tracking-wider uppercase text-[#7f2191] hover:border-[#7f2191] hover:bg-white transition-all duration-300"
                     >
-                      <span>COPY LINK</span>
+                      <span>{t.ui.copyLink}</span>
                       <Copy size={14} strokeWidth={2} />
                     </button>
                   </div>
@@ -241,12 +246,12 @@ export default function BlogPostTwo() {
             >
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 md:mb-16 gap-6">
                 <motion.h2 {...fadeUp(0.2)} className="text-[28px] md:text-[42px] font-normal leading-tight text-white mb-0">
-                  Similar Reads
+                  {t.ui.similarReads}
                 </motion.h2>
 
                 <motion.div {...fadeUp(0.3)} className="hidden md:block">
                   <GeneralButton variant="outline" className="border-none hover:shadow-lg" to="/blog">
-                    Check All Blog
+                    {t.ui.checkAll}
                   </GeneralButton>
                 </motion.div>
               </div>
@@ -255,9 +260,9 @@ export default function BlogPostTwo() {
                 {relatedPosts.map((post, index) => (
                   <BlogCard
                     key={post.id}
-                    date={post.date}
-                    title={post.title}
-                    description={post.description}
+                    date={language === 'fr' && post.dateFr ? post.dateFr : post.date}
+                    title={language === 'en' ? post.title : post.titleFr || post.title}
+                    description={language === 'en' ? post.description : post.descriptionFr || post.description}
                     image={post.img}
                     link={`/blog/${post.id}`}
                     delay={0.4 + index * 0.1}
@@ -271,7 +276,7 @@ export default function BlogPostTwo() {
                   className="mt-10 flex justify-start md:hidden"
               >
                 <GeneralButton variant="outline" className="border-none hover:shadow-lg" to="/blog">
-                  Check All Blog
+                  {t.ui.checkAll}
                 </GeneralButton>
               </motion.div>
             </motion.div>

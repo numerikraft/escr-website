@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Crown, Phone, ArrowUpRight, Linkedin, Scale, Handshake, Clock, Lock } from 'lucide-react';
+import { Crown, Phone, ArrowUpRight, Linkedin, Scale, Handshake, Clock, Lock, Calendar, Users } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
 import { GeneralButton } from '../components/Button';
 import { CheckList } from '../components/CheckList';
@@ -11,6 +11,8 @@ import { ServiceH3, ServiceParagraph } from '../components/Typography';
 import CTA from '../components/CTA';
 import SEO from '../components/SEO';
 import { SERVICES_DATA } from '../data/services';
+import { useLanguage } from '../contexts/LanguageContext';
+import { aboutTranslations } from '../data/translations/about';
 
 // Animation Variants
 const fadeUp = (delay = 0) => ({
@@ -35,16 +37,19 @@ const imageZoom = {
 };
 
 export default function About() {
+  const { language } = useLanguage();
+  const t = aboutTranslations[language as keyof typeof aboutTranslations] || aboutTranslations.en;
+
   return (
       <div className="font-sans bg-white">
         <SEO
-          title="About ESCR | Our Mission, Team & Clinical Expertise"
-          description="Meet the ES Clinical Research team. Discover our mission, values, and clinical expertise driving ethical, high-quality research outcomes across Algeria and beyond."
-          keywords="about ESCR, clinical research team, CRO Algeria, mission vision, clinical research experts, ethical integrity, contract research organization"
+          title={t.seo.title}
+          description={t.seo.description}
+          keywords={t.seo.keywords}
           image="/escr-og.png"
           breadcrumbs={[
-            { name: 'Home', url: '/' },
-            { name: 'About', url: '/about' }
+            { name: language === 'en' ? 'Home' : 'Accueil', url: '/' },
+            { name: language === 'en' ? 'About' : 'À Propos', url: '/about' }
           ]}
         />
 
@@ -61,21 +66,21 @@ export default function About() {
               <div className="max-w-3xl mx-auto text-center">
                 <motion.p
                     {...fadeUp(0.1)}
-                    className="text-white text-[11px] font-bold tracking-[0.2em] uppercase mb-6"
+                    className="text-white text-[13px] font-bold tracking-[0.2em] uppercase mb-6"
                 >
-                  #ABOUT US
+                  {t.hero.badge}
                 </motion.p>
                 <motion.h1
                     {...fadeUp(0.2)}
                     className="text-[36px] sm:text-4xl md:text-5xl lg:text-[3.5rem] font-medium text-white tracking-tight mb-2 leading-[1.1]"
                 >
-                  Trusted for
+                  {t.hero.title1}
                 </motion.h1>
                 <motion.p
                     {...fadeUp(0.3)}
                     className="text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-white/90 tracking-tight leading-[1.1]"
                 >
-                  Precision & Excellence
+                  {t.hero.title2}
                 </motion.p>
               </div>
             </div>
@@ -97,7 +102,7 @@ export default function About() {
                   <motion.img
                       {...imageZoom}
                       src="/about/about-hero.png?v=2"
-                      alt="ES Clinical Research laboratory and clinical study management"
+                      alt="ES-CR laboratory and clinical study management"
                       className="w-full h-full object-cover"
                   />
                 </div>
@@ -107,13 +112,37 @@ export default function About() {
             {/* Right: Mission Content */}
             <motion.div {...fadeUp(0.4)} className="w-full lg:w-[45%] flex">
               <ShadowBox className="bg-white/98 rounded-[2.5rem] p-8 flex flex-col justify-center w-full h-full">
-                <div className="mb-5 text-[#7f2191]">
+                <div className="mb-6 text-[#7f2191]">
                   <Crown size={36} strokeWidth={2} />
                 </div>
-                <ServiceH3>Our Mission & Vision</ServiceH3>
-                <div className="flex flex-col gap-5">
-                  <ServiceParagraph>At ES Clinical Research, we act as an operational partner and a link between all stakeholders, supporting the management of clinical studies in line with protocols, regulatory requirements, and timelines.</ServiceParagraph>
-                  <ServiceParagraph>We coordinate study activities, monitor progress, and contribute to data quality across the project lifecycle, bringing added value through practical and structured execution at each stage.</ServiceParagraph>
+                
+                {/* Mission Section */}
+                <div className="mb-6">
+                  <h3 className="text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-1">
+                    {t.overlap.mission_title}
+                  </h3>
+                  <h4 className="text-[#50298e] font-semibold text-[18px] mb-2 leading-snug">
+                    {t.overlap.mission_subtitle}
+                  </h4>
+                  <ServiceParagraph className="text-[15px] text-[#7c6a96] leading-relaxed">
+                    {t.overlap.mission_text}
+                  </ServiceParagraph>
+                </div>
+
+                {/* Divider */}
+                <div className="w-full h-[1px] bg-gray-100 mb-6" />
+
+                {/* Vision Section */}
+                <div>
+                  <h3 className="text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-1">
+                    {t.overlap.vision_title}
+                  </h3>
+                  <h4 className="text-[#50298e] font-semibold text-[18px] mb-2 leading-snug">
+                    {t.overlap.vision_subtitle}
+                  </h4>
+                  <ServiceParagraph className="text-[15px] text-[#7c6a96] leading-relaxed">
+                    {t.overlap.vision_text}
+                  </ServiceParagraph>
                 </div>
               </ShadowBox>
             </motion.div>
@@ -124,11 +153,11 @@ export default function About() {
         <section className="py-12 sm:py-24 bg-gray-50/50 overflow-hidden">
           <div className="max-w-7xl mx-auto px-[30px] text-center">
             <AnimatedSection>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[0.7rem] font-bold tracking-widest uppercase mb-6">
-                # OUR DNA
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-6">
+                {t.dna.badge}
               </div>
               <h2 className="text-[28px] md:text-[42px] font-normal text-[#50298e] mb-10 sm:mb-20 leading-[1.15] tracking-tight max-w-4xl mx-auto">
-                Patients and partners are our priority
+                {t.dna.title}
               </h2>
             </AnimatedSection>
 
@@ -167,19 +196,19 @@ export default function About() {
                 {[
                   {
                     icon: <Scale size={52} strokeWidth={1.8} />,
-                    text: "Ethical Integrity & Transparency"
+                    text: t.dna.items[0].text
                   },
                   {
                     icon: <Handshake size={52} strokeWidth={1.8} />,
-                    text: "Expert Sharing & Communication"
+                    text: t.dna.items[1].text
                   },
                   {
                     icon: <Clock size={52} strokeWidth={1.8} />,
-                    text: "Reliability & Proactivity"
+                    text: t.dna.items[2].text
                   },
                   {
                     icon: <Lock size={52} strokeWidth={1.8} />,
-                    text: "Secure Confidentiality & Trust"
+                    text: t.dna.items[3].text
                   }
                 ].map((item, idx) => (
                   <AnimatedSection key={idx} delay={0.2 + idx * 0.15}>
@@ -218,12 +247,12 @@ export default function About() {
 
               {/* 1. HEADER (Mobile: Order 1, Desktop: Col 2, Row 1) */}
               <div className="order-1 lg:order-none lg:col-start-2 lg:row-start-1">
-                <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[0.7rem] font-bold tracking-widest uppercase mb-6 w-fit">
-                  # ABOUT ESCR
+                <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-6 w-fit">
+                  {t.born.badge}
                 </motion.div>
 
                 <motion.h2 {...fadeUp(0.2)} className="text-[#50298e] text-[28px] md:text-[42px] font-normal mb-6 leading-[1.15]">
-                  Built around one idea: improving patient care
+                  {t.born.title}
                 </motion.h2>
               </div>
 
@@ -249,23 +278,49 @@ export default function About() {
               <div className="order-3 lg:order-none lg:col-start-2 lg:row-start-2 flex flex-col justify-between h-full">
                 <div>
                   <motion.div {...fadeUp(0.3)}>
-                    <ServiceParagraph className="mb-10">
-                      Our story began with the meeting of a founding team from clinical research and the healthcare sector, who shared a common vision. They decided to organize their skills and knowledge within an entity focused on conducting clinical studies.
+                    <ServiceParagraph className="mb-6">
+                      {t.born.p1}
+                    </ServiceParagraph>
+                    <ServiceParagraph className="mb-8">
+                      {t.born.p2}
                     </ServiceParagraph>
                   </motion.div>
 
-                  {/* Green Check List */}
-                  <CheckList 
-                    items={SERVICES_DATA.map((s) => ({ name: s.title, path: s.path }))}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-6 mb-10"
-                    delayOffset={0.4}
-                  />
+                  {/* 2 Clean & Sober Cards with Brand Shadow */}
+                  <motion.div 
+                    {...fadeUp(0.4)}
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 mb-10"
+                  >
+                    {/* Card 1: Year Founded */}
+                    <div className="bg-white rounded-[1.25rem] p-5 shadow-[0_0_25px_rgba(80,41,142,0.18)] flex items-center gap-4">
+                      <div className="w-11 h-11 rounded-xl bg-[#f9effb] text-[#7f2191] flex items-center justify-center shrink-0">
+                        <Calendar size={20} strokeWidth={1.8} />
+                      </div>
+                      <div>
+                        <div className="text-[22px] font-bold text-[#50298e] leading-tight">{t.born.card1_year}</div>
+                        <div className="text-[13px] text-[#7c6a96] font-medium">{t.born.card1_text}</div>
+                      </div>
+                    </div>
+
+                    {/* Card 2: Patient Commitment */}
+                    <div className="bg-white rounded-[1.25rem] p-5 shadow-[0_0_25px_rgba(80,41,142,0.18)] flex items-start gap-4">
+                      <div className="w-11 h-11 rounded-xl bg-[#f9effb] text-[#7f2191] flex items-center justify-center shrink-0 mt-0.5">
+                        <Users size={20} strokeWidth={1.8} />
+                      </div>
+                      <div>
+                        <div className="text-[14px] font-semibold text-[#50298e] mb-1">{t.born.card2_title}</div>
+                        <div className="text-[13px] text-[#7c6a96] font-normal leading-relaxed">
+                          {t.born.card2_text}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
 
                 {/* BUTTON - Anchored to the bottom of the flex flow on Desktop */}
                 <motion.div {...fadeUp(0.6)} className="mt-4 sm:mt-8 lg:mt-0">
                   <GeneralButton to="/contact">
-                    Schedule A Meeting
+                    {t.born.btn}
                   </GeneralButton>
                 </motion.div>
               </div>
@@ -284,24 +339,26 @@ export default function About() {
                 background: 'radial-gradient(circle at 0% 0%, #7f2191 0%, #4c005a 100%)'
               }}
             >
-              {/* Pattern bas droit */}
-              <img src="/escr-pattern-bottom-right.png" alt="" className="absolute bottom-0 right-0 w-20 sm:w-32 md:w-[160px] lg:w-[200px] object-contain object-right-bottom opacity-30 pointer-events-none select-none z-0" />
               <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
 
                 {/* LEFT COLUMN — Sticky */}
                 <div className="lg:w-[45%] lg:sticky lg:top-36 text-white">
-                  <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-[0.7rem] font-bold tracking-widest uppercase mb-6 w-fit">
-                    # OUR TEAM
+                  <motion.div {...fadeUp(0.1)} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-[13px] font-bold tracking-widest uppercase mb-6 w-fit">
+                    {t.team.badge}
                   </motion.div>
 
-                  <motion.h2 {...fadeUp(0.2)} className="text-[28px] md:text-[42px] font-normal mb-8 leading-[1.15]">
-                    Minds Behind<br />Our Work
+                  <motion.h2 {...fadeUp(0.2)} className="text-[28px] md:text-[42px] font-normal mb-4 leading-[1.15] whitespace-pre-line">
+                    {t.team.title}
                   </motion.h2>
+
+                  <motion.p {...fadeUp(0.25)} className="text-white/95 text-[16px] font-medium mb-8 max-w-sm leading-relaxed">
+                    {t.team.subtitle}
+                  </motion.p>
 
                   {/* Button visible only on Desktop in the sidebar */}
                   <motion.div {...fadeUp(0.3)} className="hidden lg:block">
                     <GeneralButton variant="outline" to="/contact" className="border-none hover:shadow-lg">
-                      Explore Our Capabilities
+                      {t.team.btn}
                     </GeneralButton>
                   </motion.div>
                 </div>
@@ -309,10 +366,34 @@ export default function About() {
                 {/* RIGHT COLUMN — Scrolling Team Cards */}
                 <div className="lg:w-[55%] flex flex-col gap-10 md:gap-24">
                   {[
-                    { name: 'Fayçal CHALAL', role: 'Founder | CEO', img: '/about/faycal-chalal-ceo-founder-cro.png', linkedin: 'https://www.linkedin.com/in/fay%C3%A7al-chalal-153422145/' },
-                    { name: 'Dr. Meriem HEDIBEL', role: 'Co Founder | Clinical Operation Director', img: '/about/meriem-hedibel-clinical-operation-director.png', linkedin: 'https://www.linkedin.com/in/meriem-hedibel-59855a50/' },
-                    { name: 'Dr. Tarik MEBARKI', role: 'Medical Director', img: '/about/tarik-mebarki-medical-director.png', linkedin: 'https://www.linkedin.com/in/tarik-mebarki-bb04a213b/' },
-                    { name: 'Mr. Samy BEKRAR', role: 'Project Lead | CRA', img: '/about/samy-bekrar-clinical-research-associate.png', linkedin: 'https://www.linkedin.com/in/samy-bekrar-b9a383158/' }
+                    { 
+                      name: 'Fayçal CHALAL', 
+                      role: t.team.members[0].role, 
+                      description: t.team.members[0].desc,
+                      img: '/about/faycal-chalal-ceo-founder-cro.png', 
+                      linkedin: 'https://www.linkedin.com/in/fay%C3%A7al-chalal-153422145/' 
+                    },
+                    { 
+                      name: 'Dr. Meriem HEDIBEL', 
+                      role: t.team.members[1].role, 
+                      description: t.team.members[1].desc,
+                      img: '/about/meriem-hedibel-clinical-operation-director.png', 
+                      linkedin: 'https://www.linkedin.com/in/meriem-hedibel-59855a50/' 
+                    },
+                    { 
+                      name: 'Dr. Tarik MEBARKI', 
+                      role: t.team.members[2].role, 
+                      description: t.team.members[2].desc,
+                      img: '/about/tarik-mebarki-medical-director.png', 
+                      linkedin: 'https://www.linkedin.com/in/tarik-mebarki-bb04a213b/' 
+                    },
+                    { 
+                      name: 'Mr. Samy BEKRAR', 
+                      role: t.team.members[3].role, 
+                      description: t.team.members[3].desc,
+                      img: '/about/samy-bekrar-clinical-research-associate.png', 
+                      linkedin: 'https://www.linkedin.com/in/samy-bekrar-b9a383158/' 
+                    }
                   ].map((member, idx) => (
                     <motion.div
                       key={idx}
@@ -320,12 +401,13 @@ export default function About() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-80px" }}
                       transition={{ duration: 0.7, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      className="w-full max-w-[380px] sm:max-w-[430px] lg:ml-auto"
                     >
                       {/* Image Container with White Border */}
-                      <div className="bg-white rounded-[1.5rem] overflow-hidden mb-6 group border-[6px] border-white shadow-lg">
+                      <div className="bg-white rounded-[1.5rem] overflow-hidden mb-6 group border-[6px] border-white shadow-lg w-full">
                         <img
                           src={member.img}
-                          alt={`${member.name} — ${member.role} at ES Clinical Research`}
+                          alt={`${member.name} — ${member.role} at ES-CR`}
                           loading="lazy"
                           className="w-full aspect-square object-cover object-top transition-transform duration-700 group-hover:scale-105"
                           referrerPolicy="no-referrer"
@@ -334,9 +416,14 @@ export default function About() {
                           }}
                         />
                       </div>
-                      {/* Name & Role */}
-                      <h3 className="text-[22px] font-bold text-white mb-1.5">{member.name}</h3>
-                      <p className="text-white/90 text-[1rem] font-medium mb-5">{member.role}</p>
+                      {/* Name, Role & Description */}
+                      <h3 className="text-[22px] font-bold text-white mb-1">{member.name}</h3>
+                      <p className="text-white/90 text-[1rem] font-semibold mb-2">{member.role}</p>
+                      {member.description && (
+                        <p className="text-white/80 text-[14px] font-normal leading-relaxed mb-5 max-w-md">
+                          {member.description}
+                        </p>
+                      )}
                       
                       {/* LinkedIn Icon */}
                       <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-[34px] h-[34px] rounded-[10px] bg-transparent border-[1.5px] border-white hover:bg-white/15 transition-colors text-white">
@@ -348,7 +435,7 @@ export default function About() {
                   {/* Button visible only on Mobile at the end of the member list */}
                   <motion.div {...fadeUp(0.3)} className="lg:hidden">
                     <GeneralButton variant="outline" to="/contact" className="border-none hover:shadow-lg justify-center">
-                      Explore Our Capabilities
+                      {t.team.btn}
                     </GeneralButton>
                   </motion.div>
                 </div>

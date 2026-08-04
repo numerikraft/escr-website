@@ -5,6 +5,8 @@ import { ContactButton } from '../components/Button';
 import PageHero from '../components/PageHero';
 import ShadowBox from '../components/ShadowBox';
 import SEO from '../components/SEO';
+import { useLanguage } from '../contexts/LanguageContext';
+import { contactTranslations } from '../data/translations/contact';
 
 // Animation Variants
 const fadeUp = (delay = 0) => ({
@@ -14,15 +16,12 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.8, delay, ease:[0.21, 0.47, 0.32, 0.98] }
 });
 
-const subjectOptions = [
-  'General Inquiry',
-  'Request a Quote',
-  'Project Consultation',
-  'Partnership Opportunity',
-  'Career / Job Application'
-];
+// subjectOptions is now dynamically resolved from translations inside the component
 
 export default function Contact() {
+  const { language } = useLanguage();
+  const t = contactTranslations[language as keyof typeof contactTranslations] || contactTranslations.en;
+
   const [selectedSubject, setSelectedSubject] = useState('');
   const [isSubjectOpen, setIsSubjectOpen] = useState(false);
 
@@ -34,21 +33,21 @@ export default function Contact() {
   return (
       <div className="bg-white font-sans overflow-hidden">
         <SEO
-          title="Contact ESCR | Schedule a CRO Consultation in Algeria"
-          description="Contact ES Clinical Research for clinical study support, project consultations, and CRO partnership inquiries. Reach our Algiers-based team by phone, email, or form."
-          keywords="contact CRO, clinical research support, CRO Algeria, clinical studies consultation, ES Clinical Research contact, schedule CRO meeting"
+          title={t.seo.title}
+          description={t.seo.description}
+          keywords={t.seo.keywords}
           image="/escr-og.png"
           breadcrumbs={[
-            { name: 'Home', url: '/' },
-            { name: 'Contact', url: '/contact' }
+            { name: language === 'en' ? 'Home' : 'Accueil', url: '/' },
+            { name: language === 'en' ? 'Contact' : 'Contact', url: '/contact' }
           ]}
         />
 
         {/* 1. HERO SECTION */}
         <PageHero
-          tag="#CONTACT"
-          title="Reach out to our"
-          subtitle="Experts"
+          tag={t.hero.tag}
+          title={t.hero.title}
+          subtitle={t.hero.subtitle}
           hasMargin={true}
         />
 
@@ -62,7 +61,7 @@ export default function Contact() {
                 <div className="w-[5rem] h-[5rem] rounded-full bg-[#f4effc] flex items-center justify-center text-[#7f2191] mb-9">
                   <Phone size={30} strokeWidth={2} />
                 </div>
-                <p className="text-[#7c6a96] text-[14px] font-medium mb-3">Phone Number</p>
+                <p className="text-[#7c6a96] text-[14px] font-medium mb-3">{t.info.phone}</p>
                 <a 
                   href="tel:+21320339120" 
                   className="text-[#50298e] text-[18px] font-semibold hover:text-[#7f2191] transition-all"
@@ -76,7 +75,7 @@ export default function Contact() {
                 <div className="w-[5rem] h-[5rem] rounded-full bg-[#f4effc] flex items-center justify-center text-[#7f2191] mb-9">
                   <Mail size={30} strokeWidth={2} />
                 </div>
-                <p className="text-[#7c6a96] text-[14px] font-medium mb-3">Email Address</p>
+                <p className="text-[#7c6a96] text-[14px] font-medium mb-3">{t.info.email}</p>
                 <a 
                   href="mailto:contact@esclinical.com" 
                   className="text-[#50298e] text-[18px] font-semibold hover:text-[#7f2191] transition-all"
@@ -90,10 +89,10 @@ export default function Contact() {
                 <div className="w-[5rem] h-[5rem] rounded-full bg-[#f4effc] flex items-center justify-center text-[#7f2191] mb-9">
                   <Clock size={30} strokeWidth={2} />
                 </div>
-                <p className="text-[#7c6a96] text-[14px] font-medium mb-3">Operating Hours</p>
+                <p className="text-[#7c6a96] text-[14px] font-medium mb-3">{t.info.hours}</p>
                 <div className="text-[#50298e] text-[18px] font-semibold flex flex-col items-center leading-relaxed">
-                  <span>Sunday to Thursday,</span>
-                  <span>9 AM to 5 PM</span>
+                  <span>{t.info.days}</span>
+                  <span>{t.info.time}</span>
                 </div>
               </motion.div>
 
@@ -119,15 +118,15 @@ export default function Contact() {
               <div className="text-center mb-12 sm:mb-16 flex flex-col items-center relative z-10">
                 <motion.div 
                   {...fadeUp(0.1)} 
-                  className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/30 text-white text-[10px] font-bold tracking-widest uppercase mb-6"
+                  className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/30 text-white text-[13px] font-bold tracking-widest uppercase mb-6"
                 >
-                  # OUR OFFICE
+                  {t.office.tag}
                 </motion.div>
                 <motion.h2 
                   {...fadeUp(0.2)} 
-                  className="text-[28px] md:text-[42px] font-normal text-white leading-[1.15] max-w-2xl"
+                  className="text-[28px] md:text-[42px] font-normal text-white leading-[1.15] max-w-2xl whitespace-pre-line"
                 >
-                  Visit Our Headquarters<br />in Algiers
+                  {t.office.title}
                 </motion.h2>
               </div>
 
@@ -143,7 +142,7 @@ export default function Contact() {
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="ES Clinical Research Office Location"
+                      title={t.office.mapTitle}
                       className="w-full h-full"
                     />
                   </div>
@@ -160,11 +159,11 @@ export default function Contact() {
 
             {/* Header */}
             <div className="text-center mb-16 flex flex-col items-center">
-              <motion.div {...fadeUp(0.1)} className="inline-flex items-center px-4 py-1.5 rounded-full border border-[#e2dced] text-[#7f2191] text-[10px] font-bold tracking-widest uppercase mb-6">
-                # GET IN TOUCH
+              <motion.div {...fadeUp(0.1)} className="inline-flex items-center px-4 py-1.5 rounded-full border border-[#e2dced] text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-6">
+                {t.form.tag}
               </motion.div>
-              <motion.h2 {...fadeUp(0.2)} className="text-[28px] md:text-[3rem] font-normal text-[#50298e] leading-[1.15]">
-                Get in Touch for<br />More Info
+              <motion.h2 {...fadeUp(0.2)} className="text-[28px] md:text-[3rem] font-normal text-[#50298e] leading-[1.15] whitespace-pre-line">
+                {t.form.title}
               </motion.h2>
             </div>
 
@@ -177,7 +176,7 @@ export default function Contact() {
                     {/* First Name - Required */}
                     <input
                         type="text"
-                        placeholder="First Name *"
+                        placeholder={t.form.firstName}
                         required
                         aria-label="First name"
                         id="contact-firstname"
@@ -186,7 +185,7 @@ export default function Contact() {
                     {/* Last Name - Required */}
                     <input
                         type="text"
-                        placeholder="Last Name *"
+                        placeholder={t.form.lastName}
                         required
                         aria-label="Last name"
                         id="contact-lastname"
@@ -195,7 +194,7 @@ export default function Contact() {
                     {/* Email - Required */}
                     <input
                         type="email"
-                        placeholder="Email Address *"
+                        placeholder={t.form.email}
                         required
                         aria-label="Email address"
                         id="contact-email"
@@ -204,7 +203,7 @@ export default function Contact() {
                     {/* Phone - Optional */}
                     <input
                         type="tel"
-                        placeholder="Phone Number"
+                        placeholder={t.form.phone}
                         aria-label="Phone number"
                         id="contact-phone"
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
@@ -212,7 +211,7 @@ export default function Contact() {
                     {/* Company - Optional */}
                     <input
                         type="text"
-                        placeholder="Company"
+                        placeholder={t.form.company}
                         aria-label="Company name"
                         id="contact-company"
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
@@ -220,7 +219,7 @@ export default function Contact() {
                     {/* Position - Optional */}
                     <input
                         type="text"
-                        placeholder="Position"
+                        placeholder={t.form.position}
                         aria-label="Position or job title"
                         id="contact-position"
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
@@ -233,7 +232,7 @@ export default function Contact() {
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-left text-[15px] font-medium focus:outline-none focus:border-[#7f2191] transition-colors flex items-center justify-between"
                       >
                         <span className={selectedSubject ? 'text-[#50298e]' : 'text-[#8e7fa5]'}>
-                          {selectedSubject || 'Subject *'}
+                          {selectedSubject || t.form.subject}
                         </span>
                         <ChevronDown 
                           size={18} 
@@ -244,13 +243,13 @@ export default function Contact() {
                       
                       {isSubjectOpen && (
                         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-[#e2dced] rounded-xl shadow-lg z-50 max-h-[250px] overflow-y-auto">
-                          {subjectOptions.map((subject, index) => (
+                          {t.form.subjects.map((subject, index) => (
                             <button
                               key={subject}
                               type="button"
                               onClick={() => handleSubjectSelect(subject)}
                               className={`w-full px-4 py-3 text-left text-[14px] font-medium text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191] transition-colors ${
-                                index !== subjectOptions.length - 1 ? 'border-b border-[#f4effc]' : ''
+                                index !== t.form.subjects.length - 1 ? 'border-b border-[#f4effc]' : ''
                               }`}
                             >
                               {subject}
@@ -264,7 +263,7 @@ export default function Contact() {
                   {/* Message - Required */}
                   <div className="relative pt-0">
                     <textarea
-                        placeholder="Message *"
+                        placeholder={t.form.message}
                         required
                         rows={4}
                         aria-label="Your message"
@@ -278,7 +277,7 @@ export default function Contact() {
                         type="submit"
                         className="w-full justify-center px-10 h-11 text-[14.5px] font-bold"
                     >
-                      Send Message
+                      {t.form.submit}
                     </ContactButton>
                   </div>
 

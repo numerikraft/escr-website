@@ -38,7 +38,7 @@ export default function PageHero({ tag, title, subtitle, smallSubtitle, hasMargi
                         {tag && (
                             <motion.p
                                 {...fadeUp(0.1)}
-                                className="text-white text-[11px] font-bold tracking-[0.2em] uppercase mb-6"
+                                className="text-white text-[13px] font-bold tracking-[0.2em] uppercase mb-6"
                             >
                                 {tag}
                             </motion.p>

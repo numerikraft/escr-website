@@ -6,7 +6,10 @@ import BlogCard from '../components/BlogCard';
 import PageHero from '../components/PageHero';
 import { GeneralButton } from '../components/Button';
 import SEO from '../components/SEO';
+import CTA from '../components/CTA';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { useLanguage } from '../contexts/LanguageContext';
+import { blogTranslations } from '../data/translations/blog';
 
 // Animation Variants
 const fadeUp = (delay = 0) => ({
@@ -30,6 +33,9 @@ const imageZoom = {
   transition: { duration: 1.5, ease: "easeOut" }
 };
 export default function Blog() {
+  const { language } = useLanguage();
+  const t = blogTranslations[language as keyof typeof blogTranslations] || blogTranslations.en;
+
   const allPosts = BLOG_POSTS;
 
   const [activeCategory, setActiveCategory] = useState('ALL');
@@ -79,21 +85,21 @@ export default function Blog() {
   return (
       <div className="bg-white font-sans overflow-hidden">
         <SEO
-          title="Blog | Clinical Research Insights & Expert Analysis — ESCR"
-          description="Read expert insights, scientific analysis, and clinical research perspectives from ES Clinical Research. Stay updated on RWE, healthcare trends, and CRO innovation."
-          keywords="clinical research blog, CRO insights, healthcare analysis, clinical studies news, real-world evidence articles, ES Clinical Research"
+          title={t.seo.title}
+          description={t.seo.description}
+          keywords={t.seo.keywords}
           image="/escr-og.png"
           breadcrumbs={[
-            { name: 'Home', url: '/' },
-            { name: 'Blog', url: '/blog' }
+            { name: language === 'en' ? 'Home' : 'Accueil', url: '/' },
+            { name: language === 'en' ? 'Blog' : 'Blog', url: '/blog' }
           ]}
         />
 
         {/* 1. HERO SECTION */}
         <PageHero
-            tag="#BLOG"
-            title="Insights & Expertise"
-            subtitle="The Future of Clinical Research"
+            tag={t.hero.tag}
+            title={t.hero.title}
+            subtitle={t.hero.subtitle}
             hasMargin={true}
         />
 
@@ -111,7 +117,7 @@ export default function Blog() {
                   <Search size={20} strokeWidth={2.5} className="text-[#b2abbd]/40 group-focus-within/search:text-[#50298e] transition-colors duration-500 flex-shrink-0 mr-4" />
                   <input
                     type="text"
-                    placeholder="Search articles..."
+                    placeholder={t.search.placeholder}
                     aria-label="Search blog articles"
                     id="blog-search"
                     className="w-full bg-transparent text-[15px] font-medium text-[#50298e] placeholder-[#b2abbd]/40 focus:outline-none"
@@ -138,7 +144,7 @@ export default function Blog() {
                     }`}
                   >
                     <span className="flex items-baseline gap-1.5">
-                      {cat.name}
+                      {t.categories[cat.name as keyof typeof t.categories] || cat.name}
                       <span className={`text-[11px] font-bold transition-colors duration-300 ${
                         activeCategory === cat.name 
                           ? 'text-[#7f2191]' 
@@ -167,7 +173,7 @@ export default function Blog() {
               {/* Results indicator - Minimal */}
               <div ref={resultsRef} className="flex items-center justify-center">
                 <span className="text-[13px] font-bold tracking-[0.06em] text-[#6b5f7a]">
-                  {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''}
+                  {filteredPosts.length} {filteredPosts.length !== 1 ? t.pagination.articles : t.pagination.article}
                 </span>
               </div>
             </motion.div>
@@ -177,9 +183,9 @@ export default function Blog() {
               {paginatedPosts.map((post, idx) => (
                 <BlogCard
                   key={post.id}
-                  date={post.date}
-                  title={post.title}
-                  description={post.description}
+                  date={language === 'fr' && post.dateFr ? post.dateFr : post.date}
+                  title={language === 'en' ? post.title : post.titleFr || post.title}
+                  description={language === 'en' ? post.description : post.descriptionFr || post.description}
                   image={post.img}
                   link={`/blog/${post.id}`}
                   delay={idx * 0.1}
@@ -200,7 +206,7 @@ export default function Blog() {
                       : 'text-[#9b8bb0] hover:text-[#7f2191]'
                   }`}
                 >
-                  ← Prev
+                  {t.pagination.prev}
                 </button>
                 
                 {/* Page Numbers */}
@@ -242,72 +248,15 @@ export default function Blog() {
                       : 'text-[#9b8bb0] hover:text-[#7f2191]'
                   }`}
                 >
-                  Next →
+                  {t.pagination.next}
                 </button>
               </motion.div>
             )}
           </div>
         </section>
 
-        {/* 3. CUSTOM CTA SECTION (No container, so outer gap is exactly 30px) */}
-        <section className="py-12 sm:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-[30px]">
-            {/* items-stretch is the key: it forces both columns to be the exact same height */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
-
-              {/* Left Image Column - Now perfectly synced to text height */}
-              <div className="relative rounded-[2rem] overflow-hidden w-full">
-                <motion.div
-                    {...curtainReveal(0.2)}
-                    className="absolute top-0 left-0 w-full bg-[#620f78] z-20 origin-top"
-                />
-                <motion.img
-                    {...imageZoom}
-                    src="/about/expert-cro-team-partnership.png"
-                    alt="ES Clinical Research CRO team ready for clinical study partnerships"
-                    className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Right Content Column */}
-              <motion.div
-                  {...fadeUp(0.3)}
-                  className="flex flex-col justify-between"
-              >
-                {/* Top Content Group */}
-                <div>
-                  <h2 className="text-[#50298e] text-[28px] md:text-[42px] font-normal mb-5 leading-[1.2]">
-                    Ready to Enhance Your<br className="hidden md:block" />Scientific Outcomes?
-                  </h2>
-                  <p className="text-[#50298e] text-[0.95rem] mb-8 leading-relaxed max-w-xl">
-                    Your projects benefit from careful support and practical expertise. Reach out to our team to discuss your needs and find solutions tailored to each stage of your work.
-                  </p>
-
-                  {/* Phone Block */}
-                  <div className="flex items-center gap-5 mb-8">
-                    <div className="w-14 h-14 rounded-full bg-[#f9effb] flex items-center justify-center text-[#7f2191] flex-shrink-0">
-                      <Phone size={24} fill="currentColor" strokeWidth={0} />
-                    </div>
-                    <div>
-                      <p className="text-[#50298e] font-medium text-[14px] mb-0.5">Call us</p>
-                      <a href="tel:+21320339120" className="text-[#50298e] text-xl font-semibold tracking-wide border-b border-[#50298e]/20 pb-0.5 hover:text-[#7f2191] hover:border-[#7f2191] transition-colors">
-                        +213 20 33 91 20
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom Button Group - Pushed to the very bottom of the flex container */}
-                <div className="flex items-start">
-                  <GeneralButton to="/contact">
-                    Work With Us
-                  </GeneralButton>
-                </div>
-              </motion.div>
-
-            </div>
-          </div>
-        </section>
+        {/* CTA SECTION */}
+        <CTA />
       </div>
   );
 }

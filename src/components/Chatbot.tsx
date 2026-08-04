@@ -9,6 +9,8 @@ import {
   getResponseById,
   matchKeyword
 } from '../data/chatbotFaq';
+import { CHATBOT_WELCOME_MESSAGE_FR, CHATBOT_FALLBACK_MESSAGE_FR } from '../data/chatbotFaqFr';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Message {
   id: string;
@@ -20,6 +22,7 @@ interface Message {
 const STORAGE_KEY = 'escr_chatbot_history';
 
 export default function Chatbot() {
+  const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -73,14 +76,14 @@ export default function Chatbot() {
           {
             id: Date.now().toString(),
             sender: 'bot',
-            text: CHATBOT_WELCOME_MESSAGE,
+            text: language === 'fr' ? CHATBOT_WELCOME_MESSAGE_FR : CHATBOT_WELCOME_MESSAGE,
             options: CHATBOT_INITIAL_OPTIONS
           }
         ]);
         setIsTyping(false);
       }, 1200);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, language]);
 
   // Shake + tooltip effect
   useEffect(() => {
@@ -122,7 +125,7 @@ export default function Chatbot() {
     
     setTimeout(() => {
       if (responseId) {
-        const option = getResponseById(responseId);
+        const option = getResponseById(responseId, language);
         if (option) {
           const messageLengthDelay = Math.min((option.response as string).length * 8, 1500);
           
@@ -149,7 +152,7 @@ export default function Chatbot() {
           {
             id: (Date.now() + 1).toString(),
             sender: 'bot',
-            text: CHATBOT_FALLBACK_MESSAGE,
+            text: language === 'fr' ? CHATBOT_FALLBACK_MESSAGE_FR : CHATBOT_FALLBACK_MESSAGE,
             options: ['services', 'contact', 'faq']
           }
         ]);
@@ -159,7 +162,7 @@ export default function Chatbot() {
   };
 
   const handleOptionClick = (optionId: string) => {
-    const option = getResponseById(optionId);
+    const option = getResponseById(optionId, language);
     if (!option) return;
 
     // Handle special routing commands
@@ -241,7 +244,7 @@ export default function Chatbot() {
                   className="absolute right-[calc(100%+16px)] top-1/2 -translate-y-1/2 whitespace-nowrap bg-white text-[#392874] text-[13px] font-medium px-4 py-3 rounded-lg shadow-[0_0_25px_rgba(80,41,142,0.18)] flex items-center gap-2"
                 >
                   <Bot size={16} className="text-[#7f2191]" />
-                  <span>How can I help you?</span>
+                  <span>{language === 'fr' ? 'Comment puis-je vous aider ?' : 'How can I help you?'}</span>
                   {/* Arrow */}
                   <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white border-r border-b border-gray-100 rotate-[-45deg]" />
                 </motion.div>
@@ -298,9 +301,9 @@ export default function Chatbot() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-[16px] tracking-tight leading-tight">
-                    ESCR Assistant
+                    {language === 'fr' ? 'Assistant ES-CR' : 'ES-CR Assistant'}
                   </h3>
-                  <p className="text-[12.5px] text-white/80 font-normal mt-0.5">Online</p>
+                  <p className="text-[12.5px] text-white/80 font-normal mt-0.5">{language === 'fr' ? 'En ligne' : 'Online'}</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
@@ -348,7 +351,7 @@ export default function Chatbot() {
                   {msg.sender === 'bot' && msg.options && msg.options.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-3 ml-11">
                       {msg.options.map(optId => {
-                        const opt = getResponseById(optId);
+                        const opt = getResponseById(optId, language);
                         if (!opt) return null;
                         return (
                           <button
@@ -395,7 +398,7 @@ export default function Chatbot() {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type your message..."
+                  placeholder={language === 'fr' ? 'Tapez votre message...' : 'Type your message...'}
                   className="flex-1 bg-white rounded-full px-5 py-3 text-[14px] outline-none border border-gray-200 focus:border-[#7f2191] transition-all text-[#392874] placeholder-[#392874]/60"
                 />
                 <button

@@ -6,6 +6,8 @@ import BlogCard from '../components/BlogCard';
 import { GeneralButton } from '../components/Button';
 import SEO from '../components/SEO';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { useLanguage } from '../contexts/LanguageContext';
+import { blogPostOneTranslations } from '../data/translations/blogPost1';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
@@ -39,6 +41,9 @@ const blogOneSections = [
 ];
 
 export default function BlogPostOne() {
+  const { language } = useLanguage();
+  const t = blogPostOneTranslations[language as keyof typeof blogPostOneTranslations] || blogPostOneTranslations.en;
+
   const relatedPosts = BLOG_POSTS.filter((post) => post.id !== 1).slice(0, 2);
   const handleTocClick = (event: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     event.preventDefault();
@@ -59,9 +64,9 @@ export default function BlogPostOne() {
   return (
       <div className="bg-white font-sans">
         <SEO
-          title="Real-World Evidence in Healthcare | Expert Analysis — ESCR"
-          description="Discover how real-world evidence complements clinical trials, reshaping regulatory strategies and patient outcomes in modern healthcare. Expert analysis by ESCR."
-          keywords="Real-World Evidence, RWE, clinical trials, modern healthcare, patient outcomes, regulatory strategy, healthcare data, market access, Samy Bekrar"
+          title={t.seo.title}
+          description={t.seo.description}
+          keywords={t.seo.keywords}
           image="/blog/1/escr-og.png"
           type="article"
         />
@@ -85,24 +90,24 @@ export default function BlogPostOne() {
                 <div className="flex items-center gap-4 mb-8">
                   <motion.div
                       {...fadeUp(0.1)}
-                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[11px] font-bold tracking-widest uppercase"
+                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[13px] font-bold tracking-widest uppercase"
                   >
-                    EXPERT INSIGHTS
+                    {t.meta.tag}
                   </motion.div>
                   <motion.div
                       {...fadeUp(0.2)}
-                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[11px] font-bold tracking-widest uppercase"
+                      className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-white/50 text-white text-[13px] font-bold tracking-widest uppercase"
                   >
                     <Clock size={14} />
-                    5 MIN READ
+                    {t.meta.readTime}
                   </motion.div>
                 </div>
 
                 <motion.h1
                     {...fadeUp(0.3)}
-                    className="text-[36px] sm:text-4xl md:text-[3.5rem] font-normal text-white tracking-tight mb-10 leading-[1.15]"
+                    className="text-[36px] sm:text-4xl md:text-[3.5rem] font-normal text-white tracking-tight mb-10 leading-[1.15] whitespace-pre-line"
                 >
-                  The Value of Real-World <br className="hidden md:block" />Evidence in Modern Healthcare
+                  {t.meta.title}
                 </motion.h1>
 
                 <motion.div
@@ -110,9 +115,9 @@ export default function BlogPostOne() {
                     className="text-white/90 text-[13px] flex flex-wrap items-center gap-6 font-medium"
                 >
                   <div className="flex flex-wrap items-center gap-4 md:gap-6">
-                    <span>Published by <span className="font-bold ml-1 text-white">Samy Bekrar</span></span>
+                    <span>{t.meta.publishedBy} <span className="font-bold ml-1 text-white">{t.meta.author}</span></span>
                     <span className="opacity-40 hidden md:block">•</span>
-                    <span>Published on <span className="font-bold ml-1 text-white">April 1, 2026</span></span>
+                    <span>{t.meta.publishedOn} <span className="font-bold ml-1 text-white">{t.meta.date}</span></span>
                   </div>
                 </motion.div>
               </div>
@@ -125,16 +130,16 @@ export default function BlogPostOne() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
               <motion.div {...fadeUp(0.1)} className="lg:col-span-8">
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-6 font-medium">
-                  In today’s rapidly evolving healthcare environment, decision-making can no longer rely solely on controlled clinical trials. While these trials remain essential for demonstrating the safety and efficacy of treatments, they often fail to capture how therapies perform in real-life conditions. This is where Real-World Evidence (RWE) plays a critical role.
+                  {t.content.intro1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 md:mb-16 font-medium">
-                  As healthcare systems increasingly shift toward patient-centered and value-based models, stakeholders require insights that reflect actual clinical practice. Real-World Evidence provides this perspective by offering a more comprehensive understanding of how treatments are used, how patients respond, and what outcomes are achieved outside controlled environments.
+                  {t.content.intro2}
                 </p>
 
                 <div className="lg:hidden mb-16 px-6 py-5 bg-[#faf8fc] rounded-2xl border border-[#e2dced]">
-                  <h3 className="text-[11px] font-bold text-[#9b8bb0] mb-4 uppercase tracking-widest">Table of content</h3>
+                  <h3 className="text-[11px] font-bold text-[#9b8bb0] mb-4 uppercase tracking-widest">{t.ui.toc}</h3>
                   <ul className="space-y-4 text-[14px] font-semibold text-[#50298e]">
-                    {blogOneSections.map((section) => (
+                    {t.sections.map((section) => (
                       <li key={section.id}>
                         <a
                           href={`#${section.id}`}
@@ -148,12 +153,12 @@ export default function BlogPostOne() {
                   </ul>
                 </div>
 
-                <h2 id="understanding-rwe" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">Understanding Real-World Evidence</h2>
+                <h2 id="understanding-rwe" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[0].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  Real-World Evidence refers to clinical insights derived from Real-World Data, which is collected during routine healthcare delivery rather than through traditional randomized clinical trials. This data reflects the complexity and variability of real-life patient populations, making it highly valuable for both clinical and strategic decision-making.
+                  {t.content.s1p1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-20 font-normal">
-                  Unlike clinical trials, which operate under strict protocols and often involve carefully selected participants, Real-World Evidence captures a broader and more diverse patient population. It includes data from everyday interactions within healthcare systems, such as electronic health records, insurance claims, patient registries, pharmacy records, and digital health tools. By integrating and analyzing these diverse data sources, organizations can gain a more realistic and actionable understanding of treatment effectiveness, safety, and long-term outcomes.
+                  {t.content.s1p2}
                 </p>
 
                 <div className="relative rounded-[2rem] overflow-hidden w-full h-[220px] sm:h-[300px] md:h-[400px] mb-20">
@@ -170,20 +175,20 @@ export default function BlogPostOne() {
                   />
                 </div>
 
-                <h2 id="why-rwe-matters" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">Why Real-World Evidence Matters</h2>
+                <h2 id="why-rwe-matters" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[1].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  The growing importance of Real-World Evidence lies in its ability to complement and extend the insights generated by clinical trials. While trials provide controlled and reliable data, they often lack the breadth needed to fully understand how treatments perform across different populations and over extended periods.
+                  {t.content.s2p1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  Real-World Evidence fills this gap by capturing variations in patient characteristics, comorbidities, and treatment adherence. It allows healthcare stakeholders to observe how therapies perform in routine clinical practice, providing insights that are more representative of actual patient experiences.
+                  {t.content.s2p2}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-20 font-normal">
-                  Beyond its clinical value, Real-World Evidence has become a key asset in regulatory and market access strategies. Regulatory authorities increasingly consider RWE to support approvals, label extensions, and post-marketing commitments. At the same time, market access teams rely on RWE to demonstrate cost-effectiveness, real-world utilization, and long-term value, all of which are essential for securing reimbursement and pricing decisions. In clinical practice, RWE contributes to more informed and personalized care. By analyzing real-world treatment patterns and outcomes, clinicians can better understand which therapies are most effective for specific patient groups. This leads to improved decision-making, enhanced patient outcomes, and a more efficient allocation of healthcare resources.
+                  {t.content.s2p3}
                 </p>
 
-                <h2 id="from-insight-to-impact" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">From Insight to Impact: A Practical Perspective</h2>
+                <h2 id="from-insight-to-impact" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[2].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-20 font-normal">
-                  The true strength of Real-World Evidence lies in its ability to translate data into meaningful action. For example, in fields such as oncology, RWE is frequently used to evaluate how treatments perform across broader and more heterogeneous populations than those included in clinical trials. These insights can reveal differences in long-term effectiveness, safety profiles, and patient adherence, ultimately guiding both clinical practice and strategic decisions. Such applications demonstrate that Real-World Evidence is not just a complementary data source, but a powerful tool for understanding the real impact of healthcare interventions.
+                  {t.content.s3p1}
                 </p>
 
                 <div className="relative rounded-[2rem] overflow-hidden w-full h-[220px] sm:h-[300px] md:h-[400px] mb-20">
@@ -199,45 +204,45 @@ export default function BlogPostOne() {
                       className="w-full h-full object-cover"
                   />
                 </div>
-                <h2 id="challenges" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">Challenges and Considerations</h2>
+                <h2 id="challenges" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[3].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  Despite its significant advantages, the use of Real-World Evidence also presents important challenges that must be carefully addressed. Data quality remains a primary concern, as information collected from multiple sources may vary in accuracy, completeness, and consistency. Additionally, the presence of bias and confounding factors can influence outcomes and must be managed through rigorous analytical methods.
+                  {t.content.s4p1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-20 font-normal">
-                  Another challenge lies in the lack of standardization across healthcare systems and regions, which can complicate data integration and comparison. At the same time, ethical considerations and data privacy regulations require strict governance to ensure that patient information is handled responsibly. To ensure credibility and reliability, organizations must adopt robust methodologies, transparent processes, and high standards of data governance. Only under these conditions can Real-World Evidence deliver its full value.
+                  {t.content.s4p2}
                 </p>
 
-                <h2 id="future" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mt-20 mb-10">The Future of Real-World Evidence</h2>
+                <h2 id="future" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mt-20 mb-10">{t.sections[4].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  The future of Real-World Evidence is closely linked to technological innovation. Advances in artificial intelligence, machine learning, and digital health are transforming the way data is collected, analyzed, and interpreted. These technologies enable faster processing of large and complex datasets, leading to more accurate and timely insights.
+                  {t.content.s5p1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-6 md:mb-16 font-normal">
-                  As healthcare systems continue to evolve, Real-World Evidence is becoming an essential component of the decision-making ecosystem. It is no longer viewed as a secondary source of information, but as a strategic asset that supports innovation, improves outcomes, and accelerates access to effective treatments.
+                  {t.content.s5p2}
                 </p>
 
-                <h2 id="our-approach" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">Our Approach to Real-World Evidence</h2>
+                <h2 id="our-approach" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[5].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  At our organization, we recognize the transformative potential of Real-World Evidence and its role in shaping the future of healthcare. Our approach is designed to help partners fully leverage RWE by combining scientific rigor with practical applicability.
+                  {t.content.s6p1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-20 font-normal">
-                  We support healthcare stakeholders across the entire RWE lifecycle, from study design and data integration to advanced analytics and strategic insights. By working with diverse and high-quality data sources, we generate evidence that is both reliable and actionable. Our objective is to enable better decisions at every level, whether in clinical development, regulatory strategy, or market access. Through a tailored and data-driven approach, we help transform complex information into clear, impactful outcomes.
+                  {t.content.s6p2}
                 </p>
 
-                <h2 id="conclusion" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">Conclusion</h2>
+                <h2 id="conclusion" className="scroll-mt-40 text-[28px] md:text-[42px] font-medium text-[#7f2191] mb-6">{t.sections[6].title}</h2>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  Real-World Evidence is redefining how healthcare decisions are made. By complementing clinical trials with insights drawn from real-life practice, it provides a more complete and accurate understanding of treatment impact.
+                  {t.content.s7p1}
                 </p>
                 <p className="text-[#50298e] text-[1.05rem] leading-relaxed mb-10 font-normal">
-                  As the demand for value-based and patient-centered care continues to grow, the importance of Real-World Evidence will only increase. Organizations that effectively harness its potential will be better positioned to improve outcomes, optimize strategies, and drive meaningful progress in healthcare. Real-World Evidence is not simply an evolution of data-it is a fundamental shift toward more informed, more efficient, and more impactful decision-making.
+                  {t.content.s7p2}
                 </p>
               </motion.div>
 
               <motion.div {...fadeUp(0.2)} className="lg:col-span-4 sticky top-28 self-start mb-10 lg:mb-24">
                 <div className="flex flex-col gap-6">
                   <div className="hidden lg:block bg-white rounded-2xl px-6 py-5 border border-[#d8cfe3]">
-                    <h3 className="text-[11px] font-medium text-[#9b8bb0] mb-4">Table of content</h3>
+                    <h3 className="text-[11px] font-medium text-[#9b8bb0] mb-4">{t.ui.toc}</h3>
                     <ul className="space-y-3.5 text-[13px] font-semibold text-[#50298e]">
-                      {blogOneSections.map((section) => (
+                      {t.sections.map((section) => (
                         <li key={section.id}>
                           <a
                             href={`#${section.id}`}
@@ -253,7 +258,7 @@ export default function BlogPostOne() {
 
                   <div className="px-1">
                     <div className="flex items-center justify-end gap-5 mb-5">
-                      <span className="text-[13px] font-semibold text-[#50298e]">Share this post</span>
+                      <span className="text-[13px] font-semibold text-[#50298e]">{t.ui.share}</span>
                       <div className="flex gap-2">
                         <button
                             onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`)}
@@ -286,14 +291,14 @@ export default function BlogPostOne() {
                           const span = e.currentTarget.querySelector('span');
                           if (span) {
                             const original = span.innerText;
-                            span.innerText = "COPIED!";
+                            span.innerText = t.ui.copied;
                             setTimeout(() => { span.innerText = original; }, 2000);
                           }
                         }}
                         aria-label="Copy link to this article"
                         className="cursor-pointer w-full flex items-center justify-between px-6 py-2.5 rounded-full border border-[#e2dced] text-[11px] font-semibold tracking-wider uppercase text-[#7f2191] hover:border-[#7f2191] hover:bg-white transition-all duration-300"
                     >
-                      <span>COPY LINK</span>
+                      <span>{t.ui.copyLink}</span>
                       <Copy size={14} strokeWidth={2} />
                     </button>
                   </div>
@@ -314,12 +319,12 @@ export default function BlogPostOne() {
             >
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 md:mb-16 gap-6">
                 <motion.h2 {...fadeUp(0.2)} className="text-[28px] md:text-[42px] font-normal leading-tight text-white mb-0">
-                  Similar Reads
+                  {t.ui.similarReads}
                 </motion.h2>
 
                 <motion.div {...fadeUp(0.3)} className="hidden md:block">
                   <GeneralButton variant="outline" className="border-none hover:shadow-lg" to="/blog">
-                    Check All Blog
+                    {t.ui.checkAll}
                   </GeneralButton>
                 </motion.div>
               </div>
@@ -328,9 +333,9 @@ export default function BlogPostOne() {
                 {relatedPosts.map((post, index) => (
                   <BlogCard
                     key={post.id}
-                    date={post.date}
-                    title={post.title}
-                    description={post.description}
+                    date={language === 'fr' && post.dateFr ? post.dateFr : post.date}
+                    title={language === 'en' ? post.title : post.titleFr || post.title}
+                    description={language === 'en' ? post.description : post.descriptionFr || post.description}
                     image={post.img}
                     link={`/blog/${post.id}`}
                     delay={0.4 + index * 0.1}
@@ -344,7 +349,7 @@ export default function BlogPostOne() {
                   className="mt-10 flex justify-start md:hidden"
               >
                 <GeneralButton variant="outline" className="border-none hover:shadow-lg" to="/blog">
-                  Check All Blog
+                  {t.ui.checkAll}
                 </GeneralButton>
               </motion.div>
             </motion.div>

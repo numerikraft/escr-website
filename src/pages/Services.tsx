@@ -10,26 +10,36 @@ import { ServiceH3, ServiceParagraph } from '../components/Typography';
 import AnimatedSection from '../components/AnimatedSection';
 import SEO from '../components/SEO';
 import { SERVICES_DATA } from '../data/services';
+import { useLanguage } from '../contexts/LanguageContext';
+import { servicesTranslations } from '../data/translations/services';
 
-function AnimatedNumber({ value, suffix = "" }: { value: number, suffix?: string }) {
+function AnimatedNumber({ value, prefix = "", suffix = "", formatSpace = false, overrideValue }: { value: number, prefix?: string, suffix?: string, formatSpace?: boolean, overrideValue?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (isInView && ref.current) {
       const node = ref.current;
+      if (overrideValue) {
+        node.textContent = overrideValue;
+        return;
+      }
       const controls = animate(0, value, {
         duration: 2.5,
         ease: "easeOut",
         onUpdate(v) {
-          node.textContent = Math.round(v) + suffix;
+          const rounded = Math.round(v);
+          const numStr = formatSpace 
+            ? rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+            : rounded.toString();
+          node.textContent = prefix + numStr + suffix;
         }
       });
       return () => controls.stop();
     }
-  }, [isInView, value, suffix]);
+  }, [isInView, value, prefix, suffix, formatSpace, overrideValue]);
 
-  return <span ref={ref}>0{suffix}</span>;
+  return <span ref={ref}>{overrideValue || `${prefix}0${suffix}`}</span>;
 }
 
 // Animation Variants
@@ -55,18 +65,21 @@ const imageZoom = {
 };
 
 export default function Services() {
+  const { language } = useLanguage();
+  const t = servicesTranslations[language as keyof typeof servicesTranslations] || servicesTranslations.en;
+
   const duplicatedServices = [...SERVICES_DATA, ...SERVICES_DATA];
 
   return (
       <div className="bg-white font-sans overflow-hidden">
         <SEO
-          title="CRO Services | Clinical Studies & Medical Expertise — ESCR"
-          description="Explore ES Clinical Research CRO services: clinical trials, pharmacoeconomics, patient support, real-world evidence, medical writing, expert consulting, and training."
-          keywords="CRO services, clinical research, clinical trials Algeria, pharmacoeconomics, patient support, real-world evidence, medical writing, expert support, training"
+          title={t.seo.title}
+          description={t.seo.description}
+          keywords={t.seo.keywords}
           image="/escr-og.png"
           breadcrumbs={[
-            { name: 'Home', url: '/' },
-            { name: 'Services', url: '/services' }
+            { name: language === 'en' ? 'Home' : 'Accueil', url: '/' },
+            { name: language === 'en' ? 'Services' : 'Services', url: '/services' }
           ]}
         />
 
@@ -74,7 +87,7 @@ export default function Services() {
         <PageHero
           tag="#SERVICES"
           title=""
-          subtitle="Clinical Studies & Medical Expertise"
+          subtitle={t.hero.subtitle}
           hasMargin={true}
         />
 
@@ -100,7 +113,7 @@ export default function Services() {
                         <motion.img
                             {...imageZoom}
                             src={service.image}
-                            alt={`${service.title} — clinical research service by ES Clinical Research CRO`}
+                            alt={`${service.title} — clinical research service by ES-CR CRO`}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         {/* Hover Overlay */}
@@ -109,12 +122,11 @@ export default function Services() {
 
                       {/* Card Content */}
                       <div className="px-6 py-7 flex-1 flex flex-col">
-                        <ServiceH3 className="text-[#7f2191] relative w-fit tracking-tight">
-                          {service.title}
-                          <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#7f2191] transition-all duration-500 group-hover:w-full" />
+                        <ServiceH3 className="text-[#7f2191] tracking-tight">
+                          {language === 'en' ? service.title : service.titleFr || service.title}
                         </ServiceH3>
                         <ServiceParagraph>
-                          {service.description}
+                          {language === 'en' ? service.description : service.descriptionFr || service.description}
                         </ServiceParagraph>
                       </div>
                     </ShadowBox>
@@ -135,67 +147,81 @@ export default function Services() {
             >
               {/* Patterns */}
               <img src="/escr-pattern-top-left.png" alt="" className="absolute top-0 left-0 w-32 sm:w-48 md:w-[240px] lg:w-[300px] object-contain object-left-top opacity-45 pointer-events-none select-none z-0" />
-              <img src="/escr-pattern-bottom-right.png" alt="" className="absolute bottom-0 right-0 w-16 sm:w-24 md:w-[120px] lg:w-[150px] object-contain object-right-bottom opacity-30 pointer-events-none select-none z-0" />
               
               <AnimatedSection>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-white text-[0.7rem] font-bold tracking-widest uppercase mb-6">
-                  # COMPANY IN NUMBERS
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-white text-[13px] font-bold tracking-widest uppercase mb-6">
+                  {t.achievements.tag}
                 </div>
                 <h2 className="text-[28px] md:text-[42px] font-normal text-white mb-10 sm:mb-16 leading-[1.15] tracking-tight">
-                  Our Scientific Impact
+                  {t.achievements.title}
                 </h2>
               </AnimatedSection>
-              <div className="grid grid-cols-2 md:grid-cols-5 max-w-7xl mx-auto mt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-6xl mx-auto mt-6 gap-y-10 md:gap-y-14 gap-x-6">
+                {/* Row 1, Col 1 */}
                 <AnimatedSection delay={0.1} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={2} suffix="+" />
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={20} prefix="+" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Years of Experience</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{t.achievements.stats.yearsExpertise}</p>
                   </div>
                   {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
 
+                {/* Row 1, Col 2 */}
                 <AnimatedSection delay={0.2} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={12} suffix="+" />
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={9} prefix="+" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Clinical Studies</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{t.achievements.stats.studiesRnd}</p>
                   </div>
                   {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
 
-                <AnimatedSection delay={0.3} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={15} suffix="+" />
+                {/* Row 1, Col 3 */}
+                <AnimatedSection delay={0.3}>
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={7000} prefix="+" formatSpace={true} />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Trusted Partners</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{t.achievements.stats.patientsEnrolled}</p>
                   </div>
-                  {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
-                
+
+                {/* Row 2, Col 1 */}
                 <AnimatedSection delay={0.4} className="relative">
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={500} suffix="+" />
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={144} prefix="+" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Patients Managed</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{t.achievements.stats.investigatorSites}</p>
                   </div>
                   {/* Vertical Line */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
                 </AnimatedSection>
 
-                <AnimatedSection delay={0.5}>
-                  <div className="flex flex-col items-center justify-center text-center h-full py-8">
-                    <div className="text-[40px] sm:text-[60px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
-                      <AnimatedNumber value={37} suffix="+" />
+                {/* Row 2, Col 2 */}
+                <AnimatedSection delay={0.5} className="relative">
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={7} prefix="+0" />
                     </div>
-                    <p className="text-[15px] sm:text-[17px] text-white/80 font-medium tracking-wide">Scientific Publication</p>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{t.achievements.stats.therapeuticAreas}</p>
+                  </div>
+                  {/* Vertical Line */}
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-20 bg-white/25" />
+                </AnimatedSection>
+
+                {/* Row 2, Col 3 */}
+                <AnimatedSection delay={0.6}>
+                  <div className="flex flex-col items-center justify-center text-center h-full py-4 px-3">
+                    <div className="text-[38px] sm:text-[54px] lg:text-[58px] font-semibold text-white mb-2 flex items-center leading-none tracking-tight">
+                      <AnimatedNumber value={2} prefix="+0" />
+                    </div>
+                    <p className="text-[11.5px] sm:text-[12.5px] text-white/85 font-medium tracking-wider uppercase leading-snug max-w-[230px]">{t.achievements.stats.pharmacoeconomicStudies}</p>
                   </div>
                 </AnimatedSection>
               </div>

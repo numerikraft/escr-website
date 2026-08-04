@@ -16,7 +16,7 @@ interface SEOProps {
   breadcrumbs?: BreadcrumbItem[];
 }
 
-const SITE_NAME = 'ES Clinical Research';
+const SITE_NAME = 'ES-CR';
 const SITE_URL = 'https://esclinical.com';
 const DEFAULT_IMAGE = '/escr-og.png';
 

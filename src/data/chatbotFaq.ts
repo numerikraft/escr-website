@@ -12,9 +12,9 @@ export interface ChatKeyword {
   weight?: number;
 }
 
-export const CHATBOT_WELCOME_MESSAGE = "Welcome to **ES Clinical Research**! I am your virtual assistant.\n\nI can help you explore our full range of **CRO services**, learn about our team and mission, navigate the website, or connect you directly with our experts.\n\nFeel free to select a topic below or type your question — I'm here to guide you.";
+export const CHATBOT_WELCOME_MESSAGE = "Welcome to **ES-CR**! I am your virtual assistant.\n\nI can help you explore our full range of **CRO services**, learn about our team and mission, navigate the website, or connect you directly with our experts.\n\nFeel free to select a topic below or type your question — I'm here to guide you.";
 
-export const CHATBOT_FALLBACK_MESSAGE = "Thank you for your message. I may not have a specific answer for that, but I can still help you navigate the site.\n\nHere are a few things I can assist you with:\n\n- Explore our **7 specialized CRO services**\n\n- Learn about **who we are** and our mission\n\n- Send you to the **Contact page** to schedule a meeting\n\n- Answer **frequently asked questions** about ESCR\n\nWhat would you like to do?";
+export const CHATBOT_FALLBACK_MESSAGE = "Thank you for your message. I may not have a specific answer for that, but I can still help you navigate the site.\n\nHere are a few things I can assist you with:\n\n- Explore our **7 specialized CRO services**\n\n- Learn about **who we are** and our mission\n\n- Send you to the **Contact page** to schedule a meeting\n\n- Answer **frequently asked questions** about ES-CR\n\nWhat would you like to do?";
 
 // ───────── Full Response Database ─────────
 export const CHATBOT_DATABASE: Record<string, ChatOption> = {
@@ -31,7 +31,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "services": {
     id: "services",
     label: "Our Services",
-    response: "**ES Clinical Research** is a Contract Research Organization offering **7 specialized services** to support pharmaceutical and biotechnology companies throughout the drug development lifecycle:\n\n• **Clinical Studies** — Phase I to III trial management\n\n• **Pharmacoeconomic Studies** — Value assessment & cost-effectiveness\n\n• **Patient Support Program** — Treatment adherence & patient guidance\n\n• **Real-World Evidence** — Phase IV, observational & epidemiological studies\n\n• **Medical Writing** — Scientific publications & editorial quality\n\n• **Expert Support** — Advisory boards & KOL engagement\n\n• **Training** — INEAS-accredited professional development\n\nEach service has its own dedicated page with full details.\n\nWhich one would you like to explore?",
+    response: "**ES-CR** is a Contract Research Organization offering **7 specialized services** to support pharmaceutical and biotechnology companies throughout the drug development lifecycle:\n\n• **Clinical Studies** — Phase I to III trial management\n\n• **Pharmacoeconomic Studies** — Value assessment & cost-effectiveness\n\n• **Patient Support Program** — Treatment adherence & patient guidance\n\n• **Real-World Evidence** — Phase IV, observational & epidemiological studies\n\n• **Medical Writing** — Scientific publications & editorial quality\n\n• **Expert Support** — Advisory boards & KOL engagement\n\n• **Training** — INEAS-accredited professional development\n\nEach service has its own dedicated page with full details.\n\nWhich one would you like to explore?",
     followUpIds: ["clinical_studies", "pharmacoeconomic", "patient_support", "rwe", "medical_writing", "expert_support", "training", "link_services"]
   },
 
@@ -87,7 +87,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "training": {
     id: "training",
     label: "Training",
-    response: "**Training** programs at ESCR build professional competencies in clinical research.\n\nOur modules combine theoretical foundations with practical applications, tailored to professionals and future experts.\n\nOur training catalog includes:\n\n• **Clinical Trials & GCP** — Fundamentals, regulatory requirements, study design, patient safety\n\n• **Specialized Professional Courses** — For CRAs, coordinators, investigators, and medical teams\n\n• **Pharmacovigilance in Clinical Trials** — Safety reporting and regulatory expectations\n\n• **Data Management & Biostatistics** — Data handling, validation, and statistical interpretation\n\n• **Scientific Writing & Communication** — Critical reading, writing, and scientific exchange\n\n• **Accredited Training Sessions (INEAS)** — Validated pathways with certified instructors\n\n• **Distance & In-Person Learning** — Flexible formats maintaining consistent quality\n\nVisit the **Training page** for the full catalog, or contact us to schedule a session for your team.",
+    response: "**Training** programs at ES-CR build professional competencies in clinical research.\n\nOur modules combine theoretical foundations with practical applications, tailored to professionals and future experts.\n\nOur training catalog includes:\n\n• **Clinical Trials & GCP** — Fundamentals, regulatory requirements, study design, patient safety\n\n• **Specialized Professional Courses** — For CRAs, coordinators, investigators, and medical teams\n\n• **Pharmacovigilance in Clinical Trials** — Safety reporting and regulatory expectations\n\n• **Data Management & Biostatistics** — Data handling, validation, and statistical interpretation\n\n• **Scientific Writing & Communication** — Critical reading, writing, and scientific exchange\n\n• **Accredited Training Sessions (INEAS)** — Validated pathways with certified instructors\n\n• **Distance & In-Person Learning** — Flexible formats maintaining consistent quality\n\nVisit the **Training page** for the full catalog, or contact us to schedule a session for your team.",
     followUpIds: ["link_training", "contact", "services", "main_menu"]
   },
 
@@ -95,15 +95,15 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "contact": {
     id: "contact",
     label: "Contact Us",
-    response: "Here is how you can reach the **ES Clinical Research** team:\n\n**Email**: contact@esclinical.com\n\n**Phone**: +213 20 33 91 20\n\n**Address**: 76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria\n\n**Hours**: Sunday to Thursday, 9 AM to 5 PM\n\nOur team typically responds within 24 business hours.\n\nYou can also visit our **Contact page** to fill out an inquiry form, or send us an email directly.\n\nWe handle inquiries related to: *General Inquiry, Request a Quote, Project Consultation, Partnership Opportunity, and Career Applications*.",
+    response: "Here is how you can reach the **ES-CR** team:\n\n**Email**: contact@esclinical.com\n\n**Phone**: +213 20 33 91 20\n\n**Address**: 76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria\n\n**Hours**: Sunday to Thursday, 9 AM to 5 PM\n\nOur team typically responds within 24 business hours.\n\nYou can also visit our **Contact page** to fill out an inquiry form, or send us an email directly.\n\nWe handle inquiries related to: *General Inquiry, Request a Quote, Project Consultation, Partnership Opportunity, and Career Applications*.",
     followUpIds: ["link_contact", "direct_email", "main_menu"]
   },
 
   // ══════════════════ ABOUT ══════════════════
   "about": {
     id: "about",
-    label: "About ESCR",
-    response: "**ES Clinical Research** is a leading Algerian Contract Research Organization (CRO).\n\n**Our Mission**: We act as an operational partner and a link between all stakeholders, supporting the management of clinical studies in line with protocols, regulatory requirements, and timelines.\n\n**Our Story**: Our story began with the meeting of a founding team from clinical research and the healthcare sector, who shared a common vision — built around one idea: *improving patient care*.\n\n**Our DNA** — The values that drive everything we do:\n\n• Ethical Integrity & Transparency\n\n• Expert Sharing & Communication\n\n• Reliability & Proactivity\n\n• Secure Confidentiality & Trust\n\n**Our Impact**: 2+ years of experience, 12+ clinical studies, 15+ trusted partners, 500+ patients managed, and 37+ scientific publications.\n\nWant to learn more? Visit the **About page**, explore our **Services**, or meet our team.",
+    label: "About ES-CR",
+    response: "**ES-CR** is a leading Algerian Contract Research Organization (CRO).\n\n**Our Mission**: We act as an operational partner and a link between all stakeholders, supporting the management of clinical studies in line with protocols, regulatory requirements, and timelines.\n\n**Our Story**: Our story began with the meeting of a founding team from clinical research and the healthcare sector, who shared a common vision — built around one idea: *improving patient care*.\n\n**Our DNA** — The values that drive everything we do:\n\n• Ethical Integrity & Transparency\n\n• Expert Sharing & Communication\n\n• Reliability & Proactivity\n\n• Secure Confidentiality & Trust\n\n**Our Impact**: 2+ years of experience, 12+ clinical studies, 15+ trusted partners, 500+ patients managed, and 37+ scientific publications.\n\nWant to learn more? Visit the **About page**, explore our **Services**, or meet our team.",
     followUpIds: ["link_about", "services", "team", "contact", "main_menu"]
   },
 
@@ -111,7 +111,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "team": {
     id: "team",
     label: "Our Team",
-    response: "The ESCR team is led by experienced professionals in clinical research and healthcare:\n\n• **Fayçal CHALAL** — Founder & CEO\n\n• **Dr. Meriem HEDIBEL** — Co-Founder & Clinical Operation Director\n\n• **Dr. Tarik MEBARKI** — Medical Director\n\n• **Mr. Samy BEKRAR** — Project Lead & CRA\n\nYou can view their full profiles and LinkedIn pages on our **About page**.\n\nWant to join our team? Check the **Careers** section or send us your application.",
+    response: "The ES-CR team is led by experienced professionals in clinical research and healthcare:\n\n• **Fayçal CHALAL** — Founder & CEO\n\n• **Dr. Meriem HEDIBEL** — Co-Founder & Clinical Operation Director\n\n• **Dr. Tarik MEBARKI** — Medical Director\n\n• **Mr. Samy BEKRAR** — Project Lead & CRA\n\nYou can view their full profiles and LinkedIn pages on our **About page**.\n\nWant to join our team? Check the **Careers** section or send us your application.",
     followUpIds: ["link_about", "careers", "contact", "main_menu"]
   },
 
@@ -119,7 +119,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "careers": {
     id: "careers",
     label: "Careers",
-    response: "We are always looking for passionate professionals to join the ESCR team!\n\nTo apply for an opening or submit a spontaneous application, send your **CV** and cover letter to **contact@esclinical.com** with the subject line *\"Career Application\"*.\n\nYou can also use our **Contact page** and select *\"Career / Job Application\"* as the subject.\n\nWe offer opportunities across clinical operations, medical writing, pharmacovigilance, data management, and more.",
+    response: "We are always looking for passionate professionals to join the ES-CR team!\n\nTo apply for an opening or submit a spontaneous application, send your **CV** and cover letter to **contact@esclinical.com** with the subject line *\"Career Application\"*.\n\nYou can also use our **Contact page** and select *\"Career / Job Application\"* as the subject.\n\nWe offer opportunities across clinical operations, medical writing, pharmacovigilance, data management, and more.",
     followUpIds: ["link_contact", "direct_email", "about", "main_menu"]
   },
 
@@ -127,7 +127,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "blog": {
     id: "blog",
     label: "Blog & Insights",
-    response: "Our **Blog** section features scientific articles and industry insights published by the ESCR team.\n\nYou'll find content on topics like clinical research developments, industry best practices, and scientific publications.\n\nVisit the **Blog page** to read our latest articles.",
+    response: "Our **Blog** section features scientific articles and industry insights published by the ES-CR team.\n\nYou'll find content on topics like clinical research developments, industry best practices, and scientific publications.\n\nVisit the **Blog page** to read our latest articles.",
     followUpIds: ["link_blog", "services", "main_menu"]
   },
 
@@ -135,7 +135,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "faq": {
     id: "faq",
     label: "FAQ",
-    response: "Here are some frequently asked questions:\n\n**What is a CRO?**\nA Contract Research Organization provides outsourced research services to the pharmaceutical and biotech industry — from study design to final reporting.\n\n**Where is ESCR located?**\n76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria.\n\n**What services do you offer?**\nWe offer 7 services: Clinical Studies, Pharmacoeconomic Studies, Patient Support, Real-World Evidence, Medical Writing, Expert Support, and Training.\n\n**Do you work with international sponsors?**\nYes. We act as a link between all stakeholders and follow international standards (ICH-GCP).\n\n**Are your training programs accredited?**\nYes. Our programs are accredited by **INEAS** and delivered by certified instructors.\n\n**How can I contact you?**\nEmail: contact@esclinical.com | Phone: +213 20 33 91 20\n\nHave another question? Just type it or visit our Contact page.",
+    response: "Here are some frequently asked questions:\n\n**What is a CRO?**\nA Contract Research Organization provides outsourced research services to the pharmaceutical and biotech industry — from study design to final reporting.\n\n**Where is ES-CR located?**\n76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria.\n\n**What services do you offer?**\nWe offer 7 services: Clinical Studies, Pharmacoeconomic Studies, Patient Support, Real-World Evidence, Medical Writing, Expert Support, and Training.\n\n**Do you work with international sponsors?**\nYes. We act as a link between all stakeholders and follow international standards (ICH-GCP).\n\n**Are your training programs accredited?**\nYes. Our programs are accredited by **INEAS** and delivered by certified instructors.\n\n**How can I contact you?**\nEmail: contact@esclinical.com | Phone: +213 20 33 91 20\n\nHave another question? Just type it or visit our Contact page.",
     followUpIds: ["contact", "services", "about", "main_menu"]
   },
 
@@ -198,7 +198,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "direct_email": {
     id: "direct_email",
     label: "Send Email Directly",
-    response: "mailto:contact@esclinical.com?subject=[ESCR Chatbot] Information Request",
+    response: "mailto:contact@esclinical.com?subject=[ES-CR Chatbot] Information Request",
     type: 'mailto'
   },
 
@@ -206,7 +206,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "greeting": {
     id: "greeting",
     label: "Hello",
-    response: "Hello! Welcome to **ES Clinical Research**.\n\nI'm your virtual assistant, here to help you navigate the website and learn about our services.\n\nWhether you need information about a specific service, want to reach our team, or just need a quick answer — I'm here for you.\n\nHow can I help you today?",
+    response: "Hello! Welcome to **ES-CR**.\n\nI'm your virtual assistant, here to help you navigate the website and learn about our services.\n\nWhether you need information about a specific service, want to reach our team, or just need a quick answer — I'm here for you.\n\nHow can I help you today?",
     followUpIds: ["services", "about", "contact", "faq"]
   },
 
@@ -220,7 +220,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "location": {
     id: "location",
     label: "Location",
-    response: "**ES Clinical Research** is located at:\n\n**76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria**\n\nOur offices are open **Sunday to Thursday, 9 AM to 5 PM**.\n\nYou can find the exact location on the interactive map on our **Contact page**.\n\nWant me to take you there?",
+    response: "**ES-CR** is located at:\n\n**76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria**\n\nOur offices are open **Sunday to Thursday, 9 AM to 5 PM**.\n\nYou can find the exact location on the interactive map on our **Contact page**.\n\nWant me to take you there?",
     followUpIds: ["link_contact", "contact", "main_menu"]
   },
   "hours": {
@@ -238,7 +238,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "linkedin": {
     id: "linkedin",
     label: "LinkedIn",
-    response: "You can follow **ES Clinical Research** on LinkedIn to stay updated on our latest news, job openings, and scientific publications:\n\n**linkedin.com/company/es-clinical-research**\n\nYou'll also find individual team member profiles on our **About page**.",
+    response: "You can follow **ES-CR** on LinkedIn to stay updated on our latest news, job openings, and scientific publications:\n\n**linkedin.com/company/es-clinical-research**\n\nYou'll also find individual team member profiles on our **About page**.",
     followUpIds: ["link_about", "main_menu"]
   },
   "legal": {
@@ -266,7 +266,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "language": {
     id: "language",
     label: "Languages",
-    response: "The ESCR website is currently available in **English**.\n\nA **French version** is coming soon — our language selector is already available in the navigation bar and will be activated shortly.\n\nIn the meantime, feel free to type your questions in French or English — I can understand both!",
+    response: "The ES-CR website is currently available in **English**.\n\nA **French version** is coming soon — our language selector is already available in the navigation bar and will be activated shortly.\n\nIn the meantime, feel free to type your questions in French or English — I can understand both!",
     followUpIds: ["services", "contact", "main_menu"]
   },
 
@@ -274,7 +274,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "who_are_you": {
     id: "who_are_you",
     label: "Who are you?",
-    response: "I am the **ESCR Assistant**, the official virtual assistant of ES Clinical Research.\n\nI'm here to help you:\n\n• Navigate the website and find information quickly\n\n• Learn about our **7 CRO services** in detail\n\n• Connect you with our team via the **Contact page**\n\n• Answer frequently asked questions\n\nI'm not a general-purpose AI — I'm specifically designed to assist visitors of this website.\n\nHow can I help you today?",
+    response: "I am the **ES-CR Assistant**, the official virtual assistant of ES-CR.\n\nI'm here to help you:\n\n• Navigate the website and find information quickly\n\n• Learn about our **7 CRO services** in detail\n\n• Connect you with our team via the **Contact page**\n\n• Answer frequently asked questions\n\nI'm not a general-purpose AI — I'm specifically designed to assist visitors of this website.\n\nHow can I help you today?",
     followUpIds: ["services", "about", "contact", "faq"]
   },
 
@@ -282,7 +282,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "pharma_general": {
     id: "pharma_general",
     label: "Pharma",
-    response: "**ES Clinical Research** works with pharmaceutical and biotechnology companies across the entire drug development lifecycle.\n\nOur services cover:\n\n• **Pre-market** — Clinical trials (Phase I–III), value dossiers, expert engagement\n\n• **Post-market** — Real-world evidence, pharmacovigilance, patient registries\n\n• **Support** — Medical writing, patient programs, training\n\nWould you like to explore a specific service, or discuss your project with our team?",
+    response: "**ES-CR** works with pharmaceutical and biotechnology companies across the entire drug development lifecycle.\n\nOur services cover:\n\n• **Pre-market** — Clinical trials (Phase I–III), value dossiers, expert engagement\n\n• **Post-market** — Real-world evidence, pharmacovigilance, patient registries\n\n• **Support** — Medical writing, patient programs, training\n\nWould you like to explore a specific service, or discuss your project with our team?",
     followUpIds: ["services", "contact", "main_menu"]
   },
 
@@ -290,7 +290,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "algeria_specific": {
     id: "algeria_specific",
     label: "Algeria",
-    response: "**ES Clinical Research** is headquartered in **Algiers, Algeria** and serves as a strategic CRO partner for the local and regional market.\n\nWe operate from:\n\n**76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria**\n\nOur team combines in-depth knowledge of local regulatory frameworks with international standards (ICH-GCP) to support clinical research across the region.\n\nWant to learn more about how we work in this market?",
+    response: "**ES-CR** is headquartered in **Algiers, Algeria** and serves as a strategic CRO partner for the local and regional market.\n\nWe operate from:\n\n**76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers, Algeria**\n\nOur team combines in-depth knowledge of local regulatory frameworks with international standards (ICH-GCP) to support clinical research across the region.\n\nWant to learn more about how we work in this market?",
     followUpIds: ["about", "contact", "services", "main_menu"]
   },
 
@@ -298,7 +298,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "regulatory": {
     id: "regulatory",
     label: "Regulatory & GCP",
-    response: "**ES Clinical Research** operates in full compliance with international regulatory standards.\n\nOur work follows:\n\n• **ICH-GCP** (Good Clinical Practice) — the international ethical and scientific quality standard for clinical trials\n\n• **Local regulatory requirements** — Algerian and regional compliance frameworks\n\n• **Pharmacovigilance regulations** — Safety reporting and risk management\n\nNeed more details? Our **Clinical Studies** and **Training** pages cover regulatory topics in depth.\n\nYou can also contact our team for specific regulatory questions.",
+    response: "**ES-CR** operates in full compliance with international regulatory standards.\n\nOur work follows:\n\n• **ICH-GCP** (Good Clinical Practice) — the international ethical and scientific quality standard for clinical trials\n\n• **Local regulatory requirements** — Algerian and regional compliance frameworks\n\n• **Pharmacovigilance regulations** — Safety reporting and risk management\n\nNeed more details? Our **Clinical Studies** and **Training** pages cover regulatory topics in depth.\n\nYou can also contact our team for specific regulatory questions.",
     followUpIds: ["clinical_studies", "training", "contact", "main_menu"]
   },
 
@@ -314,7 +314,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "frustration": {
     id: "frustration",
     label: "Help",
-    response: "I'm sorry you're having trouble — let me try to help.\n\nHere are the most common things I can do for you:\n\n• **Explore our services** — Learn what ESCR offers in clinical research\n\n• **Find our contact info** — Email, phone, and address\n\n• **Navigate the site** — I can send you directly to any page\n\n• **Answer common questions** — FAQ section with key information\n\nTry typing what you're looking for in simple terms, and I'll do my best to find it.\n\nOr you can always reach a human at **contact@esclinical.com**.",
+    response: "I'm sorry you're having trouble — let me try to help.\n\nHere are the most common things I can do for you:\n\n• **Explore our services** — Learn what ES-CR offers in clinical research\n\n• **Find our contact info** — Email, phone, and address\n\n• **Navigate the site** — I can send you directly to any page\n\n• **Answer common questions** — FAQ section with key information\n\nTry typing what you're looking for in simple terms, and I'll do my best to find it.\n\nOr you can always reach a human at **contact@esclinical.com**.",
     followUpIds: ["services", "contact", "faq", "main_menu"]
   },
 
@@ -322,7 +322,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "gibberish": {
     id: "gibberish",
     label: "Help",
-    response: "Hmm, I didn't quite catch that.\n\nYou can try asking me things like:\n\n• *\"What services do you offer?\"*\n\n• *\"Where are you located?\"*\n\n• *\"How can I contact ESCR?\"*\n\n• *\"Tell me about clinical studies\"*\n\n• *\"I want a quote\"*\n\nOr simply click one of the buttons below to get started!",
+    response: "Hmm, I didn't quite catch that.\n\nYou can try asking me things like:\n\n• *\"What services do you offer?\"*\n\n• *\"Where are you located?\"*\n\n• *\"How can I contact ES-CR?\"*\n\n• *\"Tell me about clinical studies\"*\n\n• *\"I want a quote\"*\n\nOr simply click one of the buttons below to get started!",
     followUpIds: ["services", "contact", "about", "faq"]
   },
 
@@ -330,7 +330,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "website_help": {
     id: "website_help",
     label: "Website Help",
-    response: "Sure! Here's a quick navigation guide to the ESCR website:\n\n• **Home** — Overview of ESCR, our DNA, and key achievements\n\n• **Services** — All 7 CRO services with individual detail pages\n\n• **About** — Our mission, story, values, and leadership team\n\n• **Blog** — Scientific articles and industry insights\n\n• **Contact** — Inquiry form, email, phone, and location map\n\nJust tell me which page you'd like to visit, and I'll take you there!",
+    response: "Sure! Here's a quick navigation guide to the ES-CR website:\n\n• **Home** — Overview of ES-CR, our DNA, and key achievements\n\n• **Services** — All 7 CRO services with individual detail pages\n\n• **About** — Our mission, story, values, and leadership team\n\n• **Blog** — Scientific articles and industry insights\n\n• **Contact** — Inquiry form, email, phone, and location map\n\nJust tell me which page you'd like to visit, and I'll take you there!",
     followUpIds: ["link_services", "link_about", "link_blog", "link_contact"]
   },
 
@@ -338,7 +338,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "standards": {
     id: "standards",
     label: "Standards",
-    response: "**ES Clinical Research** adheres to rigorous international standards:\n\n• **ICH-GCP** — International Conference on Harmonisation, Good Clinical Practice\n\n• **Local Regulatory Compliance** — Full alignment with Algerian health authority requirements\n\n• **Quality Management** — Data integrity, protocol compliance, and audit readiness\n\nOur **Training** programs also offer GCP certification courses accredited by **INEAS**.\n\nWould you like to explore our Clinical Studies or Training services?",
+    response: "**ES-CR** adheres to rigorous international standards:\n\n• **ICH-GCP** — International Conference on Harmonisation, Good Clinical Practice\n\n• **Local Regulatory Compliance** — Full alignment with Algerian health authority requirements\n\n• **Quality Management** — Data integrity, protocol compliance, and audit readiness\n\nOur **Training** programs also offer GCP certification courses accredited by **INEAS**.\n\nWould you like to explore our Clinical Studies or Training services?",
     followUpIds: ["clinical_studies", "training", "contact", "main_menu"]
   },
 
@@ -346,7 +346,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "how_it_works": {
     id: "how_it_works",
     label: "How it works",
-    response: "Getting started with **ES Clinical Research** is simple:\n\n**1.** Visit our **Contact page** or send an email to **contact@esclinical.com**\n\n**2.** Select the type of inquiry (Quote, Consultation, Partnership, etc.)\n\n**3.** Our team will review your request and respond within **24 business hours**\n\n**4.** We'll set up a meeting to discuss your project in detail\n\n**5.** From there, we tailor our services to your specific needs\n\nReady to take the first step?",
+    response: "Getting started with **ES-CR** is simple:\n\n**1.** Visit our **Contact page** or send an email to **contact@esclinical.com**\n\n**2.** Select the type of inquiry (Quote, Consultation, Partnership, etc.)\n\n**3.** Our team will review your request and respond within **24 business hours**\n\n**4.** We'll set up a meeting to discuss your project in detail\n\n**5.** From there, we tailor our services to your specific needs\n\nReady to take the first step?",
     followUpIds: ["link_contact", "direct_email", "services", "main_menu"]
   },
 
@@ -362,7 +362,7 @@ export const CHATBOT_DATABASE: Record<string, ChatOption> = {
   "safety": {
     id: "safety",
     label: "Safety & PV",
-    response: "**Patient safety** is at the center of everything we do at ESCR.\n\nWe integrate **pharmacovigilance** into every clinical study, ensuring:\n\n• Timely adverse event reporting\n\n• Risk management planning (RMP)\n\n• Regulatory safety compliance\n\n• Post-marketing surveillance through Real-World Evidence\n\nOur **Clinical Studies** and **RWE** teams work together to maintain the highest safety standards.\n\nWant to learn more about our approach?",
+    response: "**Patient safety** is at the center of everything we do at ES-CR.\n\nWe integrate **pharmacovigilance** into every clinical study, ensuring:\n\n• Timely adverse event reporting\n\n• Risk management planning (RMP)\n\n• Regulatory safety compliance\n\n• Post-marketing surveillance through Real-World Evidence\n\nOur **Clinical Studies** and **RWE** teams work together to maintain the highest safety standards.\n\nWant to learn more about our approach?",
     followUpIds: ["clinical_studies", "rwe", "contact", "main_menu"]
   },
 
@@ -538,8 +538,10 @@ export const CHATBOT_KEYWORDS: ChatKeyword[] = [
   { keywords: ["difference", "compare", "comparison", "versus", "vs", "which service", "quel service", "différence", "lequel", "which one"], responseId: "compare_services", weight: 2 }
 ];
 
-export const getResponseById = (id: string): ChatOption | undefined => {
-  return CHATBOT_DATABASE[id];
+import { CHATBOT_DATABASE_FR } from './chatbotFaqFr';
+
+export const getResponseById = (id: string, language: string = 'en'): ChatOption | undefined => {
+  return language === 'fr' ? CHATBOT_DATABASE_FR[id] : CHATBOT_DATABASE[id];
 };
 
 /**

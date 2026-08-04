@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { GeneralButton } from './Button';
 import { ServiceParagraph } from './Typography';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Reuse high-fidelity animation variants
 const fadeUp = (delay = 0) => ({
@@ -27,22 +28,32 @@ const imageZoom = {
 };
 
 interface CTAProps {
+  tag?: string;
   title?: React.ReactNode;
   description?: string;
   image?: string;
   buttonText?: string;
   to?: string;
-  phone?: string;
+  email?: string;
 }
 
 export default React.memo(function CTA({ 
-  title = <>Ready to Enhance Your<br className="hidden md:block" />Scientific Outcomes?</>,
-  description = "Your projects benefit from careful support and practical expertise. Reach out to our team to discuss your needs and find solutions tailored to each stage of your work.",
+  tag,
+  title,
+  description,
   image = "/escr-cro-clinical-research-partnership.png",
-  buttonText = "Work With Us",
+  buttonText,
   to = "/contact",
-  phone = "+213 20 33 91 20"
+  email = "contact@es-cr.com"
 }: CTAProps) {
+  const { language } = useLanguage();
+
+  const finalTag = tag || '# CONTACT';
+  const finalTitle = title || (language === 'en' ? "Let's keep in touch" : "Restons en contact");
+  const finalDescription = description || (language === 'en' 
+    ? "We remain at your disposal to discuss your projects and build a lasting collaboration together." 
+    : "Nous restons à votre entière disposition pour discuter de vos projets et bâtir ensemble une collaboration durable.");
+  const finalButtonText = buttonText || (language === 'en' ? "Work With Us" : "Travailler Avec Nous");
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-[30px]">
@@ -51,8 +62,13 @@ export default React.memo(function CTA({
 
           {/* 1. TITLE (Mobile: Order 1, Desktop: Col 2, Row 1) */}
           <div className="order-1 lg:order-none lg:col-start-2 lg:row-start-1">
+            {finalTag && (
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#7f2191] text-[#7f2191] text-[13px] font-bold tracking-widest uppercase mb-6">
+                {finalTag}
+              </div>
+            )}
             <h2 className="text-[#50298e] text-[28px] md:text-[42px] font-normal mb-4 sm:mb-5 leading-[1.2]">
-              {title}
+              {finalTitle}
             </h2>
           </div>
 
@@ -66,7 +82,7 @@ export default React.memo(function CTA({
               <motion.img
                   {...imageZoom}
                   src={image}
-                  alt="ES Clinical Research — trusted CRO partner for clinical studies"
+                  alt="ES-CR — trusted CRO partner for clinical studies"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
               />
@@ -80,18 +96,18 @@ export default React.memo(function CTA({
           >
             <div>
               <ServiceParagraph className="mb-6 sm:mb-8 max-w-xl">
-                {description}
+                {finalDescription}
               </ServiceParagraph>
 
-              {/* Phone Block */}
+              {/* Email Block */}
               <div className="flex items-center gap-4 sm:gap-5 mb-6 sm:mb-8">
                 <div className="w-14 h-14 rounded-full bg-[#f9effb] flex items-center justify-center text-[#7f2191] flex-shrink-0">
-                  <Phone size={24} fill="currentColor" strokeWidth={0} />
+                  <Mail size={24} strokeWidth={2} />
                 </div>
                 <div>
-                  <p className="text-[#50298e] font-medium text-[14px] mb-0.5">Call us</p>
-                  <a href={`tel:${phone.replace(/\s+/g, '')}`} className="text-[#50298e] text-xl font-semibold tracking-wide border-b border-[#50298e]/20 pb-0.5 hover:text-[#7f2191] hover:border-[#7f2191] transition-colors">
-                    {phone}
+                  <p className="text-[#50298e] font-medium text-[14px] mb-0.5">{language === 'en' ? 'Send us an email' : 'Envoyez-nous un email'}</p>
+                  <a href={`mailto:${email}`} className="text-[#50298e] text-xl font-semibold tracking-wide border-b border-[#50298e]/20 pb-0.5 hover:text-[#7f2191] hover:border-[#7f2191] transition-colors">
+                    {email}
                   </a>
                 </div>
               </div>
@@ -100,7 +116,7 @@ export default React.memo(function CTA({
             {/* Bottom Button Group - Pushed to the very bottom of the flex container */}
             <div className="flex items-start">
               <GeneralButton to={to}>
-                {buttonText}
+                {finalButtonText}
               </GeneralButton>
             </div>
           </motion.div>
