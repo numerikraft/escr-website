@@ -147,20 +147,36 @@ export default function Privacy() {
                 </div>
               </div>
 
+              {/* SECTION: Controller */}
+              <div id="controller" className="scroll-mt-32">
+                <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
+                  {t.controller.title}
+                </h2>
+                <p className="mb-12">{t.controller.text}</p>
+              </div>
+
               {/* SECTION: Usage */}
               <div id="usage" className="scroll-mt-32">
                 <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
                   {t.usage.title}
                 </h2>
-                <p className="mb-10">{t.usage.text}</p>
-                <ul className="space-y-4 mb-12 ml-2">
-                  {t.usage.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-4">
-                        <span className="text-[#7f2191] mt-[8px] text-[8px]">●</span>
-                        <span className="font-normal">{item}</span>
-                      </li>
-                  ))}
-                </ul>
+                <p className="mb-12">{t.usage.text}</p>
+              </div>
+
+              {/* SECTION: Legal Basis */}
+              <div id="legalbasis" className="scroll-mt-32">
+                <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
+                  {t.legalbasis.title}
+                </h2>
+                <p className="mb-12">{t.legalbasis.text}</p>
+              </div>
+
+              {/* SECTION: Clinical Research Data */}
+              <div id="clinical" className="scroll-mt-32">
+                <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
+                  {t.clinical.title}
+                </h2>
+                <p className="mb-12">{t.clinical.text}</p>
               </div>
 
               {/* SECTION: Cookies */}
@@ -178,26 +194,8 @@ export default function Privacy() {
                 <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
                   {t.sharing.title}
                 </h2>
-                <p className="mb-10">
-                  {t.sharing.text}
-                </p>
-                <ul className="space-y-4 mb-12 ml-2">
-                  {t.sharing.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-4">
-                        <span className="text-[#7f2191] mt-[8px] text-[8px]">●</span>
-                        <span className="font-normal">{item}</span>
-                      </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* SECTION: Transfers */}
-              <div id="transfers" className="scroll-mt-32">
-                <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
-                  {t.transfers.title}
-                </h2>
                 <p className="mb-12">
-                  {t.transfers.text}
+                  {t.sharing.text}
                 </p>
               </div>
 
@@ -227,16 +225,6 @@ export default function Privacy() {
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* SECTION: Retention */}
-              <div id="retention" className="scroll-mt-32">
-                <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
-                  {t.retention.title}
-                </h2>
-                <p className="mb-12">
-                  {t.retention.text}
-                </p>
               </div>
 
               {/* SECTION: Rights */}
@@ -277,28 +265,28 @@ export default function Privacy() {
                   <p className="mb-6 font-semibold text-[#50298e] text-[18px]">{t.contact.boxTitle}</p>
                   
                   <div className="space-y-4 text-[15.5px]">
-                    <div className="grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] items-start gap-4">
+                    <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] items-start gap-4">
                       <span className="font-medium text-[#7c6a96]">{t.contact.officer}</span>
-                      <a href="mailto:privacy@esclinical.com" className="text-[#50298e] font-normal hover:opacity-70 transition-opacity">
-                        privacy@esclinical.com
+                      <a href="mailto:contact@esclinical.com" className="text-[#50298e] font-normal hover:opacity-70 transition-opacity">
+                        contact@esclinical.com
                       </a>
                     </div>
                     
-                    <div className="grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] items-start gap-4">
+                    <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] items-start gap-4">
                       <span className="font-medium text-[#7c6a96]">{t.contact.general}</span>
                       <a href="mailto:contact@esclinical.com" className="text-[#50298e] font-normal hover:opacity-70 transition-opacity">
                         contact@esclinical.com
                       </a>
                     </div>
                     
-                    <div className="grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] items-start gap-4">
+                    <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] items-start gap-4">
                       <span className="font-medium text-[#7c6a96]">{t.contact.hotline}</span>
                       <a href="tel:+21320339120" className="text-[#50298e] font-normal hover:opacity-70 transition-opacity">
                         +213 20 33 91 20
                       </a>
                     </div>
                     
-                    <div className="grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] items-start gap-4">
+                    <div className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] items-start gap-4">
                       <span className="font-medium text-[#7c6a96]">{t.contact.address}</span>
                       <span className="text-[#50298e] font-normal">
                         {t.contact.addressValue}
