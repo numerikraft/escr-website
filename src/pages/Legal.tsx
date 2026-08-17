@@ -122,25 +122,9 @@ export default function Legal() {
                 <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
                   {t.publisher.title}
                 </h2>
-                <div className="bg-white shadow-[0_0_25px_rgba(80,41,142,0.18)] p-6 rounded-2xl mb-12">
-                  <p className="text-[#50298e] italic font-medium">
-                    {t.publisher.text.split('ES-CR (ES-CR)').map((part, i, arr) => 
-                      i === arr.length - 1 ? part : <React.Fragment key={i}>{part}<strong>ES-CR (ES-CR)</strong></React.Fragment>
-                    )}
-                  </p>
-                </div>
-                <div className="bg-white shadow-[0_0_25px_rgba(80,41,142,0.18)] rounded-2xl p-6 md:p-8 mb-16">
-                  <ul className="space-y-4">
-                    {t.publisher.items.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-4">
-                          <div className="mt-1 bg-white shadow-sm border border-[#e2dced] rounded-full p-0.5 text-[#7f2191] shrink-0">
-                            <ChevronRight size={13} strokeWidth={2.5} />
-                          </div>
-                          <span className="text-[#50298e] font-normal">{item}</span>
-                        </li>
-                    ))}
-                  </ul>
-                </div>
+                <p className="mb-16">
+                  {t.publisher.text}
+                </p>
               </div>
 
               {/* SECTION: Hosting */}
@@ -191,15 +175,9 @@ export default function Legal() {
                 <h2 className="text-[28px] md:text-[42px] font-normal text-[#7f2191] mt-24 mb-10 leading-[1.15] tracking-tight max-w-4xl mx-auto">
                   {t.intellectual.title}
                 </h2>
-                <p className="mb-10">{t.intellectual.text}</p>
-                <ul className="space-y-4 mb-12 ml-2">
-                  {t.intellectual.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-4">
-                        <span className="text-[#7f2191] mt-[8px] text-[8px]">●</span>
-                        <span className="font-normal">{item}</span>
-                      </li>
-                  ))}
-                </ul>
+                <p className="mb-16">
+                  {t.intellectual.text}
+                </p>
               </div>
 
               {/* SECTION: Liability */}

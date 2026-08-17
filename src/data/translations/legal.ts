@@ -22,14 +22,7 @@ export const legalTranslations = {
     intro: "This website is published and operated by ES-CR, a Contract Research Organization (CRO) specializing in clinical research, real-world evidence, pharmacovigilance, and medical writing.",
     publisher: {
       title: "1. Website Publisher & Corporate Entity",
-      text: "This website is published and operated by ES-CR (ES-CR), a Contract Research Organization (CRO) specializing in clinical research, real-world evidence, pharmacovigilance, and medical writing.",
-      items: [
-        'Registered Corporate Name: ES-CR',
-        'Corporate Form: Specialized Contract Research Organization (CRO)',
-        'Registered Legal Headquarters: 76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers.',
-        'Phone: +213 20 33 91 20',
-        'Director of Publications: ES-CR Executive Board'
-      ]
+      text: "This website is published and operated by ES-CR, a Contract Research Organization (CRO) specializing in clinical research, real-world evidence, pharmacovigilance, and medical writing."
     },
     hosting: {
       title: "2. Technical Hosting",
@@ -48,13 +41,7 @@ export const legalTranslations = {
     },
     intellectual: {
       title: "5. Intellectual Property",
-      text: "The content, design, logos, graphics, and other materials on this website are protected by applicable intellectual property laws. They may not be reproduced or used without prior authorization from ES-CR or the relevant rights holder.",
-      items: [
-        "All content, design, and code are the exclusive property of ES-CR and its design partners.",
-        "Unauthorized reproduction, extraction, or redistribution of any material is strictly prohibited.",
-        "Plagiarism of the website structure or content for competing organizations is not permitted.",
-        "Direct linking to internal or private portals without authorization is forbidden."
-      ]
+      text: "The content, design, logos, graphics, and other materials on this website are protected by applicable intellectual property laws. They may not be reproduced or used without prior authorization from ES-CR or the relevant rights holder."
     },
     liability: {
       title: "6. Technical & Medical Liability Disclaimer",
@@ -101,14 +88,7 @@ export const legalTranslations = {
     intro: "Ce site est édité et exploité par ES-CR, une Organisation de Recherche sous Contrat (CRO) spécialisée dans la recherche clinique, les données en vie réelle, la pharmacovigilance et la rédaction médicale.",
     publisher: {
       title: "1. Éditeur du Site & Entité Institutionnelle",
-      text: "Ce site est édité et exploité par ES-CR (ES-CR), une Organisation de Recherche sous Contrat (CRO) spécialisée dans la recherche clinique, les données en vie réelle, la pharmacovigilance et la rédaction médicale.",
-      items: [
-        'Dénomination Sociale : ES-CR',
-        'Forme Institutionnelle : Organisation de Recherche sous Contrat (CRO) Spécialisée',
-        'Siège Social : 76, Coop Mina Benhaddadi Dar Diaf, Chéraga, Alger.',
-        'Téléphone : +213 20 33 91 20',
-        "Directeur de la Publication : Conseil d'Administration ES-CR"
-      ]
+      text: "Ce site est édité et exploité par ES-CR, une Organisation de Recherche sous Contrat (CRO) spécialisée dans la recherche clinique, les données en vie réelle, la pharmacovigilance et la rédaction médicale."
     },
     hosting: {
       title: "2. Hébergement Technique",
@@ -127,13 +107,7 @@ export const legalTranslations = {
     },
     intellectual: {
       title: "5. Propriété Intellectuelle",
-      text: "Le contenu, le design, les logos, les graphismes et autres éléments de ce site sont protégés par les lois applicables en matière de propriété intellectuelle. Ils ne peuvent être reproduits ou utilisés sans autorisation préalable d'ES-CR ou du titulaire des droits concerné.",
-      items: [
-        "Tout le contenu, le design et le code sont la propriété exclusive d'ES-CR et de ses partenaires de conception.",
-        "Toute reproduction, extraction ou redistribution non autorisée de tout matériel est strictement interdite.",
-        "Le plagiat de la structure ou du contenu du site pour des organisations concurrentes n'est pas autorisé.",
-        "Les liens directs vers des portails internes ou privés sans autorisation sont interdits."
-      ]
+      text: "Le contenu, le design, les logos, les graphismes et autres éléments de ce site sont protégés par les lois applicables en matière de propriété intellectuelle. Ils ne peuvent être reproduits ou utilisés sans autorisation préalable d'ES-CR ou du titulaire des droits concerné."
     },
     liability: {
       title: "6. Avertissement de Responsabilité Technique & Médicale",
