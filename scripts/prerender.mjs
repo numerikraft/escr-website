@@ -39,7 +39,7 @@ const server = app.listen(PORT, async () => {
     console.log(`Found ${urls.length} routes to prerender.\n`);
 
     // 3. Launch Puppeteer
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
     
     // Prevent some heavy scripts like analytics from running if they existed
