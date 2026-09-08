@@ -13,7 +13,7 @@ export default function RealWorld() {
     seoDescription: t.seoDescription,
     seoKeywords: t.seoKeywords,
     seoUrl: "/services/real-world-evidence",
-    topImage: "/services/rwe/real-world-evidence-overview-cro.png",
+    topImage: "/services/rwe/real-world-evidence-overview-cro.webp",
     topTitle: (
       <span className="whitespace-pre-line">{t.topTitle}</span>
     ),
@@ -24,11 +24,11 @@ export default function RealWorld() {
     topList: t.topList,
     banners: t.banners.map((b, i) => {
       const originalImages = [
-        "/services/rwe/phase-iv-studies-post-marketing.png",
-        "/services/rwe/observational-studies-clinical-practice.png",
-        "/services/rwe/patient-registries-data-collection.png",
-        "/services/rwe/patient-surveys-questionnaires-rwe.png",
-        "/services/rwe/pharmaco-epidemiology-risk-management.png"
+        "/services/rwe/phase-iv-studies-post-marketing.webp",
+        "/services/rwe/observational-studies-clinical-practice.webp",
+        "/services/rwe/patient-registries-data-collection.webp",
+        "/services/rwe/patient-surveys-questionnaires-rwe.webp",
+        "/services/rwe/pharmaco-epidemiology-risk-management.webp"
       ];
       return {
         image: originalImages[i],

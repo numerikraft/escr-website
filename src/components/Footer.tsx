@@ -50,7 +50,7 @@ export default function Footer() {
               {/* Follow Us Section - Pushed to bottom with mt-auto */}
               <div className="mt-5 lg:mt-auto flex items-center gap-4 pt-1 pb-0">
                 <span className="text-white/90 text-[15px] sm:text-[16px] font-medium">{language === 'en' ? 'Follow us on' : 'Suivez-nous sur'}</span>
-                <a href="http://linkedin.com/company/es-clinical-research" target="_blank" rel="noopener noreferrer" aria-label="Visit our LinkedIn page" className="hover:scale-105 transition-transform duration-300 flex items-center -ml-1">
+                <a href="https://linkedin.com/company/es-cr" target="_blank" rel="noopener noreferrer" aria-label="Visit our LinkedIn page" className="hover:scale-105 transition-transform duration-300 flex items-center -ml-1">
                   <img src="/linkedin-footer.svg" alt="" aria-hidden="true" className="h-[22px] w-auto" />
                 </a>
               </div>

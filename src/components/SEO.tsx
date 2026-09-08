@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface BreadcrumbItem {
   name: string;
@@ -14,6 +15,7 @@ interface SEOProps {
   url?: string;
   type?: string;
   breadcrumbs?: BreadcrumbItem[];
+  noindex?: boolean;
 }
 
 const SITE_NAME = 'ES-CR';
@@ -27,9 +29,11 @@ export default function SEO({
   image, 
   url, 
   type = 'website',
-  breadcrumbs 
+  breadcrumbs,
+  noindex = false
 }: SEOProps) {
   const location = useLocation();
+  const { language } = useLanguage();
 
   useEffect(() => {
     // 1. Title
@@ -46,19 +50,28 @@ export default function SEO({
       element.setAttribute('content', content);
     };
 
-    // 3. Helper to set link tags (canonical)
-    const setLinkTag = (rel: string, href: string) => {
-      let element = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
+    // 3. Helper to set link tags
+    const setLinkTag = (rel: string, href: string, hreflang?: string) => {
+      let selector = `link[rel="${rel}"]`;
+      if (hreflang) selector += `[hreflang="${hreflang}"]`;
+      
+      let element = document.querySelector(selector) as HTMLLinkElement;
       if (!element) {
         element = document.createElement('link');
         element.setAttribute('rel', rel);
+        if (hreflang) element.setAttribute('hreflang', hreflang);
         document.head.appendChild(element);
       }
       element.setAttribute('href', href);
     };
 
     // 4. Generate absolute URLs
-    const absoluteUrl = url || `${SITE_URL}${location.pathname}`;
+    // Note: We remove any trailing slash for consistency except for root
+    const cleanPath = location.pathname.endsWith('/') && location.pathname.length > 1 
+      ? location.pathname.slice(0, -1) 
+      : location.pathname;
+      
+    const absoluteUrl = url || `${SITE_URL}${cleanPath}`;
     const absoluteImage = image 
       ? (image.startsWith('http') ? image : `${SITE_URL}${image}`) 
       : `${SITE_URL}${DEFAULT_IMAGE}`;
@@ -69,24 +82,36 @@ export default function SEO({
     // 6. Basic Meta Tags
     setMetaTag('name', 'description', description);
     if (keywords) setMetaTag('name', 'keywords', keywords);
-    setMetaTag('name', 'robots', 'index, follow');
+    
+    // 7. Robots (noindex if requested)
+    setMetaTag('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow');
 
-    // 7. Open Graph
+    // 8. Open Graph
     setMetaTag('property', 'og:title', title);
     setMetaTag('property', 'og:description', description);
     setMetaTag('property', 'og:type', type);
     setMetaTag('property', 'og:url', absoluteUrl);
     setMetaTag('property', 'og:image', absoluteImage);
     setMetaTag('property', 'og:site_name', SITE_NAME);
-    setMetaTag('property', 'og:locale', 'en_US');
+    setMetaTag('property', 'og:locale', language === 'fr' ? 'fr_FR' : 'en_US');
 
-    // 8. Twitter Card
+    // 9. Twitter Card
     setMetaTag('name', 'twitter:card', 'summary_large_image');
     setMetaTag('name', 'twitter:title', title);
     setMetaTag('name', 'twitter:description', description);
     setMetaTag('name', 'twitter:image', absoluteImage);
 
-    // 9. Breadcrumb JSON-LD
+    // 10. SEO Hreflang for multilinguism
+    // Since our app routes are the same for both languages, we use ?lang=en and ?lang=fr
+    // For x-default, we use the english one (or without parameter).
+    const enUrl = `${absoluteUrl}?lang=en`;
+    const frUrl = `${absoluteUrl}?lang=fr`;
+    
+    setLinkTag('alternate', enUrl, 'en');
+    setLinkTag('alternate', frUrl, 'fr');
+    setLinkTag('alternate', absoluteUrl, 'x-default');
+
+    // 11. Breadcrumb JSON-LD
     if (breadcrumbs && breadcrumbs.length > 0) {
       const breadcrumbJsonLd = {
         '@context': 'https://schema.org',
@@ -114,7 +139,7 @@ export default function SEO({
       const scriptEl = document.querySelector('script[data-seo="breadcrumb"]');
       if (scriptEl) scriptEl.remove();
     };
-  }, [title, description, keywords, image, url, type, breadcrumbs, location.pathname]);
+  }, [title, description, keywords, image, url, type, breadcrumbs, location.pathname, language, noindex]);
 
   return null;
 }

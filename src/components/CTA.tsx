@@ -41,7 +41,7 @@ export default React.memo(function CTA({
   tag,
   title,
   description,
-  image = "/escr-cro-clinical-research-partnership.png",
+  image = "/escr-cro-clinical-research-partnership.webp",
   buttonText,
   to = "/contact",
   email = "contact@es-cr.com"

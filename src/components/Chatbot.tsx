@@ -63,7 +63,8 @@ export default function Chatbot() {
   // Save history to localStorage
   useEffect(() => {
     if (messages.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+      const messagesToSave = messages.slice(-50);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messagesToSave));
     }
   }, [messages]);
 

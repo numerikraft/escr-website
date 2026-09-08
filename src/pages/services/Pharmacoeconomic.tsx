@@ -13,7 +13,7 @@ export default function Pharmacoeconomic() {
     seoDescription: t.seoDescription,
     seoKeywords: t.seoKeywords,
     seoUrl: "/services/pharmacoeconomic-studies",
-    topImage: "/services/pharmacoeconomic/pharmacoeconomic-studies-overview.png",
+    topImage: "/services/pharmacoeconomic/pharmacoeconomic-studies-overview.webp",
     topTitle: (
       <span className="whitespace-pre-line">{t.topTitle}</span>
     ),
@@ -24,11 +24,11 @@ export default function Pharmacoeconomic() {
     topList: t.topList,
     banners: t.banners.map((b, i) => {
       const originalImages = [
-        "/services/pharmacoeconomic/value-dossier-market-access.png",
-        "/services/pharmacoeconomic/descriptive-cost-studies-analysis.png",
-        "/services/pharmacoeconomic/cost-effectiveness-modeling-health.png",
-        "/services/pharmacoeconomic/budget-impact-analysis-healthcare.png",
-        "/services/pharmacoeconomic/local-adaptation-global-economic-models.png"
+        "/services/pharmacoeconomic/value-dossier-market-access.webp",
+        "/services/pharmacoeconomic/descriptive-cost-studies-analysis.webp",
+        "/services/pharmacoeconomic/cost-effectiveness-modeling-health.webp",
+        "/services/pharmacoeconomic/budget-impact-analysis-healthcare.webp",
+        "/services/pharmacoeconomic/local-adaptation-global-economic-models.webp"
       ];
       return {
         image: originalImages[i],

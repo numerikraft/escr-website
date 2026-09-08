@@ -38,6 +38,7 @@ export default function NotFound() {
       <SEO 
         title={t.seoTitle}
         description={t.seoDesc}
+        noindex={true}
       />
       
       <div className="max-w-4xl w-full text-center relative z-10">

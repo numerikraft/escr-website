@@ -13,7 +13,7 @@ export default function ClinicalStudies() {
     seoDescription: t.seoDescription,
     seoKeywords: t.seoKeywords,
     seoUrl: "/services/clinical-studies",
-    topImage: "/services/clinical-studies/clinical-studies-overview-cro.png",
+    topImage: "/services/clinical-studies/clinical-studies-overview-cro.webp",
     topTitle: t.topTitle,
     topParagraphs: t.topParagraphs,
     topSubTitle: (
@@ -22,11 +22,11 @@ export default function ClinicalStudies() {
     topList: t.topList,
     banners: t.banners.map((b, i) => {
       const originalImages = [
-        "/services/clinical-studies/regulatory-management-clinical-studies.png",
-        "/services/clinical-studies/clinical-operations-site-management.png",
-        "/services/clinical-studies/monitoring-quality-control-clinical.png",
-        "/services/clinical-studies/data-management-biostatistics-cro.png",
-        "/services/clinical-studies/final-report-pharmacovigilance-cro.png"
+        "/services/clinical-studies/regulatory-management-clinical-studies.webp",
+        "/services/clinical-studies/clinical-operations-site-management.webp",
+        "/services/clinical-studies/monitoring-quality-control-clinical.webp",
+        "/services/clinical-studies/data-management-biostatistics-cro.webp",
+        "/services/clinical-studies/final-report-pharmacovigilance-cro.webp"
       ];
       return {
         image: originalImages[i],

@@ -3,25 +3,25 @@
   <!-- Core Pages -->
   <url>
     <loc>https://esclinical.com/</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://esclinical.com/about</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://esclinical.com/services</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://esclinical.com/contact</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -29,43 +29,43 @@
   <!-- Service Subpages -->
   <url>
     <loc>https://esclinical.com/services/clinical-studies</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://esclinical.com/services/pharmacoeconomic-studies</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://esclinical.com/services/patient-support-program</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://esclinical.com/services/real-world-evidence</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://esclinical.com/services/medical-writing</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://esclinical.com/services/expert-support</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://esclinical.com/services/training</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -73,19 +73,19 @@
   <!-- Blog -->
   <url>
     <loc>https://esclinical.com/blog</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://esclinical.com/blog/1</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://esclinical.com/blog/2</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -93,19 +93,19 @@
   <!-- Legal Pages -->
   <url>
     <loc>https://esclinical.com/terms-of-use</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://esclinical.com/privacy-policy</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://esclinical.com/legal-notice</loc>
-    <lastmod>2026-04-18</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

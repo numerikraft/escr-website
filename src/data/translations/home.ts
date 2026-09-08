@@ -9,27 +9,27 @@ export const homeTranslations = {
       slides: [
         {
           badge: "Clinical Studies",
-          title: "Trusted Partner, reliable studies and precise outcomes."
+          title: "Trusted Partner. Patient-Centered. Outcome-Driven."
         },
         {
           badge: "Pharmacoeconomic Studies",
-          title: "Transforming data into strategic economic insights."
+          title: "Turning evidence into value. Driving access."
         },
         {
           badge: "Patient Support Program",
-          title: "Empowering patient journeys through supportive guidance."
+          title: "Placing the patient at the center of our studies and expertise."
         },
         {
           badge: "Real-World Evidence",
-          title: "Turning real-world data into scientific evidence."
+          title: "Generating real-world data to strengthen scientific evidence."
         },
         {
           badge: "Medical Writing",
-          title: "Turning data into communication and publication."
+          title: "From evidence to impactful publications."
         },
         {
           badge: "Expert Support",
-          title: "Bring specialized expertise to add value at every phase."
+          title: "Ethical expertise is the core requirement of our projects."
         },
         {
           badge: "Training",
@@ -76,27 +76,27 @@ export const homeTranslations = {
       slides: [
         {
           badge: "Études Cliniques",
-          title: "Partenaire de confiance, études et résultats précis."
+          title: "Partenaire de confiance. Centré sur le patient. Axé sur les résultats."
         },
         {
           badge: "Pharmacoéconomie",
-          title: "Transformer les données en stratégies économiques."
+          title: "De la preuve à la valeur. Faciliter l'accès."
         },
         {
           badge: "Support Patient",
-          title: "Accompagner le parcours patient grâce à un soutien dédié."
+          title: "Placer le patient au centre de nos études et expertises."
         },
         {
           badge: "Données de vie réelle (RWE)",
-          title: "Convertir les données de vie réelle en preuves scientifiques."
+          title: "Générer des données de vie réelle pour renforcer les preuves scientifiques."
         },
         {
           badge: "Rédaction Médicale",
-          title: "Traduire les données en communications et publications."
+          title: "Des données scientifiques aux publications impactantes."
         },
         {
           badge: "Support d'Experts",
-          title: "Apporter une expertise ciblée pour valoriser chaque phase."
+          title: "L’expertise éthique est l’exigence de nos projets."
         },
         {
           badge: "Formations",

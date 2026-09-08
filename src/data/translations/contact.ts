@@ -40,7 +40,13 @@ export const contactTranslations = {
         'Project Consultation',
         'Partnership Opportunity',
         'Career / Job Application'
-      ]
+      ],
+      status: {
+        sending: "Sending...",
+        success: "Your message has been sent successfully!",
+        error: "An error occurred. Please try again.",
+        required: "Please fill out this field."
+      }
     }
   },
   fr: {
@@ -84,7 +90,13 @@ export const contactTranslations = {
         'Consultation de projet',
         'Opportunité de partenariat',
         'Candidature / Recrutement'
-      ]
+      ],
+      status: {
+        sending: "Envoi en cours...",
+        success: "Votre message a été envoyé avec succès !",
+        error: "Une erreur est survenue. Veuillez réessayer.",
+        required: "Veuillez renseigner ce champ."
+      }
     }
   }
 };

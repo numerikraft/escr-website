@@ -13,7 +13,7 @@ export default function Training() {
     seoDescription: t.seoDescription,
     seoKeywords: t.seoKeywords,
     seoUrl: "/services/training",
-    topImage: "/services/training/training-overview-clinical-research.png",
+    topImage: "/services/training/training-overview-clinical-research.webp",
     topTitle: (
       <span className="whitespace-pre-line">{t.topTitle}</span>
     ),
@@ -24,13 +24,13 @@ export default function Training() {
     topList: t.topList,
     banners: t.banners.map((b, i) => {
       const originalImages = [
-        "/services/training/clinical-trials-gcp-training.png",
-        "/services/training/specialized-professional-courses-cro.png",
-        "/services/training/pharmacovigilance-training-clinical.png",
-        "/services/training/data-management-biostatistics-training.png",
-        "/services/training/scientific-writing-communication-course.png",
-        "/services/training/ineas-accredited-training-program.png",
-        "/services/training/distance-in-person-learning-cro.png"
+        "/services/training/clinical-trials-gcp-training.webp",
+        "/services/training/specialized-professional-courses-cro.webp",
+        "/services/training/pharmacovigilance-training-clinical.webp",
+        "/services/training/data-management-biostatistics-training.webp",
+        "/services/training/scientific-writing-communication-course.webp",
+        "/services/training/ineas-accredited-training-program.webp",
+        "/services/training/distance-in-person-learning-cro.webp"
       ];
       return {
         image: originalImages[i],

@@ -101,7 +101,7 @@ export default function About() {
                   />
                   <motion.img
                       {...imageZoom}
-                      src="/about/about-hero.png?v=2"
+                      src="/about/about-hero.webp?v=2"
                       alt="ES-CR laboratory and clinical study management"
                       className="w-full h-full object-cover"
                   />
@@ -265,7 +265,7 @@ export default function About() {
                       className="absolute top-0 left-0 w-full bg-[#620f78] z-20 origin-top"
                   />
                   <img
-                      src="/about/strategic-planning-clinical-research-cro.png"
+                      src="/about/strategic-planning-clinical-research-cro.webp"
                       alt="Strategic planning meeting for clinical research operations"
                       loading="lazy"
                       className="w-full h-full object-cover"
@@ -330,6 +330,8 @@ export default function About() {
         </section>
 
         {/* 5. OUR TEAM — Sticky Left + Scrolling Right */}
+        {/* TO SHOW THIS SECTION AGAIN: Remove the "{false && (" below and the ")}" at the end of the section */}
+        {false && (
         <section className="py-12 sm:py-24 bg-white">
           <div className="max-w-[1440px] mx-auto px-[10px]">
             {/* Background Container for Branding */}
@@ -370,28 +372,28 @@ export default function About() {
                       name: 'Fayçal CHALAL', 
                       role: t.team.members[0].role, 
                       description: t.team.members[0].desc,
-                      img: '/about/faycal-chalal-ceo-founder-cro.png', 
+                      img: '/about/faycal-chalal-ceo-founder-cro.webp', 
                       linkedin: 'https://www.linkedin.com/in/fay%C3%A7al-chalal-153422145/' 
                     },
                     { 
                       name: 'Dr. Meriem HEDIBEL', 
                       role: t.team.members[1].role, 
                       description: t.team.members[1].desc,
-                      img: '/about/meriem-hedibel-clinical-operation-director.png', 
+                      img: '/about/meriem-hedibel-clinical-operation-director.webp', 
                       linkedin: 'https://www.linkedin.com/in/meriem-hedibel-59855a50/' 
                     },
                     { 
                       name: 'Dr. Tarik MEBARKI', 
                       role: t.team.members[2].role, 
                       description: t.team.members[2].desc,
-                      img: '/about/tarik-mebarki-medical-director.png', 
+                      img: '/about/tarik-mebarki-medical-director.webp', 
                       linkedin: 'https://www.linkedin.com/in/tarik-mebarki-bb04a213b/' 
                     },
                     { 
                       name: 'Mr. Samy BEKRAR', 
                       role: t.team.members[3].role, 
                       description: t.team.members[3].desc,
-                      img: '/about/samy-bekrar-clinical-research-associate.png', 
+                      img: '/about/samy-bekrar-clinical-research-associate.webp', 
                       linkedin: 'https://www.linkedin.com/in/samy-bekrar-b9a383158/' 
                     }
                   ].map((member, idx) => (
@@ -444,6 +446,7 @@ export default function About() {
             </div>
           </div>
         </section>
+        )}
 
         {/* 6. CUSTOM CTA SECTION */}
         <CTA />

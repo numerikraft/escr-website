@@ -53,7 +53,7 @@ const organizationData = {
     'availableLanguage': ['English', 'French']
   },
   'sameAs': [
-    'https://linkedin.com/company/es-clinical-research'
+    'https://linkedin.com/company/es-cr'
   ]
 };
 

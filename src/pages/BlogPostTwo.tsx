@@ -62,7 +62,7 @@ export default function BlogPostTwo() {
           title={t.seo.title}
           description={t.seo.description}
           keywords={t.seo.keywords}
-          image="/blog/2/hero-cancer-epidemiology-maghreb.png"
+          image="/blog/2/hero-cancer-epidemiology-maghreb.webp"
           type="article"
         />
 
@@ -70,7 +70,7 @@ export default function BlogPostTwo() {
           <section className="relative overflow-hidden rounded-b-[2.5rem] pt-12 pb-20 md:pt-22 md:pb-30 bg-[#4c005a] mb-[30px] lg:mb-0">
             <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/blog/2/hero-cancer-epidemiology-maghreb.png')" }}
+                style={{ backgroundImage: "url('/blog/2/hero-cancer-epidemiology-maghreb.webp')" }}
             />
 
             <div

@@ -116,7 +116,7 @@ export default function ServiceBottom() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-                  src="/escr-cro-services-team-meeting.png"
+                  src="/escr-cro-services-team-meeting.webp"
                   alt="ES-CR multidisciplinary team planning clinical operations"
                   className="w-full h-full object-cover rounded-[2rem]"
                   referrerPolicy="no-referrer"

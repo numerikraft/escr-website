@@ -128,12 +128,12 @@ export default function Navbar() {
                             <button className="flex items-center gap-2 text-[15px] font-medium text-[#50298e] hover:text-[#7f2191] transition-colors py-2">
                                 {language === 'en' ? (
                                     <>
-                                        <img src="https://flagcdn.com/w20/us.png" srcSet="https://flagcdn.com/w40/us.png 2x" alt="English" className="w-5 object-cover rounded-[2px]" />
+                                        <img src="https://flagcdn.com/w20/us.webp" srcSet="https://flagcdn.com/w40/us.webp 2x" alt="English" className="w-5 object-cover rounded-[2px]" />
                                         English
                                     </>
                                 ) : (
                                     <>
-                                        <img src="https://flagcdn.com/w20/fr.png" srcSet="https://flagcdn.com/w40/fr.png 2x" alt="Français" className="w-5 object-cover rounded-[2px]" />
+                                        <img src="https://flagcdn.com/w20/fr.webp" srcSet="https://flagcdn.com/w40/fr.webp 2x" alt="Français" className="w-5 object-cover rounded-[2px]" />
                                         Français
                                     </>
                                 )}
@@ -145,14 +145,14 @@ export default function Navbar() {
                                     onClick={() => setLanguage('en')}
                                     className={`flex items-center gap-3 w-full px-4 py-3 text-[14px] font-medium transition-colors ${language === 'en' ? 'bg-[#f9effb] text-[#7f2191]' : 'text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191]'}`}
                                 >
-                                    <img src="https://flagcdn.com/w20/us.png" srcSet="https://flagcdn.com/w40/us.png 2x" alt="English" className="w-[18px] object-cover rounded-[2px]" />
+                                    <img src="https://flagcdn.com/w20/us.webp" srcSet="https://flagcdn.com/w40/us.webp 2x" alt="English" className="w-[18px] object-cover rounded-[2px]" />
                                     English
                                 </button>
                                 <button 
                                     onClick={() => setLanguage('fr')}
                                     className={`flex items-center gap-3 w-full px-4 py-3 text-[14px] font-medium transition-colors border-t border-gray-50 ${language === 'fr' ? 'bg-[#f9effb] text-[#7f2191]' : 'text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191]'}`}
                                 >
-                                    <img src="https://flagcdn.com/w20/fr.png" srcSet="https://flagcdn.com/w40/fr.png 2x" alt="Français" className="w-[18px] object-cover rounded-[2px]" />
+                                    <img src="https://flagcdn.com/w20/fr.webp" srcSet="https://flagcdn.com/w40/fr.webp 2x" alt="Français" className="w-[18px] object-cover rounded-[2px]" />
                                     Français
                                 </button>
                             </ShadowBox>
@@ -360,7 +360,7 @@ export default function Navbar() {
                                         className="flex items-center justify-between w-full px-4 py-2.5 rounded-full text-[15px] font-medium text-[#50298e] hover:bg-gray-50 transition-colors"
                                     >
                                         <div className="flex items-center gap-2">
-                                            <img src="https://flagcdn.com/w20/us.png" srcSet="https://flagcdn.com/w40/us.png 2x" alt="English" className="w-5 object-cover rounded-[2px]" />
+                                            <img src="https://flagcdn.com/w20/us.webp" srcSet="https://flagcdn.com/w40/us.webp 2x" alt="English" className="w-5 object-cover rounded-[2px]" />
                                             English
                                         </div>
                                         <ChevronDown size={14} strokeWidth={2.5} className={`transition-transform duration-300 ${mobileLangOpen ? 'rotate-180' : ''}`} />
@@ -377,11 +377,11 @@ export default function Navbar() {
                                             >
                                                 <div className="pl-6 py-2 flex flex-col gap-1">
                                                     <button className="flex items-center gap-3 px-4 py-2 text-[14px] font-medium text-[#50298e] hover:text-[#7f2191] transition-colors w-full text-left rounded-xl hover:bg-[#f9effb]">
-                                                        <img src="https://flagcdn.com/w20/us.png" srcSet="https://flagcdn.com/w40/us.png 2x" alt="English" className="w-[18px] object-cover rounded-[2px]" />
+                                                        <img src="https://flagcdn.com/w20/us.webp" srcSet="https://flagcdn.com/w40/us.webp 2x" alt="English" className="w-[18px] object-cover rounded-[2px]" />
                                                         English
                                                     </button>
                                                     <button className="flex items-center gap-3 px-4 py-2 text-[14px] font-medium text-[#50298e] hover:text-[#7f2191] transition-colors w-full text-left rounded-xl hover:bg-[#f9effb]">
-                                                        <img src="https://flagcdn.com/w20/fr.png" srcSet="https://flagcdn.com/w40/fr.png 2x" alt="Français" className="w-[18px] object-cover rounded-[2px]" />
+                                                        <img src="https://flagcdn.com/w20/fr.webp" srcSet="https://flagcdn.com/w40/fr.webp 2x" alt="Français" className="w-[18px] object-cover rounded-[2px]" />
                                                         Français
                                                     </button>
                                                 </div>

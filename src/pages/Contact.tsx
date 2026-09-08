@@ -24,10 +24,63 @@ export default function Contact() {
 
   const [selectedSubject, setSelectedSubject] = useState('');
   const [isSubjectOpen, setIsSubjectOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    position: '',
+    message: '',
+    website_url: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleSubjectSelect = (subject: string) => {
     setSelectedSubject(subject);
     setIsSubjectOpen(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.firstName || !formData.lastName || !formData.email || !selectedSubject || !formData.message) return;
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Sujet: selectedSubject,
+          Prénom: formData.firstName,
+          Nom: formData.lastName,
+          email: formData.email,
+          Téléphone: formData.phone || 'N/A',
+          Entreprise: formData.company || 'N/A',
+          Fonction: formData.position || 'N/A',
+          Message: formData.message,
+          website_url: formData.website_url
+        })
+      });
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', company: '', position: '', message: '', website_url: '' });
+        setSelectedSubject('');
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -112,7 +165,7 @@ export default function Contact() {
                 }}
             >
               {/* Pattern Overlay */}
-              <img src="/escr-pattern-top-left.png" alt="" className="absolute top-0 left-0 w-32 sm:w-48 md:w-[240px] lg:w-[300px] object-contain object-left-top opacity-45 pointer-events-none select-none z-0" />
+              <img src="/escr-pattern-top-left.webp" alt="" className="absolute top-0 left-0 w-32 sm:w-48 md:w-[240px] lg:w-[300px] object-contain object-left-top opacity-45 pointer-events-none select-none z-0" />
               
               {/* Header */}
               <div className="text-center mb-12 sm:mb-16 flex flex-col items-center relative z-10">
@@ -170,40 +223,89 @@ export default function Contact() {
             {/* Form Box */}
             <motion.div {...fadeUp(0.3)}>
               <ShadowBox className="rounded-[2.5rem] p-6 md:p-10 lg:p-12 bg-white">
-                <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-8" onSubmit={handleSubmit}>
+
+                  {/* Honeypot Field - Hidden from real users */}
+                  <input
+                    type="text"
+                    name="website_url"
+                    value={formData.website_url}
+                    onChange={(e) => setFormData({...formData, website_url: e.target.value})}
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                     {/* First Name - Required */}
-                    <input
-                        type="text"
-                        placeholder={t.form.firstName}
-                        required
-                        aria-label="First name"
-                        id="contact-firstname"
-                        className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
-                    />
+                    <div className="relative">
+                      <input
+                          type="text"
+                          required
+                          value={formData.firstName}
+                          onChange={(e) => {
+                            setFormData({...formData, firstName: e.target.value});
+                            e.target.setCustomValidity('');
+                          }}
+                          onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity(t.form.status.required)}
+                          aria-label="First name"
+                          id="contact-firstname"
+                          className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium focus:outline-none focus:border-[#7f2191] transition-colors"
+                      />
+                      {!formData.firstName && (
+                        <div className="absolute left-0 top-2 pointer-events-none text-[15px] font-medium text-[#8e7fa5]">
+                          {t.form.firstName.replace(' *', '')} <span className="text-red-500 font-bold">*</span>
+                        </div>
+                      )}
+                    </div>
                     {/* Last Name - Required */}
-                    <input
-                        type="text"
-                        placeholder={t.form.lastName}
-                        required
-                        aria-label="Last name"
-                        id="contact-lastname"
-                        className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
-                    />
+                    <div className="relative">
+                      <input
+                          type="text"
+                          required
+                          value={formData.lastName}
+                          onChange={(e) => {
+                            setFormData({...formData, lastName: e.target.value});
+                            e.target.setCustomValidity('');
+                          }}
+                          onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity(t.form.status.required)}
+                          aria-label="Last name"
+                          id="contact-lastname"
+                          className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium focus:outline-none focus:border-[#7f2191] transition-colors"
+                      />
+                      {!formData.lastName && (
+                        <div className="absolute left-0 top-2 pointer-events-none text-[15px] font-medium text-[#8e7fa5]">
+                          {t.form.lastName.replace(' *', '')} <span className="text-red-500 font-bold">*</span>
+                        </div>
+                      )}
+                    </div>
                     {/* Email - Required */}
-                    <input
-                        type="email"
-                        placeholder={t.form.email}
-                        required
-                        aria-label="Email address"
-                        id="contact-email"
-                        className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
-                    />
+                    <div className="relative">
+                      <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => {
+                            setFormData({...formData, email: e.target.value});
+                            e.target.setCustomValidity('');
+                          }}
+                          onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity(t.form.status.required)}
+                          aria-label="Email address"
+                          id="contact-email"
+                          className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium focus:outline-none focus:border-[#7f2191] transition-colors"
+                      />
+                      {!formData.email && (
+                        <div className="absolute left-0 top-2 pointer-events-none text-[15px] font-medium text-[#8e7fa5]">
+                          {t.form.email.replace(' *', '')} <span className="text-red-500 font-bold">*</span>
+                        </div>
+                      )}
+                    </div>
                     {/* Phone - Optional */}
                     <input
                         type="tel"
                         placeholder={t.form.phone}
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         aria-label="Phone number"
                         id="contact-phone"
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
@@ -212,6 +314,8 @@ export default function Contact() {
                     <input
                         type="text"
                         placeholder={t.form.company}
+                        value={formData.company}
+                        onChange={(e) => setFormData({...formData, company: e.target.value})}
                         aria-label="Company name"
                         id="contact-company"
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
@@ -220,19 +324,33 @@ export default function Contact() {
                     <input
                         type="text"
                         placeholder={t.form.position}
+                        value={formData.position}
+                        onChange={(e) => setFormData({...formData, position: e.target.value})}
                         aria-label="Position or job title"
                         id="contact-position"
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors"
                     />
                     {/* Subject - Required Dropdown */}
                     <div className="relative md:col-span-2">
+                      {/* Hidden required input for form validation to work with custom select */}
+                      <input 
+                        type="text" 
+                        className="absolute opacity-0 w-0 h-0" 
+                        required 
+                        value={selectedSubject} 
+                        onChange={() => {}} 
+                        onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity(t.form.status.required)}
+                        tabIndex={-1} 
+                      />
                       <button
                         type="button"
                         onClick={() => setIsSubjectOpen(!isSubjectOpen)}
                         className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-left text-[15px] font-medium focus:outline-none focus:border-[#7f2191] transition-colors flex items-center justify-between"
                       >
                         <span className={selectedSubject ? 'text-[#50298e]' : 'text-[#8e7fa5]'}>
-                          {selectedSubject || t.form.subject}
+                          {selectedSubject ? selectedSubject : (
+                            <>{t.form.subject.replace(' *', '')} <span className="text-red-500 font-bold">*</span></>
+                          )}
                         </span>
                         <ChevronDown 
                           size={18} 
@@ -247,7 +365,12 @@ export default function Contact() {
                             <button
                               key={subject}
                               type="button"
-                              onClick={() => handleSubjectSelect(subject)}
+                              onClick={(e) => {
+                                handleSubjectSelect(subject);
+                                // Find hidden input and clear validity
+                                const hiddenInput = e.currentTarget.parentElement?.parentElement?.querySelector('input');
+                                if (hiddenInput) hiddenInput.setCustomValidity('');
+                              }}
                               className={`w-full px-4 py-3 text-left text-[14px] font-medium text-[#50298e] hover:bg-[#f9effb] hover:text-[#7f2191] transition-colors ${
                                 index !== t.form.subjects.length - 1 ? 'border-b border-[#f4effc]' : ''
                               }`}
@@ -263,22 +386,44 @@ export default function Contact() {
                   {/* Message - Required */}
                   <div className="relative pt-0">
                     <textarea
-                        placeholder={t.form.message}
                         required
+                        value={formData.message}
+                        onChange={(e) => {
+                          setFormData({...formData, message: e.target.value});
+                          e.target.setCustomValidity('');
+                        }}
+                        onInvalid={(e) => (e.target as HTMLTextAreaElement).setCustomValidity(t.form.status.required)}
                         rows={4}
                         aria-label="Your message"
                         id="contact-message"
-                        className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium placeholder-[#8e7fa5] focus:outline-none focus:border-[#7f2191] transition-colors resize-none min-h-[120px]"
+                        className="w-full border-b border-[#bcb0d1] py-2 bg-transparent text-[#50298e] text-[15px] font-medium focus:outline-none focus:border-[#7f2191] transition-colors resize-none min-h-[120px]"
                     />
+                    {!formData.message && (
+                      <div className="absolute left-0 top-2 pointer-events-none text-[15px] font-medium text-[#8e7fa5]">
+                        {t.form.message.replace(' *', '')} <span className="text-red-500 font-bold">*</span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="pt-2">
+                  <div className="pt-2 flex flex-col items-center">
                     <ContactButton
                         type="submit"
-                        className="w-full justify-center px-10 h-11 text-[14.5px] font-bold"
+                        disabled={isSubmitting}
+                        className={`w-full justify-center px-10 h-11 text-[14.5px] font-bold ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                      {t.form.submit}
+                      {isSubmitting ? t.form.status.sending : t.form.submit}
                     </ContactButton>
+
+                    {submitStatus === 'success' && (
+                      <div className="mt-4 text-green-600 text-[14px] font-medium text-center bg-green-50 px-4 py-2 rounded-lg w-full">
+                        {t.form.status.success}
+                      </div>
+                    )}
+                    {submitStatus === 'error' && (
+                      <div className="mt-4 text-red-500 text-[14px] font-medium text-center bg-red-50 px-4 py-2 rounded-lg w-full">
+                        {t.form.status.error}
+                      </div>
+                    )}
                   </div>
 
                 </form>

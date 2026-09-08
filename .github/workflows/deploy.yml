@@ -1,0 +1,39 @@
+name: Déploiement cPanel (FTP)
+
+on:
+  push:
+    branches:
+      - main # ou master selon votre branche principale
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Récupération du code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configuration de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Installation des dépendances
+        run: npm ci
+
+      - name: 🏗️ Compilation et Prerendering (SEO)
+        run: npm run build
+
+      - name: 🚀 Déploiement FTP vers cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/ # Dossier généré contenant le site prêt
+          server-dir: /public_html/ # À adapter selon le dossier de destination cPanel
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**

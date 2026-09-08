@@ -13,7 +13,7 @@ export default function ExpertSupport() {
     seoDescription: t.seoDescription,
     seoKeywords: t.seoKeywords,
     seoUrl: "/services/expert-support",
-    topImage: "/services/expert-support/expert-support-overview-cro.png",
+    topImage: "/services/expert-support/expert-support-overview-cro.webp",
     topTitle: (
       <span className="whitespace-pre-line">{t.topTitle}</span>
     ),
@@ -24,12 +24,12 @@ export default function ExpertSupport() {
     topList: t.topList,
     banners: t.banners.map((b, i) => {
       const originalImages = [
-        "/services/expert-support/advisory-board-management-cro.png",
-        "/services/expert-support/expert-identification-kol-engagement.png",
-        "/services/expert-support/recommendation-synthesis-expert.png",
-        "/services/expert-support/healthcare-professional-support.png",
-        "/services/expert-support/scientific-content-preparation.png",
-        "/services/expert-support/scientific-publications-manuscripts.png"
+        "/services/expert-support/advisory-board-management-cro.webp",
+        "/services/expert-support/expert-identification-kol-engagement.webp",
+        "/services/expert-support/recommendation-synthesis-expert.webp",
+        "/services/expert-support/healthcare-professional-support.webp",
+        "/services/expert-support/scientific-content-preparation.webp",
+        "/services/expert-support/scientific-publications-manuscripts.webp"
       ];
       return {
         image: originalImages[i],

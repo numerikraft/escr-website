@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'motion/react';
-import { Award, Clock, Handshake, Linkedin, ArrowUpRight, Shuffle, Scale, Lock, BookOpen, Shield } from 'lucide-react';
+import { Clock, Handshake, Scale, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button, { NavbarButton } from '../components/Button';
 import ServiceBottom from '../components/ServiceBottom';
@@ -43,36 +43,7 @@ function AnimatedNumber({ value, prefix = "", suffix = "", formatSpace = false, 
 
 // We'll move the slides definition inside the component to access translations
 
-function CountUp({ target, suffix = '+', duration = 2 }: { target: number; suffix?: string; duration?: number }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const hasAnimated = useRef(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const startTime = performance.now();
-          const step = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / (duration * 1000), 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * target));
-            if (progress < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target, duration]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
 
 export default function Home() {
   const { language } = useLanguage();
@@ -83,43 +54,43 @@ export default function Home() {
       id: 0,
       badge: tData.hero.slides[0].badge,
       title: <>{tData.hero.slides[0].title}</>,
-      image: "/hero/hero-clinical-studies-cro-algeria.png"
+      image: "/hero/hero-clinical-studies-cro-algeria.webp"
     },
     {
       id: 1,
       badge: tData.hero.slides[1].badge,
       title: <>{tData.hero.slides[1].title}</>,
-      image: "/hero/hero-pharmacoeconomic-studies-cro.png"
+      image: "/hero/hero-pharmacoeconomic-studies-cro.webp"
     },
     {
       id: 2,
       badge: tData.hero.slides[2].badge,
       title: <>{tData.hero.slides[2].title}</>,
-      image: "/hero/hero-patient-support-program-cro.png"
+      image: "/hero/hero-patient-support-program-cro.webp"
     },
     {
       id: 3,
       badge: tData.hero.slides[3].badge,
       title: <>{tData.hero.slides[3].title}</>,
-      image: "/hero/hero-real-world-evidence-cro.png"
+      image: "/hero/hero-real-world-evidence-cro.webp"
     },
     {
       id: 4,
       badge: tData.hero.slides[4].badge,
       title: <>{tData.hero.slides[4].title}</>,
-      image: "/hero/hero-medical-writing-cro.png"
+      image: "/hero/hero-medical-writing-cro.webp"
     },
     {
       id: 5,
       badge: tData.hero.slides[5].badge,
       title: <>{tData.hero.slides[5].title}</>,
-      image: "/hero/hero-expert-support-cro.png"
+      image: "/hero/hero-expert-support-cro.webp"
     },
     {
       id: 6,
       badge: tData.hero.slides[6].badge,
       title: <>{tData.hero.slides[6].title}</>,
-      image: "/hero/hero-training-clinical-research.png"
+      image: "/hero/hero-training-clinical-research.webp"
     }
   ];
 
@@ -187,7 +158,7 @@ export default function Home() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                      className="inline-flex items-center bg-transparent text-[#7f2191] border border-[#7f2191] px-4.5 sm:px-6 py-1.5 sm:py-2 rounded-full text-[13px] sm:text-[15px] font-bold tracking-wide mb-6 sm:mb-8"
+                      className="inline-flex items-center bg-transparent text-[#7f2191] border border-[#7f2191] px-5 sm:px-8 py-2 sm:py-2.5 rounded-full text-[16px] sm:text-[18px] font-bold tracking-wide mb-6 sm:mb-8"
                   >
                     {slides[currentSlide].badge}
                   </motion.div>
@@ -198,7 +169,7 @@ export default function Home() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                      className="text-[36px] sm:text-5xl lg:text-[64px] font-normal text-[#50298e] tracking-tight mb-10 sm:mb-12 leading-[1.15]"
+                      className="text-[32px] sm:text-4xl lg:text-[54px] font-normal text-[#50298e] tracking-tight mb-10 sm:mb-12 leading-[1.15]"
                   >
                     {slides[currentSlide].title}
                   </motion.h1>
@@ -210,7 +181,7 @@ export default function Home() {
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
                   >
-                    <NavbarButton to="/contact" className="shadow-lg hover:shadow-xl">
+                    <NavbarButton to="/contact">
                       {tData.hero.button}
                     </NavbarButton>
                   </motion.div>
@@ -229,6 +200,7 @@ export default function Home() {
                   <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
+                      aria-label={`Slide ${index + 1}`}
                       className={`w-3 h-3 rounded-full cursor-pointer transition-colors ${
                           index === currentSlide ? 'bg-[#6f1888]' : 'bg-[#6f1888]/25 hover:bg-[#6f1888]/40'
                       }`}
@@ -345,7 +317,7 @@ export default function Home() {
                 }}
             >
               {/* Patterns */}
-              <img src="/escr-pattern-top-left.png" alt="" className="absolute top-0 left-0 w-32 sm:w-48 md:w-[240px] lg:w-[300px] object-contain object-left-top opacity-45 pointer-events-none select-none z-0" />
+              <img src="/escr-pattern-top-left.webp" alt="" className="absolute top-0 left-0 w-32 sm:w-48 md:w-[240px] lg:w-[300px] object-contain object-left-top opacity-45 pointer-events-none select-none z-0" />
               
               <AnimatedSection>
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 text-white text-[13px] font-bold tracking-widest uppercase mb-6">
@@ -480,3 +452,5 @@ export default function Home() {
       </div>
   );
 }
+
+// Trigger HMR

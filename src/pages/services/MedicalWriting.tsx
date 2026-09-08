@@ -13,7 +13,7 @@ export default function MedicalWriting() {
     seoDescription: t.seoDescription,
     seoKeywords: t.seoKeywords,
     seoUrl: "/services/medical-writing",
-    topImage: "/services/medical-writing/medical-writing-overview-cro.png",
+    topImage: "/services/medical-writing/medical-writing-overview-cro.webp",
     topTitle: (
       <span className="whitespace-pre-line">{t.topTitle}</span>
     ),
@@ -24,11 +24,11 @@ export default function MedicalWriting() {
     topList: t.topList,
     banners: t.banners.map((b, i) => {
       const originalImages = [
-        "/services/medical-writing/scientific-communication-management.png",
-        "/services/medical-writing/publication-strategy-scientific.png",
-        "/services/medical-writing/scientific-white-paper-writing.png",
-        "/services/medical-writing/conference-materials-presentation.png",
-        "/services/medical-writing/editorial-review-quality-control.png"
+        "/services/medical-writing/scientific-communication-management.webp",
+        "/services/medical-writing/publication-strategy-scientific.webp",
+        "/services/medical-writing/scientific-white-paper-writing.webp",
+        "/services/medical-writing/conference-materials-presentation.webp",
+        "/services/medical-writing/editorial-review-quality-control.webp"
       ];
       return {
         image: originalImages[i],

@@ -151,7 +151,7 @@ export function NavbarButton(props: BaseButtonProps) {
             iconContainerSize={iconContainerSize}
             sweepWidth={sweepWidth}
             sweepDuration={sweepDuration}
-            className={`shadow-md ${className}`}
+            className={`${className}`}
             {...rest}
         />
     );

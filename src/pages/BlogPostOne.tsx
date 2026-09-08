@@ -75,7 +75,7 @@ export default function BlogPostOne() {
           <section className="relative overflow-hidden rounded-b-[2.5rem] pt-12 pb-20 md:pt-22 md:pb-30 bg-[#4c005a] mb-[30px] lg:mb-0">
             <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/blog/1/hero.png')" }}
+                style={{ backgroundImage: "url('/blog/1/hero.webp')" }}
             />
 
             <div
@@ -168,7 +168,7 @@ export default function BlogPostOne() {
                   />
                   <motion.img
                       {...imageZoom}
-                      src="/blog/1/understanding-real-world-evidence.png"
+                      src="/blog/1/understanding-real-world-evidence.webp"
                       alt="Understanding real-world evidence in modern healthcare and clinical decision-making"
                       loading="lazy"
                       className="w-full h-full object-cover"
@@ -198,7 +198,7 @@ export default function BlogPostOne() {
                   />
                   <motion.img
                       {...imageZoom}
-                      src="/blog/1/practical-perspective-real-world-evidence.png"
+                      src="/blog/1/practical-perspective-real-world-evidence.webp"
                       alt="Translating real-world evidence into practical impact for clinical practice"
                       loading="lazy"
                       className="w-full h-full object-cover"

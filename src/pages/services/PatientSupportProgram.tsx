@@ -13,7 +13,7 @@ export default function PatientSupportProgram() {
     seoDescription: t.seoDescription,
     seoKeywords: t.seoKeywords,
     seoUrl: "/services/patient-support-program",
-    topImage: "/services/patient-support-program/patient-support-program-overview.png",
+    topImage: "/services/patient-support-program/patient-support-program-overview.webp",
     topTitle: (
       <span className="whitespace-pre-line">{t.topTitle}</span>
     ),
@@ -24,11 +24,11 @@ export default function PatientSupportProgram() {
     topList: t.topList,
     banners: t.banners.map((b, i) => {
       const originalImages = [
-        "/services/patient-support-program/patient-education-training-program.png",
-        "/services/patient-support-program/adherence-support-patient-followup.png",
-        "/services/patient-support-program/call-center-logistical-assistance.png",
-        "/services/patient-support-program/public-health-information-awareness.png",
-        "/services/patient-support-program/program-coordination-patient-management.png"
+        "/services/patient-support-program/patient-education-training-program.webp",
+        "/services/patient-support-program/adherence-support-patient-followup.webp",
+        "/services/patient-support-program/call-center-logistical-assistance.webp",
+        "/services/patient-support-program/public-health-information-awareness.webp",
+        "/services/patient-support-program/program-coordination-patient-management.webp"
       ];
       return {
         image: originalImages[i],
