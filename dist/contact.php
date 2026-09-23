@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 /**
  * ESC Clinical Research — Contact Form Handler
  * Sends a branded HTML email to contact@esclinical.com
- * Features: CORS, Rate Limiting (5/hour), Honeypot, Input Validation
+ * Features: Envelope Sender (-f), Backup Logging, CORS, Rate Limiting, Honeypot
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -19,9 +19,10 @@ if (in_array($origin, $allowed_origins)) {
     header("Access-Control-Allow-Origin: $origin");
     header("Access-Control-Allow-Headers: Content-Type");
 } elseif ($origin !== '') {
-    http_response_code(403);
-    echo json_encode(['error' => 'Forbidden']);
-    exit;
+    if (str_contains($origin, 'esclinical.com')) {
+        header("Access-Control-Allow-Origin: $origin");
+        header("Access-Control-Allow-Headers: Content-Type");
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(200); exit; }
@@ -76,8 +77,35 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 // ── Email config ──────────────────────────────────────────────────────────────
 $to      = 'contact@esclinical.com';
-$subject = '=?UTF-8?B?' . base64_encode("Nouveau message : $sujet") . '?=';
-$from    = 'noreply@esclinical.com';
+$from    = 'contact@esclinical.com';
+$subject = '=?UTF-8?B?' . base64_encode("Nouveau message contact : $sujet") . '?=';
+
+// ── Backup Local Storage (Prevents Any Message Loss) ──────────────────────────
+$logEntry = [
+    'date' => date('Y-m-d H:i:s'),
+    'prenom' => $prenom,
+    'nom' => $nom,
+    'email' => $email,
+    'telephone' => $telephone,
+    'entreprise' => $entreprise,
+    'fonction' => $fonction,
+    'sujet' => $sujet,
+    'message' => $messageRaw,
+    'ip' => $_SERVER['REMOTE_ADDR'] ?? 'N/A'
+];
+$logFile = __DIR__ . '/.contact_submissions.json.php';
+$existingLogs = [];
+if (file_exists($logFile)) {
+    $rawContent = file_get_contents($logFile);
+    $jsonStart = strpos($rawContent, '[');
+    if ($jsonStart !== false) {
+        $existingLogs = json_decode(substr($rawContent, $jsonStart), true) ?? [];
+    }
+}
+array_unshift($existingLogs, $logEntry); // new first
+if (count($existingLogs) > 100) $existingLogs = array_slice($existingLogs, 0, 100);
+
+file_put_contents($logFile, "<?php http_response_code(403); exit; ?>\n" . json_encode($existingLogs, JSON_PRETTY_PRINT));
 
 // ── HTML Email Body ───────────────────────────────────────────────────────────
 $body  = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nouveau message ESC Clinical Research</title></head>';
@@ -133,15 +161,12 @@ $hdrStr .= "From: =?UTF-8?B?" . base64_encode('ESC Clinical Research') . "?= <$f
 $hdrStr .= "Reply-To: $email\r\n";
 $hdrStr .= "X-Mailer: PHP/" . phpversion();
 
-// ── Send ──────────────────────────────────────────────────────────────────────
-$sent = mail($to, $subject, $body, $hdrStr);
+// Envelope sender parameter for cPanel Exim mail server
+$sendmail_params = "-f $from";
 
-if ($sent) {
-    $_SESSION['email_history'][] = $now;
-    http_response_code(200);
-    echo json_encode(['ok' => true]);
-} else {
-    http_response_code(500);
-    echo json_encode(['error' => 'Erreur lors de l\'envoi de l\'email']);
-}
-?>
+// ── Send ──────────────────────────────────────────────────────────────────────
+$sent = @mail($to, $subject, $body, $hdrStr, $sendmail_params);
+
+$_SESSION['email_history'][] = $now;
+http_response_code(200);
+echo json_encode(['ok' => true, 'mail_sent' => $sent]);
