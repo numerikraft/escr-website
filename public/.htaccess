@@ -26,3 +26,13 @@
   ExpiresByType text/css                "access plus 1 month"
   ExpiresByType application/javascript  "access plus 1 month"
 </IfModule>
+
+# PHP Upload Limits for Direct Deployer
+<IfModule mod_php7.c>
+  php_value upload_max_filesize 64M
+  php_value post_max_size 64M
+</IfModule>
+<IfModule mod_php.c>
+  php_value upload_max_filesize 64M
+  php_value post_max_size 64M
+</IfModule>

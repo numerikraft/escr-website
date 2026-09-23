@@ -4,10 +4,12 @@
  * Safely receives dist zip from GitHub Actions and extracts to public_html.
  */
 
-header('Content-Type: application/json; charset=utf-8');
-
-// Disable execution limit for extraction
+// Override memory & execution limits
+@ini_set('memory_limit', '256M');
+@ini_set('max_execution_time', '300');
 @set_time_limit(300);
+
+header('Content-Type: application/json; charset=utf-8');
 
 $DEPLOY_KEY = 'esclinical_deploy_key_2026_numerikraft';
 
@@ -21,8 +23,24 @@ if (empty($authHeader) || $authHeader !== $DEPLOY_KEY) {
 
 // Check uploaded file
 if (!isset($_FILES['zip_file']) || $_FILES['zip_file']['error'] !== UPLOAD_ERR_OK) {
+    $errCode = $_FILES['zip_file']['error'] ?? 'missing';
+    $errMsg = match((int)$errCode) {
+        UPLOAD_ERR_INI_SIZE   => 'File exceeds upload_max_filesize in php.ini',
+        UPLOAD_ERR_FORM_SIZE  => 'File exceeds MAX_FILE_SIZE directive',
+        UPLOAD_ERR_PARTIAL    => 'File was only partially uploaded',
+        UPLOAD_ERR_NO_FILE    => 'No file was uploaded',
+        UPLOAD_ERR_NO_TMP_DIR => 'Missing temporary upload directory',
+        UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk',
+        UPLOAD_ERR_EXTENSION  => 'A PHP extension stopped the file upload',
+        default               => 'Upload error'
+    };
     http_response_code(400);
-    echo json_encode(['status' => 0, 'error' => 'No zip file provided or upload error code: ' . ($_FILES['zip_file']['error'] ?? 'none')]);
+    echo json_encode([
+        'status' => 0,
+        'error' => "Upload error (code $errCode): $errMsg",
+        'max_upload_size' => ini_get('upload_max_filesize'),
+        'post_max_size' => ini_get('post_max_size')
+    ]);
     exit;
 }
 
