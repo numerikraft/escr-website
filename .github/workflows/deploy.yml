@@ -1,11 +1,11 @@
-name: 🏗️ Build & Update dist for cPanel
+name: 🏗️ Build & Deploy to cPanel (HTTPS API)
 
 on:
   push:
     branches:
       - main
     paths-ignore:
-      - 'dist/**'   # avoid infinite loop when dist is committed back
+      - 'dist/**'
 
 jobs:
   build:
@@ -29,7 +29,42 @@ jobs:
       - name: 🏗️ Build + Prerender (SEO)
         run: npm run build
 
-      - name: 📤 Commit dist/ to GitHub
+      - name: 📦 Zip the dist folder
+        run: |
+          cd dist
+          zip -r ../esclinical-dist.zip .
+          cd ..
+          echo "Zip created: $(du -sh esclinical-dist.zip)"
+
+      - name: 🚀 Upload zip to cPanel via HTTPS API
+        run: |
+          curl -k -s -o upload_response.json \
+            --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
+            -F "dir=/public_html" \
+            -F "file-1=@esclinical-dist.zip" \
+            "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/upload_files"
+          cat upload_response.json
+
+      - name: 📂 Extract zip in public_html via cPanel API
+        run: |
+          curl -k -s -o extract_response.json \
+            --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
+            -G \
+            --data-urlencode "dest=/public_html" \
+            --data-urlencode "file=/public_html/esclinical-dist.zip" \
+            "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/extract_an_archive"
+          cat extract_response.json
+
+      - name: 🗑️ Delete zip from server
+        run: |
+          curl -k -s \
+            --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
+            -G \
+            --data-urlencode "files[]=/public_html/esclinical-dist.zip" \
+            "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/delete_files"
+          echo "Cleanup done ✅"
+
+      - name: 📤 Commit updated dist/ to GitHub
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
