@@ -1,4 +1,4 @@
-name: 🏗️ Build & Deploy to cPanel (HTTPS API)
+name: 🏗️ Build & Deploy to cPanel
 
 on:
   push:
@@ -38,38 +38,67 @@ jobs:
           cd ..
           echo "✅ Zip created: $(du -sh esclinical-dist.zip)"
 
-      - name: 🚀 Upload zip to cPanel via HTTPS API
+      - name: 🚀 Deploy via Direct PHP Endpoint or cPanel API
         run: |
-          curl -k -s -o upload_response.json \
-            --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
-            -F "dir=/public_html" \
-            -F "file-1=@esclinical-dist.zip" \
-            "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/upload_files"
-          echo "Upload response:"
-          cat upload_response.json
-          # Fail if upload error
-          grep -q '"status":1' upload_response.json || { echo "❌ Upload failed!"; exit 1; }
+          echo "Attempting deployment via Direct PHP Endpoint..."
+          HTTP_STATUS=$(curl -k -s -w "%{http_code}" -o deploy_response.json \
+            -H "X-Deploy-Token: esclinical_deploy_key_2026_numerikraft" \
+            -F "zip_file=@esclinical-dist.zip" \
+            "https://${{ secrets.CPANEL_HOST }}/api-deploy.php")
+          
+          cat deploy_response.json || true
+          echo ""
 
-      - name: 📂 Extract zip in public_html via cPanel API
-        run: |
-          curl -k -s -o extract_response.json \
-            --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
-            -G \
-            --data-urlencode "dest=/public_html" \
-            --data-urlencode "file=/public_html/esclinical-dist.zip" \
-            "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/extract_an_archive"
-          echo "Extract response:"
-          cat extract_response.json
-          grep -q '"status":1' extract_response.json || { echo "❌ Extract failed!"; exit 1; }
+          if [ "$HTTP_STATUS" -eq 200 ] && grep -q '"status":1' deploy_response.json; then
+            echo "🎉 Direct PHP Deployment succeeded!"
+          else
+            echo "⚠️ Direct PHP endpoint returned status $HTTP_STATUS or error. Falling back to cPanel UAPI..."
+            
+            AUTH_HEADER="Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}"
+            
+            # 1. Upload Zip
+            curl -k -s -o upload_response.json \
+              -H "$AUTH_HEADER" \
+              --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
+              -F "dir=/public_html" \
+              -F "file-1=@esclinical-dist.zip" \
+              "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/upload_files"
+            
+            cat upload_response.json || true
+            echo ""
+            
+            if ! grep -q '"status":1' upload_response.json; then
+              echo "❌ Upload failed via cPanel UAPI as well!"
+              exit 1
+            fi
 
-      - name: 🗑️ Delete zip from server
-        run: |
-          curl -k -s \
-            --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
-            -G \
-            --data-urlencode "files[]=/public_html/esclinical-dist.zip" \
-            "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/delete_files"
-          echo "🗑️ Cleanup done"
+            # 2. Extract Archive
+            curl -k -s -o extract_response.json \
+              -H "$AUTH_HEADER" \
+              --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
+              -G \
+              --data-urlencode "dest=/public_html" \
+              --data-urlencode "file=/public_html/esclinical-dist.zip" \
+              "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/extract_an_archive"
+            
+            cat extract_response.json || true
+            echo ""
+
+            if ! grep -q '"status":1' extract_response.json; then
+              echo "❌ Extraction failed!"
+              exit 1
+            fi
+
+            # 3. Delete Zip
+            curl -k -s \
+              -H "$AUTH_HEADER" \
+              --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
+              -G \
+              --data-urlencode "files[]=/public_html/esclinical-dist.zip" \
+              "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/delete_files"
+            
+            echo "🗑️ Server cleanup completed."
+          fi
 
       - name: 🎉 Deploy complete
-        run: echo "✅ Site deployed successfully to esclinical.com!"
+        run: echo "✅ ESC Clinical Research website deployed successfully!"
