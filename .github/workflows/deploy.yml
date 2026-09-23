@@ -38,7 +38,7 @@ jobs:
           cd ..
           echo "✅ Zip created: $(du -sh esclinical-dist.zip)"
 
-      - name: 🚀 Deploy via Direct PHP Endpoint or cPanel API
+      - name: 🚀 Deploy via Direct PHP Endpoint or cPanel UAPI
         run: |
           echo "Attempting deployment via Direct PHP Endpoint..."
           HTTP_STATUS=$(curl -k -s -w "%{http_code}" -o deploy_response.json \
@@ -52,35 +52,37 @@ jobs:
           if [ "$HTTP_STATUS" -eq 200 ] && grep -q '"status":1' deploy_response.json; then
             echo "🎉 Direct PHP Deployment succeeded!"
           else
-            echo "⚠️ Direct PHP endpoint returned status $HTTP_STATUS or error. Falling back to cPanel UAPI..."
+            echo "⚠️ Direct PHP endpoint returned status $HTTP_STATUS (likely server 500 on current .htaccess). Using cPanel UAPI..."
             
             AUTH_HEADER="Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}"
             
-            # 1. Upload Zip
+            # 1. Upload Zip (dir=public_html relative to home)
+            echo "Uploading zip to cPanel..."
             curl -k -s -o upload_response.json \
               -H "$AUTH_HEADER" \
-              --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
-              -F "dir=/public_html" \
+              -F "dir=public_html" \
               -F "file-1=@esclinical-dist.zip" \
               "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/upload_files"
             
+            echo "Upload Response:"
             cat upload_response.json || true
             echo ""
             
             if ! grep -q '"status":1' upload_response.json; then
-              echo "❌ Upload failed via cPanel UAPI as well!"
+              echo "❌ Upload failed via cPanel UAPI!"
               exit 1
             fi
 
-            # 2. Extract Archive
+            # 2. Extract Archive in public_html
+            echo "Extracting archive in public_html..."
             curl -k -s -o extract_response.json \
               -H "$AUTH_HEADER" \
-              --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
               -G \
-              --data-urlencode "dest=/public_html" \
-              --data-urlencode "file=/public_html/esclinical-dist.zip" \
+              --data-urlencode "dest=public_html" \
+              --data-urlencode "file=public_html/esclinical-dist.zip" \
               "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/extract_an_archive"
             
+            echo "Extract Response:"
             cat extract_response.json || true
             echo ""
 
@@ -89,14 +91,17 @@ jobs:
               exit 1
             fi
 
-            # 3. Delete Zip
-            curl -k -s \
+            # 3. Delete Zip from server
+            echo "Cleaning up zip file..."
+            curl -k -s -o delete_response.json \
               -H "$AUTH_HEADER" \
-              --user "${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}" \
               -G \
-              --data-urlencode "files[]=/public_html/esclinical-dist.zip" \
+              --data-urlencode "dir=public_html" \
+              --data-urlencode "files=esclinical-dist.zip" \
               "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/delete_files"
             
+            cat delete_response.json || true
+            echo ""
             echo "🗑️ Server cleanup completed."
           fi
 
