@@ -6,7 +6,10 @@ on:
       - main
     paths-ignore:
       - 'dist/**'
-  workflow_dispatch:   # ← permet de lancer manuellement depuis GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -15,8 +18,6 @@ jobs:
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⚙️ Setup Node.js 20
         uses: actions/setup-node@v4
@@ -35,7 +36,7 @@ jobs:
           cd dist
           zip -r ../esclinical-dist.zip .
           cd ..
-          echo "Zip created: $(du -sh esclinical-dist.zip)"
+          echo "✅ Zip created: $(du -sh esclinical-dist.zip)"
 
       - name: 🚀 Upload zip to cPanel via HTTPS API
         run: |
@@ -44,7 +45,10 @@ jobs:
             -F "dir=/public_html" \
             -F "file-1=@esclinical-dist.zip" \
             "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/upload_files"
+          echo "Upload response:"
           cat upload_response.json
+          # Fail if upload error
+          grep -q '"status":1' upload_response.json || { echo "❌ Upload failed!"; exit 1; }
 
       - name: 📂 Extract zip in public_html via cPanel API
         run: |
@@ -54,7 +58,9 @@ jobs:
             --data-urlencode "dest=/public_html" \
             --data-urlencode "file=/public_html/esclinical-dist.zip" \
             "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/extract_an_archive"
+          echo "Extract response:"
           cat extract_response.json
+          grep -q '"status":1' extract_response.json || { echo "❌ Extract failed!"; exit 1; }
 
       - name: 🗑️ Delete zip from server
         run: |
@@ -63,12 +69,7 @@ jobs:
             -G \
             --data-urlencode "files[]=/public_html/esclinical-dist.zip" \
             "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/delete_files"
-          echo "Cleanup done ✅"
+          echo "🗑️ Cleanup done"
 
-      - name: 📤 Commit updated dist/ to GitHub
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dist/ --force
-          git diff --staged --quiet || git commit -m "build: update dist/ [skip ci]"
-          git push origin main
+      - name: 🎉 Deploy complete
+        run: echo "✅ Site deployed successfully to esclinical.com!"
