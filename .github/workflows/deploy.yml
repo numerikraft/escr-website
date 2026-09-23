@@ -6,6 +6,7 @@ on:
       - main
     paths-ignore:
       - 'dist/**'
+  workflow_dispatch:   # ← permet de lancer manuellement depuis GitHub
 
 jobs:
   build:
