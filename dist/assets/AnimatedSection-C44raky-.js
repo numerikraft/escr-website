@@ -1,1 +1,0 @@
-import{j as o,m as e}from"./index-C4PRTu8v.js";function r({children:i,className:t="",delay:n=0}){return o.jsx(e.div,{initial:{opacity:0,y:40},whileInView:{opacity:1,y:0},viewport:{once:!0,margin:"-100px"},transition:{duration:.7,ease:[.25,.1,.25,1],delay:n},className:t,children:i})}export{r as A};

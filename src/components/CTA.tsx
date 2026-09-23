@@ -44,7 +44,7 @@ export default React.memo(function CTA({
   image = "/escr-cro-clinical-research-partnership.webp",
   buttonText,
   to = "/contact",
-  email = "contact@es-cr.com"
+  email = "contact@esclinical.com"
 }: CTAProps) {
   const { language } = useLanguage();
 
