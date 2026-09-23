@@ -1,39 +1,41 @@
-name: Déploiement cPanel (FTP)
+name: 🚀 Deploy ESC Clinical Research to cPanel
 
 on:
   push:
     branches:
-      - main # ou master selon votre branche principale
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Récupération du code
+      - name: 📥 Checkout code
         uses: actions/checkout@v4
 
-      - name: ⚙️ Configuration de Node.js
+      - name: ⚙️ Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: 📦 Installation des dépendances
+      - name: 📦 Install dependencies
         run: npm ci
 
-      - name: 🏗️ Compilation et Prerendering (SEO)
+      - name: 🏗️ Build + Prerender (SEO)
         run: npm run build
 
-      - name: 🚀 Déploiement FTP vers cPanel
+      - name: 🚀 Deploy via FTP to cPanel (esclinical.com)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/ # Dossier généré contenant le site prêt
-          server-dir: /public_html/ # À adapter selon le dossier de destination cPanel
+          port: 21
+          local-dir: ./dist/
+          server-dir: /public_html/
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
+            **/.github/**
