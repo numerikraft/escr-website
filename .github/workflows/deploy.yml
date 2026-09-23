@@ -1,17 +1,21 @@
-name: 🚀 Deploy ESC Clinical Research to cPanel
+name: 🏗️ Build & Update dist for cPanel
 
 on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'dist/**'   # avoid infinite loop when dist is committed back
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⚙️ Setup Node.js 20
         uses: actions/setup-node@v4
@@ -25,15 +29,10 @@ jobs:
       - name: 🏗️ Build + Prerender (SEO)
         run: npm run build
 
-      - name: 🚀 Deploy via FTP to cPanel (esclinical.com)
+      - name: 📤 Commit dist/ to GitHub
         run: |
-          sudo apt-get install -y lftp
-          lftp -c "
-            set ftp:ssl-allow no;
-            set ftp:passive-mode yes;
-            set net:timeout 30;
-            set net:max-retries 3;
-            open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ftp://${{ secrets.FTP_SERVER }};
-            mirror --reverse --delete --verbose --exclude .git ./dist/ /public_html/;
-            quit
-          "
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist/ --force
+          git diff --staged --quiet || git commit -m "build: update dist/ [skip ci]"
+          git push origin main
