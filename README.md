@@ -1,6 +1,6 @@
 # ES Clinical Research — Corporate Website
 
-> Official website for **ES Clinical Research (ESCR)**, a leading Contract Research Organization (CRO) based in Algiers, Algeria.
+> Official website for **ES Clinical Research (ESCR)**, a leading Contract Research Organization (CRO) based in Algiers, Algeria.  
 > **Domain**: [esclinical.com](https://esclinical.com)
 
 ---
@@ -64,6 +64,7 @@ escr-website/
 │   └── deploy.yml             # Dual-strategy automated build & deployment
 ├── public/                    # Static assets & server scripts
 │   ├── .htaccess              # Apache SPA routing fallback (clean cPanel config)
+│   ├── .user.ini              # PHP upload limits (64M)
 │   ├── api-deploy.php         # Secure direct deployment receiver
 │   ├── contact.php            # Branded HTML contact form email handler
 │   ├── logo-es-cr-primary.svg # Brand logo
@@ -151,6 +152,10 @@ If you ever need to manually deploy the site via cPanel File Manager:
 2. **FTP & cPanel UAPI Failures**:
    - *Cause*: The hosting server firewall (CSF/ModSecurity) blocks incoming FTP connections (port 21) and external UAPI requests (port 2083) from GitHub Actions runner IP addresses.
    - *Fix*: Implemented `api-deploy.php`, a secure direct deployment endpoint operating on standard Web HTTPS port 443 (which is always open), authenticated via an `X-Deploy-Token` header.
+
+3. **PHP 2M Upload Limit**:
+   - *Cause*: Default cPanel `upload_max_filesize` in `php.ini` was set to `2M`, while `esclinical-dist.zip` is ~5.6 MB.
+   - *Fix*: Increased `upload_max_filesize` to `64M` via cPanel MultiPHP INI Editor and `.user.ini`.
 
 ---
 
