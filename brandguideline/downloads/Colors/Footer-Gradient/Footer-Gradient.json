@@ -1,0 +1,23 @@
+{
+  "id": "Footer-Gradient",
+  "name": "Footer Gradient",
+  "hex": "#7F2191",
+  "secondary_hex": "#4C005A",
+  "rgb": [
+    127,
+    33,
+    145
+  ],
+  "secondary_rgb": [
+    76,
+    0,
+    90
+  ],
+  "cmyk": [
+    55,
+    96,
+    0,
+    0
+  ],
+  "role": "Signature Radial"
+}

@@ -1,0 +1,1191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ES Clinical Research — Brand Book 2026</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/brandbook/brandbook.css" />
+  <style>
+    /* inline cqw polyfill via vw (slides are ~87vw wide on desktop) */
+    @supports not (font-size: 1cqw) {
+      .giant        { font-size: clamp(44px, 7.5vw, 116px); }
+      .h1           { font-size: clamp(26px, 3.8vw, 60px); }
+      .cover-headline{ font-size: clamp(48px, 7.8vw, 128px); }
+      .chapter-giant { font-size: clamp(120px, 19vw, 310px); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pv" id="pv">
+  <!-- Left Click Zone -->
+  <div class="click-zone click-zone--left" id="czLeft">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </div>
+  <!-- Right Click Zone -->
+  <div class="click-zone click-zone--right" id="czRight">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </div>
+
+  <!-- STAGE -->
+  <div class="stage" id="stage">
+
+    <!-- STAGE PROGRESS BAR -->
+    <div class="stage-progress"><div class="stage-progress-fill" id="stageProg"></div></div>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 01 — COVER
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--plum active" id="s1" data-slide="1">
+      <div class="cover-bg"></div>
+      <div class="cover-grid"></div>
+      <div class="cover-circle-1"></div>
+      <div class="cover-circle-2"></div>
+      <div class="reg-mark reg-mark--tl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--tr" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--bl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--br" style="color:#fff;"></div>
+      <div class="cover-content">
+        <!-- Top row -->
+        <div class="row jcsb aic">
+          <div class="cover-badge">
+            <span class="cover-badge-dot"></span>
+            Contract Research Organization
+          </div>
+          <div class="caption caption--light" style="text-align:right; line-height:1.8;">
+            REF: CR-BRAND-2026-V1<br>
+            36.75° N, 3.05° E — Algiers
+          </div>
+        </div>
+        <!-- Center — big headline -->
+        <div class="col gap16">
+          <div class="cover-headline">
+            Brand<br><em>Guidelines</em>
+          </div>
+          <div class="cover-sub">
+            Complete visual architecture, typographic governance, and technical specifications for ES Clinical Research — a leading CRO across North Africa.
+          </div>
+        </div>
+        <!-- Bottom row -->
+        <div class="row jcsb aic">
+          <div class="col gap8">
+            <img src="/logo-es-cr-white.svg" alt="ES Clinical Research" style="height:44px; width:auto; display:block;" />
+            <div class="caption caption--light">es-clinical-research.com</div>
+          </div>
+          <div class="col" style="gap:4px; text-align:right; align-items:flex-end;">
+            <div style="font-family:var(--font-sans); font-weight:700; font-size:13px; color:var(--acid); letter-spacing:0.04em;">2026 EDITION</div>
+            <div class="caption caption--light">ICH-GCP · Declaration of Helsinki · ANPP</div>
+          </div>
+        </div>
+      </div>
+      <div class="cover-bottom-stripe"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 02 — TABLE OF CONTENTS
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--fog" id="s2" data-slide="2">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <!-- Chrome top -->
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Brand Architecture Index</div>
+        <div class="chrome-num">02 / 15</div>
+      </div>
+      <!-- Main layout: left intro + right grid -->
+      <div class="split split--3565" style="top:34px; bottom:34px;">
+        <!-- Left: title block -->
+        <div class="col pad gap20" style="background:var(--indigo); justify-content:space-between; position:relative; overflow:hidden;">
+          <div class="bg-text bg-text--light" style="bottom:-0.05em; left:-0.08em; font-size:clamp(80px,14cqw,200px);">TOC</div>
+          <div class="col gap16">
+            <div class="lbl lbl--light">System Navigation</div>
+            <div class="h1" style="color:var(--white); line-height:1.05;">Table of<br>Contents</div>
+          </div>
+          <div class="col gap12">
+            <div class="rule rule--light"></div>
+            <div class="caption caption--light">7 Chapters · 50 Codified Modules</div>
+            <div class="caption caption--light">Brand Guidelines v1.0 — ES Clinical Research</div>
+          </div>
+        </div>
+        <!-- Right: chapter grid -->
+        <div class="col" style="background:var(--white); overflow:hidden;">
+          <div class="toc-grid" style="flex:1;">
+            <div class="toc-cell">
+              <div class="toc-cell-top" style="background:var(--indigo);"></div>
+              <div class="toc-cell-num">00 — Intro</div>
+              <div class="toc-cell-title">Introduction</div>
+              <div class="toc-cell-desc">Background, CRO scope, mission, vision, brand personality.</div>
+              <div class="toc-cell-pages">pp. 01–05</div>
+            </div>
+            <div class="toc-cell">
+              <div class="toc-cell-top" style="background:var(--violet);"></div>
+              <div class="toc-cell-num">01 — Logo</div>
+              <div class="toc-cell-title">Logo Identity</div>
+              <div class="toc-cell-desc">Lockup anatomy, grid, clear space, size limits, dos &amp; don'ts.</div>
+              <div class="toc-cell-pages">pp. 06–15</div>
+            </div>
+            <div class="toc-cell">
+              <div class="toc-cell-top" style="background:#7f2191;"></div>
+              <div class="toc-cell-num">02 — Color</div>
+              <div class="toc-cell-title">Color Tokens</div>
+              <div class="toc-cell-desc">Primary palette, tints, CMYK/RGB values, WCAG accessibility.</div>
+              <div class="toc-cell-pages">pp. 16–21</div>
+            </div>
+            <div class="toc-cell">
+              <div class="toc-cell-top" style="background:var(--n40);"></div>
+              <div class="toc-cell-num">03 — Type</div>
+              <div class="toc-cell-title">Typography</div>
+              <div class="toc-cell-desc">Display, editorial body, type hierarchy &amp; scale calibration.</div>
+              <div class="toc-cell-pages">pp. 22–27</div>
+            </div>
+            <div class="toc-cell">
+              <div class="toc-cell-top" style="background:var(--n50);"></div>
+              <div class="toc-cell-num">04 — Voice</div>
+              <div class="toc-cell-title">Voice &amp; Tone</div>
+              <div class="toc-cell-desc">Clinical editorial tone, context matrix, writing rules.</div>
+              <div class="toc-cell-pages">pp. 28–32</div>
+            </div>
+            <div class="toc-cell">
+              <div class="toc-cell-top" style="background:var(--indigo-l);"></div>
+              <div class="toc-cell-num">05 — Digital</div>
+              <div class="toc-cell-title">Digital Systems</div>
+              <div class="toc-cell-desc">UI components, design tokens, photography, email, PPT.</div>
+              <div class="toc-cell-pages">pp. 33–41</div>
+            </div>
+            <div class="toc-cell">
+              <div class="toc-cell-top" style="background:var(--acid);"></div>
+              <div class="toc-cell-num">06 — Print</div>
+              <div class="toc-cell-title">Print &amp; Collateral</div>
+              <div class="toc-cell-desc">Stationery, protocol binders, master contracts, envelopes.</div>
+              <div class="toc-cell-pages">pp. 42–50</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Chrome bottom -->
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center"></div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 03 — ENTERPRISE OVERVIEW
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--white" id="s3" data-slide="3">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">00 — Introduction</div>
+        <div class="chrome-num">03 / 15</div>
+      </div>
+      <div class="split split--4060" style="top:34px; bottom:34px;">
+        <!-- LEFT: large statement -->
+        <div class="col pad gap24 jcsb" style="border-right:1px solid rgba(0,0,0,0.08); position:relative; overflow:hidden;">
+          <div class="col gap16">
+            <div class="lbl">Enterprise Overview</div>
+            <div class="h1" style="color:var(--ink);">Pioneering Evidence-Based Research</div>
+            <div class="serif-lg" style="color:var(--indigo);">Across North Africa.</div>
+            <div class="rule"></div>
+            <div class="body">
+              ES Clinical Research (ES-CR) is a leading full-service CRO based in Algiers. We bridge multinational pharmaceutical sponsors, biotech innovators, and academic investigators with the rapidly expanding patient cohorts of North Africa.
+            </div>
+          </div>
+          <div class="col gap8">
+            <div class="lbl" style="color:var(--n70);">Headquarters &amp; Legal Registration</div>
+            <div class="caption">76, Coop Mina Benhaddadi Dar Diaf, Cheraga, Algiers<br>Ministry of Health &amp; ANPP Audited · contact@esclinical.com</div>
+          </div>
+        </div>
+        <!-- RIGHT: stats + capabilities -->
+        <div class="col pad gap20">
+          <!-- Stats row -->
+          <div class="row gap32">
+            <div class="col gap4">
+              <div class="big-num">I–IV</div>
+              <div class="stat-lbl">Trial Phases</div>
+            </div>
+            <div class="vline"></div>
+            <div class="col gap4">
+              <div class="big-num">100%</div>
+              <div class="stat-lbl">GCP Compliant</div>
+            </div>
+            <div class="vline"></div>
+            <div class="col gap4">
+              <div class="big-num">DZ</div>
+              <div class="stat-lbl">Base of Operations</div>
+            </div>
+          </div>
+          <div class="rule"></div>
+          <!-- Capabilities -->
+          <div class="lbl lbl--indigo">Core Capabilities</div>
+          <div class="col gap16" style="flex:1; justify-content:space-between;">
+            <div class="cap-card">
+              <div class="cap-card-idx">01 / Clinical Trial Management</div>
+              <div class="cap-card-head">Phase I–IV Full-Service CRO</div>
+              <div class="cap-card-desc">Protocol development, site selection, feasibility, CRA monitoring, ethics committee, regulatory reporting.</div>
+            </div>
+            <div class="cap-card">
+              <div class="cap-card-idx">02 / Real-World Evidence</div>
+              <div class="cap-card-head">Pharmacoeconomics &amp; Observational Research</div>
+              <div class="cap-card-desc">Epidemiological registries, cost-effectiveness modeling, burden-of-disease, health outcomes.</div>
+            </div>
+            <div class="cap-card">
+              <div class="cap-card-idx">03 / Data &amp; Regulatory Science</div>
+              <div class="cap-card-head">Biostatistics, EDC &amp; Medical Writing</div>
+              <div class="cap-card-desc">CDISC-compliant SAP, interim analyses, clinical study reports, peer-reviewed manuscripts.</div>
+            </div>
+          </div>
+          <div style="background:rgba(80,41,142,0.07); border-left:3px solid var(--indigo); padding:10px 14px; border-radius:0 4px 4px 0;">
+            <div class="lbl lbl--indigo">Quality Assurance</div>
+            <div class="caption" style="margin-top:3px; color:var(--n50);">ICH-GCP E6(R2) · Declaration of Helsinki · ANPP regulations · ISO 14155</div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Enterprise Profile &amp; Operational Matrix</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 04 — MISSION / VISION / VALUES
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--white" id="s4" data-slide="4">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">00 — Introduction</div>
+        <div class="chrome-num">04 / 15</div>
+      </div>
+      <!-- Full-width header -->
+      <div class="row jcsb aic" style="padding: 14px clamp(28px,4%,60px); border-bottom:1px solid rgba(0,0,0,0.07); position:absolute; top:34px; left:0; right:0;">
+        <div class="col gap4">
+          <div class="lbl">Strategic Mandate</div>
+          <div class="h2" style="color:var(--ink);">Mission, Vision &amp; Core Values</div>
+        </div>
+        <div class="tag tag--indigo">Ethical Foundation</div>
+      </div>
+      <!-- Three panels -->
+      <div class="row" style="position:absolute; top:110px; bottom:34px; left:0; right:0; align-items:stretch;">
+        <!-- Mission -->
+        <div class="mvv-panel">
+          <div class="mvv-tag">01 / Mandate</div>
+          <div class="mvv-title">Mission</div>
+          <div class="mvv-body">To conduct clinical research with uncompromising scientific integrity, generating verifiable, audit-proof clinical evidence that accelerates access to safe, life-enhancing therapeutics across emerging healthcare landscapes.</div>
+          <div class="mvv-foot">ICH-GCP §2.1 — Subject Protection</div>
+        </div>
+        <!-- Vision -->
+        <div class="mvv-panel">
+          <div class="mvv-tag">02 / Trajectory</div>
+          <div class="mvv-title">Vision</div>
+          <div class="mvv-body">To establish North Africa as an indispensable pillar of international clinical research, celebrated worldwide by sponsors and regulatory bodies for methodical operational discipline and lasting healthcare impact.</div>
+          <div class="mvv-foot">Regional Scientific Leadership</div>
+        </div>
+        <!-- Values -->
+        <div class="mvv-panel">
+          <div class="mvv-tag">03 / Operating Code</div>
+          <div class="mvv-title">Values</div>
+          <div class="col gap12" style="flex:1;">
+            <div class="col gap3">
+              <div style="font-weight:600; font-size:clamp(11px,1.05cqw,13px); color:var(--indigo);">1 — Scientific Rigor</div>
+              <div class="body" style="font-size:11px;">Zero tolerance for protocol ambiguity or unvalidated data.</div>
+            </div>
+            <div class="col gap3">
+              <div style="font-weight:600; font-size:clamp(11px,1.05cqw,13px); color:var(--violet);">2 — Patient-First Ethics</div>
+              <div class="body" style="font-size:11px;">Human safety precedes all operational timelines.</div>
+            </div>
+            <div class="col gap3">
+              <div style="font-weight:600; font-size:clamp(11px,1.05cqw,13px); color:var(--indigo-l);">3 — Total Transparency</div>
+              <div class="body" style="font-size:11px;">Auditable documentation, proactive sponsor communication.</div>
+            </div>
+            <div class="col gap3">
+              <div style="font-weight:600; font-size:clamp(11px,1.05cqw,13px); color:var(--n40);">4 — Innovation Drive</div>
+              <div class="body" style="font-size:11px;">Continuous adoption of evidence-based methodologies.</div>
+            </div>
+          </div>
+          <div class="mvv-foot">Ethical Compliance Charter</div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Mission, Vision &amp; Operating Values</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 05 — BRAND PERSONALITY
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--fog" id="s5" data-slide="5">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">00 — Introduction</div>
+        <div class="chrome-num">05 / 15</div>
+      </div>
+      <div class="split split--3565" style="top:34px; bottom:34px;">
+        <!-- Left: intro -->
+        <div class="col pad gap20 jcsb" style="background:var(--white); border-right:1px solid rgba(0,0,0,0.07);">
+          <div class="col gap16">
+            <div class="lbl">Brand Character</div>
+            <div class="h1" style="color:var(--ink);">Brand<br>Personality</div>
+            <div class="rule"></div>
+            <div class="body">ES-CR's brand personality balances the precision of clinical science with the human warmth of a mission-driven organization. These four traits guide every touchpoint — from sponsor presentations to patient-facing materials.</div>
+          </div>
+          <div class="col gap8">
+            <div class="lbl" style="color:var(--n70);">Personality Spectrum</div>
+            <div style="display:flex; gap:0; height:6px; border-radius:3px; overflow:hidden;">
+              <div style="flex:3; background:var(--indigo);"></div>
+              <div style="flex:2; background:var(--violet);"></div>
+              <div style="flex:2; background:var(--indigo-l);"></div>
+              <div style="flex:3; background:var(--n40);"></div>
+            </div>
+            <div class="row jcsb" style="margin-top:2px;">
+              <div class="caption">Authoritative</div>
+              <div class="caption">Precise</div>
+              <div class="caption">Collaborative</div>
+              <div class="caption">Honest</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: trait cards grid -->
+        <div class="pad" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:center;">
+          <div class="trait-card" style="--card-color:var(--indigo);">
+            <div class="trait-num">01</div>
+            <div class="trait-word">Authoritative</div>
+            <div class="trait-def">We speak from evidence. Every claim is backed by data, peer review, or regulatory precedent — never opinion.</div>
+            <div class="trait-opp">Not → Arrogant or inaccessible</div>
+          </div>
+          <div class="trait-card" style="border-top-color:var(--violet);">
+            <div class="trait-num">02</div>
+            <div class="trait-word">Precise</div>
+            <div class="trait-def">Scientific detail is our currency. We never generalize where specificity is possible. Language mirrors protocol design.</div>
+            <div class="trait-opp">Not → Cold or mechanical</div>
+          </div>
+          <div class="trait-card" style="border-top-color:var(--indigo-l);">
+            <div class="trait-num">03</div>
+            <div class="trait-word">Collaborative</div>
+            <div class="trait-def">Research is a joint endeavor. We position ourselves as partners of sponsors, sites, and regulators — not vendors.</div>
+            <div class="trait-opp">Not → Subservient or passive</div>
+          </div>
+          <div class="trait-card" style="border-top-color:var(--n40);">
+            <div class="trait-num">04</div>
+            <div class="trait-word">Honest</div>
+            <div class="trait-def">Transparency is our default. We communicate risks, timelines, and findings without spin or diplomatic ambiguity.</div>
+            <div class="trait-opp">Not → Blunt or discouraging</div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Brand Personality Architecture</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════
+         SLIDE 06 — CHAPTER DIVIDER: LOGO
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--indigo" id="s6" data-slide="6">
+      <div class="reg-mark reg-mark--tl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--tr" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--bl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--br" style="color:#fff;"></div>
+      <div class="accent-stripe"></div>
+      <div class="chapter-giant">01</div>
+      <div class="col pad gap20 jcsb" style="position:absolute; inset:0;">
+        <div class="lbl lbl--light">Chapter 01</div>
+        <div class="col gap16">
+          <div class="giant" style="color:var(--white);">Logo<br>Identity</div>
+          <div class="body body--light" style="max-width:420px;">
+            Lockup anatomy · architectural grid · mark geometry · clear space rules · size limits · correct usage · prohibited misuse
+          </div>
+        </div>
+        <div class="row gap12">
+          <div class="tag tag--light">Slides 06 – 15</div>
+          <div class="tag tag--acid">10 Modules</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 07 — LOGO PRIMARY LOCKUP
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--white" id="s7" data-slide="7">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">01 — Logo Identity</div>
+        <div class="chrome-num">07 / 15</div>
+      </div>
+      <div class="split split--6040" style="top:34px; bottom:34px;">
+        <!-- Left: logo showcase -->
+        <div class="col pad gap20" style="border-right:1px solid rgba(0,0,0,0.08);">
+          <div class="lbl">Primary Lockup — Full Color</div>
+          <div class="logo-stage logo-stage--fog" style="flex:1; position:relative;">
+            <div class="logo-iso">
+              <img src="/logo-es-cr-primary.svg" alt="ES Clinical Research Primary Logo" style="height:80px; width:auto;" />
+            </div>
+          </div>
+          <div class="row gap8" style="flex-wrap:wrap;">
+            <div class="logo-stage logo-stage--dark" style="flex:1; padding:16px 24px; min-height:60px;">
+              <img src="/logo-es-cr-white.svg" alt="Logo white" style="height:36px; width:auto;" />
+            </div>
+            <div class="logo-stage logo-stage--indigo" style="flex:1; padding:16px 24px; min-height:60px;">
+              <img src="/logo-es-cr-white.svg" alt="Logo on indigo" style="height:36px; width:auto;" />
+            </div>
+          </div>
+        </div>
+        <!-- Right: anatomy breakdown -->
+        <div class="col pad-sm gap20" style="justify-content:space-between;">
+          <div class="col gap8">
+            <div class="lbl">Anatomy</div>
+            <div class="h2" style="color:var(--ink);">Logo Components</div>
+          </div>
+          <div class="col gap16" style="flex:1; justify-content:center;">
+            <div class="col gap6" style="border-left:3px solid var(--indigo); padding-left:14px;">
+              <div style="font-weight:700; font-size:13px; color:var(--ink);">Symbol Mark</div>
+              <div class="body" style="font-size:11px;">The ES monogram / pictographic element. Stands alone only at 32px+ sizes and in specific one-color scenarios.</div>
+            </div>
+            <div class="col gap6" style="border-left:3px solid var(--violet); padding-left:14px;">
+              <div style="font-weight:700; font-size:13px; color:var(--ink);">Wordmark</div>
+              <div class="body" style="font-size:11px;">Set in the brand typeface. Never redrawn, distorted, or substituted. The preferred lockup for most applications.</div>
+            </div>
+            <div class="col gap6" style="border-left:3px solid var(--indigo-l); padding-left:14px;">
+              <div style="font-weight:700; font-size:13px; color:var(--ink);">Descriptor</div>
+              <div class="body" style="font-size:11px;">"Clinical Research" — the full name variant. Required on formal documents and first-impression touchpoints.</div>
+            </div>
+          </div>
+          <div style="background:var(--fog); border-radius:4px; padding:10px 14px;">
+            <div class="lbl" style="margin-bottom:4px;">Protected File Formats</div>
+            <div class="row gap8" style="flex-wrap:wrap;">
+              <div class="tag">.SVG</div>
+              <div class="tag">.EPS</div>
+              <div class="tag">.PDF</div>
+              <div class="tag">.PNG 2x</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Logo Lockup Anatomy</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 08 — LOGO CLEAR SPACE & MINIMUM SIZE
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--fog" id="s8" data-slide="8">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">01 — Logo Identity</div>
+        <div class="chrome-num">08 / 15</div>
+      </div>
+      <div class="split split--6040" style="top:34px; bottom:34px;">
+        <!-- Left: clear space demo -->
+        <div class="col pad gap20" style="background:var(--white); border-right:1px solid rgba(0,0,0,0.08);">
+          <div class="lbl">Clear Space Rule</div>
+          <div class="h2" style="color:var(--ink);">Isolation Zone</div>
+          <div class="body">The minimum clear space around the logo is defined by the height of the "E" in the wordmark (let's call it unit <strong>X</strong>). Never allow type, imagery, or other logos to intrude into this zone.</div>
+          <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+            <div style="position:relative; padding:40px; border:1px dashed rgba(80,41,142,0.35); border-radius:4px;">
+              <!-- X arrows simulation -->
+              <div style="position:absolute; top:8px; left:50%; transform:translateX(-50%); font-family:var(--font-mono); font-size:9px; color:var(--indigo-l); letter-spacing:0.1em;">← X →</div>
+              <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-family:var(--font-mono); font-size:9px; color:var(--indigo-l); letter-spacing:0.1em;">← X →</div>
+              <div style="position:absolute; left:6px; top:50%; transform:translateY(-50%) rotate(-90deg); font-family:var(--font-mono); font-size:9px; color:var(--indigo-l); letter-spacing:0.1em;">X</div>
+              <div style="position:absolute; right:6px; top:50%; transform:translateY(-50%) rotate(90deg); font-family:var(--font-mono); font-size:9px; color:var(--indigo-l); letter-spacing:0.1em;">X</div>
+              <img src="/logo-es-cr-primary.svg" alt="ES Clinical Research" style="height:60px; width:auto; display:block;" />
+            </div>
+          </div>
+        </div>
+        <!-- Right: size table + do/don't -->
+        <div class="col pad-sm gap20 jcsb">
+          <div class="col gap10">
+            <div class="lbl">Minimum Size Specifications</div>
+            <div class="col gap6">
+              <div class="row jcsb aic" style="padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.07);">
+                <div style="font-size:12px; font-weight:600; color:var(--ink);">Digital screens</div>
+                <div class="tag tag--indigo">120px width</div>
+              </div>
+              <div class="row jcsb aic" style="padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.07);">
+                <div style="font-size:12px; font-weight:600; color:var(--ink);">Print offset</div>
+                <div class="tag tag--indigo">28mm width</div>
+              </div>
+              <div class="row jcsb aic" style="padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.07);">
+                <div style="font-size:12px; font-weight:600; color:var(--ink);">Symbol-only</div>
+                <div class="tag tag--indigo">32px / 8mm</div>
+              </div>
+              <div class="row jcsb aic" style="padding:8px 0;">
+                <div style="font-size:12px; font-weight:600; color:var(--ink);">Favicon</div>
+                <div class="tag tag--indigo">16px · 32px</div>
+              </div>
+            </div>
+          </div>
+          <div class="col gap8">
+            <div class="lbl">Size Comparison</div>
+            <div class="col gap6" style="align-items:flex-start;">
+              <img src="/logo-es-cr-primary.svg" alt="" style="height:52px;" />
+              <img src="/logo-es-cr-primary.svg" alt="" style="height:32px;" />
+              <img src="/logo-es-cr-primary.svg" alt="" style="height:20px;" />
+              <div class="caption" style="color:var(--n60);">↑ Minimum — never smaller</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Logo Clear Space &amp; Size Specifications</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 09 — LOGO DO'S & DON'TS
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--white" id="s9" data-slide="9">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">01 — Logo Identity</div>
+        <div class="chrome-num">09 / 15</div>
+      </div>
+      <div class="col" style="position:absolute; top:34px; bottom:34px; left:0; right:0; padding:clamp(16px,2.5%,32px) clamp(24px,3.5%,52px); gap:16px;">
+        <div class="row jcsb aic">
+          <div class="col gap4">
+            <div class="lbl">Logo Usage Rules</div>
+            <div class="h2" style="color:var(--ink);">Do's &amp; Don'ts</div>
+          </div>
+        </div>
+        <div class="row" style="flex:1; gap:1px; background:rgba(0,0,0,0.07);">
+          <!-- DO 1 -->
+          <div class="dd-card" style="flex:1;">
+            <div class="dd-top">
+              <img src="/logo-es-cr-primary.svg" alt="correct" style="height:40px;" />
+            </div>
+            <div class="dd-lbl dd-lbl--do">✓ Use on white / light backgrounds</div>
+          </div>
+          <!-- DO 2 -->
+          <div class="dd-card" style="flex:1;">
+            <div class="dd-top" style="background:var(--indigo);">
+              <img src="/logo-es-cr-white.svg" alt="correct on dark" style="height:40px;" />
+            </div>
+            <div class="dd-lbl dd-lbl--do">✓ Use reversed on brand colors</div>
+          </div>
+          <!-- DONT 1 -->
+          <div class="dd-card" style="flex:1;">
+            <div class="dd-top">
+              <img src="/logo-es-cr-primary.svg" alt="dont stretch" style="height:40px; transform:scaleX(1.5); opacity:0.7;" />
+            </div>
+            <div class="dd-lbl dd-lbl--dont">✗ Never stretch or distort</div>
+          </div>
+          <!-- DONT 2 -->
+          <div class="dd-card" style="flex:1;">
+            <div class="dd-top" style="background:#e8c914;">
+              <img src="/logo-es-cr-primary.svg" alt="dont on busy bg" style="height:40px;" />
+            </div>
+            <div class="dd-lbl dd-lbl--dont">✗ Never on clashing colors</div>
+          </div>
+          <!-- DONT 3 -->
+          <div class="dd-card" style="flex:1;">
+            <div class="dd-top">
+              <img src="/logo-es-cr-primary.svg" alt="dont rotate" style="height:40px; transform:rotate(15deg); opacity:0.7;" />
+            </div>
+            <div class="dd-lbl dd-lbl--dont">✗ Never rotate or tilt</div>
+          </div>
+          <!-- DONT 4 -->
+          <div class="dd-card" style="flex:1;">
+            <div class="dd-top">
+              <div style="font-family:Arial; font-size:18px; font-weight:700; color:var(--n50); padding:12px;">ES Clinical<br>Research</div>
+            </div>
+            <div class="dd-lbl dd-lbl--dont">✗ Never retype in another font</div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Logo Usage — Correct &amp; Prohibited Applications</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 10 — CHAPTER DIVIDER: COLOR
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--dark" id="s10" data-slide="10">
+      <div class="reg-mark reg-mark--tl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--tr" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--bl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--br" style="color:#fff;"></div>
+      <!-- Color band at right edge -->
+      <div style="position:absolute; top:0; right:0; bottom:0; width:clamp(140px,18%,240px); display:flex; flex-direction:column;">
+        <div style="flex:3; background:var(--indigo);"></div>
+        <div style="flex:2; background:var(--violet);"></div>
+        <div style="flex:2; background:var(--indigo-l);"></div>
+        <div style="flex:1; background:var(--acid); opacity:0.9;"></div>
+      </div>
+      <div class="chapter-giant" style="right:clamp(140px,18%,240px);">02</div>
+      <div class="col pad gap20 jcsb" style="position:absolute; inset:0; padding-right:clamp(160px,22%,280px);">
+        <div class="lbl lbl--light">Chapter 02</div>
+        <div class="col gap16">
+          <div class="giant" style="color:var(--white);">Color<br>Tokens</div>
+          <div class="body body--light" style="max-width:380px;">
+            Primary palette · tint system · CMYK &amp; RGB values · proportion rules · WCAG 2.1 AA accessibility
+          </div>
+        </div>
+        <div class="row gap12">
+          <div class="tag tag--light">Slides 10 – 15</div>
+          <div class="tag tag--acid">6 Modules</div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════
+         SLIDE 11 — PRIMARY COLOR PALETTE
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--white" id="s11" data-slide="11">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">02 — Color Tokens</div>
+        <div class="chrome-num">11 / 15</div>
+      </div>
+      <div class="col" style="position:absolute; top:34px; bottom:34px; left:0; right:0; padding:clamp(16px,2.5%,32px) clamp(24px,3.5%,52px); gap:20px;">
+        <div class="row jcsb aic">
+          <div class="col gap4">
+            <div class="lbl">Color Architecture</div>
+            <div class="h2" style="color:var(--ink);">Primary Brand Palette</div>
+          </div>
+          <div class="caption" style="color:var(--n60);">All colors WCAG 2.1 AA verified</div>
+        </div>
+        <!-- Palette bar -->
+        <div style="display:flex; height:52px; border-radius:5px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.1);">
+          <div style="flex:3; background:#1d0840;"></div>
+          <div style="flex:3; background:#3a1a6b;"></div>
+          <div style="flex:4; background:#50298e;"></div>
+          <div style="flex:3; background:#6d47ab;"></div>
+          <div style="flex:3; background:#7f2191;"></div>
+          <div style="flex:2; background:#c8ff00;"></div>
+          <div style="flex:2; background:#f0f0f6;"></div>
+          <div style="flex:2; background:#0c0d10;"></div>
+        </div>
+        <!-- Main color cards -->
+        <div class="row gap10" style="flex:1; align-items:stretch;">
+          <div class="color-card">
+            <div class="color-swatch" style="background:#1d0840; flex:2;"></div>
+            <div class="color-info">
+              <div class="color-name">Plum</div>
+              <div class="color-hex">#1D0840</div>
+              <div class="color-rgb">CMYK: 84 / 94 / 0 / 75</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#50298e; flex:2;"></div>
+            <div class="color-info">
+              <div class="color-name">Indigo Primary</div>
+              <div class="color-hex">#50298E</div>
+              <div class="color-rgb">CMYK: 72 / 87 / 0 / 4</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#7f2191; flex:2;"></div>
+            <div class="color-info">
+              <div class="color-name">Violet</div>
+              <div class="color-hex">#7F2191</div>
+              <div class="color-rgb">CMYK: 59 / 93 / 0 / 3</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#6d47ab; flex:2;"></div>
+            <div class="color-info">
+              <div class="color-name">Indigo Light</div>
+              <div class="color-hex">#6D47AB</div>
+              <div class="color-rgb">CMYK: 55 / 71 / 0 / 7</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#c8ff00; flex:2;"></div>
+            <div class="color-info" style="background:var(--ink);">
+              <div class="color-name" style="color:var(--white);">Acid Green</div>
+              <div class="color-hex" style="color:rgba(255,255,255,0.6);">#C8FF00</div>
+              <div class="color-rgb" style="color:rgba(255,255,255,0.35);">CMYK: 22 / 0 / 100 / 0</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#0c0d10; flex:2;"></div>
+            <div class="color-info">
+              <div class="color-name">Ink</div>
+              <div class="color-hex">#0C0D10</div>
+              <div class="color-rgb">CMYK: 0 / 0 / 0 / 95</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background:#f2f2f0; border-top:1px solid rgba(0,0,0,0.07); flex:2;"></div>
+            <div class="color-info">
+              <div class="color-name">Fog</div>
+              <div class="color-hex">#F2F2F0</div>
+              <div class="color-rgb">CMYK: 0 / 0 / 1 / 5</div>
+            </div>
+          </div>
+        </div>
+        <!-- Accessibility badges -->
+        <div class="row gap12">
+          <div class="tag tag--ok">AA White on Indigo ✓</div>
+          <div class="tag tag--ok">AA White on Plum ✓</div>
+          <div class="tag tag--ok">AA Ink on Fog ✓</div>
+          <div class="tag tag--no">✗ White on Acid — contrast insufficient</div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Primary Brand Color System</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 12 — COLOR TINTS & USAGE
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--fog" id="s12" data-slide="12">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">02 — Color Tokens</div>
+        <div class="chrome-num">12 / 15</div>
+      </div>
+      <div class="split split--4060" style="top:34px; bottom:34px;">
+        <!-- Left: tint scale -->
+        <div class="col pad gap16" style="background:var(--white); border-right:1px solid rgba(0,0,0,0.08);">
+          <div class="lbl">Indigo Tint System</div>
+          <div class="h2" style="color:var(--ink);">Color Tints</div>
+          <div class="col gap0" style="flex:1; border-radius:5px; overflow:hidden; box-shadow:0 2px 16px rgba(0,0,0,0.08);">
+            <div class="row aic jcsb" style="padding:10px 14px; background:#1d0840; flex:1;">
+              <span style="font-family:var(--font-sans); font-size:11px; font-weight:600; color:#fff;">Plum 100%</span>
+              <span class="caption caption--light">#1D0840</span>
+            </div>
+            <div class="row aic jcsb" style="padding:10px 14px; background:#3a1a6b; flex:1;">
+              <span style="font-family:var(--font-sans); font-size:11px; font-weight:600; color:#fff;">Indigo Dark 90%</span>
+              <span class="caption caption--light">#3A1A6B</span>
+            </div>
+            <div class="row aic jcsb" style="padding:10px 14px; background:#50298e; flex:1;">
+              <span style="font-family:var(--font-sans); font-size:11px; font-weight:600; color:#fff;">Indigo Primary</span>
+              <span class="caption caption--light">#50298E</span>
+            </div>
+            <div class="row aic jcsb" style="padding:10px 14px; background:#6d47ab; flex:1;">
+              <span style="font-family:var(--font-sans); font-size:11px; font-weight:600; color:#fff;">Indigo 70%</span>
+              <span class="caption caption--light">#6D47AB</span>
+            </div>
+            <div class="row aic jcsb" style="padding:10px 14px; background:#b49fd9; flex:1;">
+              <span style="font-family:var(--font-sans); font-size:11px; font-weight:600; color:#fff;">Indigo 40%</span>
+              <span class="caption" style="color:rgba(255,255,255,0.6);">#B49FD9</span>
+            </div>
+            <div class="row aic jcsb" style="padding:10px 14px; background:#ddd6f2; flex:1;">
+              <span style="font-family:var(--font-sans); font-size:11px; font-weight:600; color:var(--n40);">Indigo 20%</span>
+              <span class="caption">#DDD6F2</span>
+            </div>
+            <div class="row aic jcsb" style="padding:10px 14px; background:#f0edfb; flex:1; border-bottom:1px solid rgba(0,0,0,0.07);">
+              <span style="font-family:var(--font-sans); font-size:11px; font-weight:600; color:var(--n40);">Indigo 10%</span>
+              <span class="caption">#F0EDFB</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right: usage context -->
+        <div class="col pad-sm gap20 jcsb">
+          <div class="col gap10">
+            <div class="lbl">Color Usage Rules</div>
+            <div class="h2" style="color:var(--ink);">When to Use What</div>
+          </div>
+          <div class="col gap12" style="flex:1; justify-content:center;">
+            <div class="col gap6" style="padding:12px 14px; background:var(--white); border-radius:5px; border-left:3px solid var(--indigo);">
+              <div style="font-weight:700; font-size:12px; color:var(--ink);">Indigo Primary</div>
+              <div class="body" style="font-size:11px;">Primary action buttons, key headlines, active states, section dividers. Minimum 40% of brand-color presence.</div>
+            </div>
+            <div class="col gap6" style="padding:12px 14px; background:var(--white); border-radius:5px; border-left:3px solid var(--violet);">
+              <div style="font-weight:700; font-size:12px; color:var(--ink);">Violet</div>
+              <div class="body" style="font-size:11px;">Secondary CTAs, graph/chart accents, hover states. Maintains purple-family cohesion.</div>
+            </div>
+            <div class="col gap6" style="padding:12px 14px; background:var(--white); border-radius:5px; border-left:3px solid var(--acid);">
+              <div style="font-weight:700; font-size:12px; color:var(--ink);">Acid Green — Accent Only</div>
+              <div class="body" style="font-size:11px;">Use sparingly — maximum 10% of color surface on any design. Highlights, badges, progress indicators, notifications.</div>
+            </div>
+            <div class="col gap6" style="padding:12px 14px; background:var(--white); border-radius:5px; border-left:3px solid var(--n70);">
+              <div style="font-weight:700; font-size:12px; color:var(--ink);">Ink + Fog</div>
+              <div class="body" style="font-size:11px;">Default backgrounds (Fog) and text (Ink). Always maintain a 4.5:1 contrast ratio minimum.</div>
+            </div>
+          </div>
+          <div class="caption">Digital hex values shown. CMYK reference on slide 11. Pantone matching available in print asset kit.</div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Color Tints &amp; Usage Context</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 13 — TYPOGRAPHY SPECIMEN
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--white" id="s13" data-slide="13">
+      <div class="reg-mark reg-mark--tl"></div>
+      <div class="reg-mark reg-mark--tr"></div>
+      <div class="reg-mark reg-mark--bl"></div>
+      <div class="reg-mark reg-mark--br"></div>
+      <div class="chrome chrome--top">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">03 — Typography</div>
+        <div class="chrome-num">13 / 15</div>
+      </div>
+      <div class="split split--6535" style="top:34px; bottom:34px;">
+        <!-- Left: big specimen -->
+        <div class="col pad gap16 jcsb" style="border-right:1px solid rgba(0,0,0,0.08); overflow:hidden; position:relative;">
+          <div class="lbl">Primary Typeface</div>
+          <div class="col gap4" style="flex:1; justify-content:center;">
+            <div style="font-family:var(--font-sans); font-weight:800; font-size:clamp(48px,8.5cqw,120px); line-height:0.87; letter-spacing:-0.045em; color:var(--ink);">
+              Aa Bb<br>
+              <span style="color:var(--indigo);">Cc</span> Dd
+            </div>
+            <div class="row gap12" style="margin-top:12px; flex-wrap:wrap;">
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:300; color:var(--n50);">Light 300</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:400; color:var(--n50);">Regular 400</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:500; color:var(--n40);">Medium 500</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:600; color:var(--n30);">SemiBold 600</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:700; color:var(--ink);">Bold 700</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:800; color:var(--ink);">ExtraBold 800</div>
+            </div>
+          </div>
+          <div class="col gap4">
+            <div class="lbl">DM Sans — Google Fonts OFL License</div>
+            <div class="caption" style="color:var(--n60);">A geometric sans-serif with excellent legibility at display and body sizes. Variable font — responsive optical sizing (opsz).</div>
+          </div>
+        </div>
+        <!-- Right: scale + secondary -->
+        <div class="col pad-sm gap16">
+          <div class="lbl">Type Scale</div>
+          <div class="col gap8" style="flex:1; justify-content:center;">
+            <div class="type-scale-row">
+              <div class="type-scale-size">80px</div>
+              <div class="type-scale-name">Giant</div>
+              <div class="type-scale-sample" style="font-size:28px; font-weight:800; line-height:1; letter-spacing:-0.04em;">Clinical</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-size">48px</div>
+              <div class="type-scale-name">H1 Display</div>
+              <div class="type-scale-sample" style="font-size:22px; font-weight:700; letter-spacing:-0.03em;">Protocol Design</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-size">32px</div>
+              <div class="type-scale-name">H2</div>
+              <div class="type-scale-sample" style="font-size:17px; font-weight:600; letter-spacing:-0.02em;">Phase III Monitoring</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-size">20px</div>
+              <div class="type-scale-name">H3</div>
+              <div class="type-scale-sample" style="font-size:14px; font-weight:600;">Biostatistics Report</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-size">16px</div>
+              <div class="type-scale-name">Body Lg</div>
+              <div class="type-scale-sample" style="font-size:12px; font-weight:400; color:var(--n50);">The primary body text for longer editorial content and descriptions.</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-size">13px</div>
+              <div class="type-scale-name">Body Sm</div>
+              <div class="type-scale-sample" style="font-size:11px; font-weight:400; color:var(--n50);">Supporting captions, footnotes, and data annotations in tables.</div>
+            </div>
+            <div class="type-scale-row" style="border:none; padding:0;">
+              <div class="type-scale-size">10px</div>
+              <div class="type-scale-name">Label / Mono</div>
+              <div class="type-scale-sample" style="font-size:9px; font-family:var(--font-mono); letter-spacing:0.16em; text-transform:uppercase; color:var(--n60);">PROTOCOL REF — ICH-GCP</div>
+            </div>
+          </div>
+          <!-- Secondary font specimen -->
+          <div style="background:var(--fog); border-radius:4px; padding:10px 14px;">
+            <div class="lbl" style="margin-bottom:6px;">Secondary — DM Serif Display</div>
+            <div style="font-family:var(--font-serif); font-style:italic; font-size:clamp(16px,2.4cqw,32px); color:var(--indigo); line-height:1.2; letter-spacing:-0.01em;">
+              "Pioneering Evidence-Based Research"
+            </div>
+            <div class="caption" style="margin-top:6px; color:var(--n60);">Editorial pull quotes, accented headings, report cover titles only.</div>
+          </div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Typography System — DM Sans + DM Serif Display</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 14 — VOICE & TONE
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--ink" id="s14" data-slide="14">
+      <div class="reg-mark reg-mark--tl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--tr" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--bl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--br" style="color:#fff;"></div>
+      <div class="chrome chrome--top chrome--light">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">04 — Voice &amp; Tone</div>
+        <div class="chrome-num">14 / 15</div>
+      </div>
+      <!-- Large serif quote left + matrix right -->
+      <div class="split split--4060" style="top:34px; bottom:34px;">
+        <!-- Left: editorial statement -->
+        <div class="col pad gap20 jcsb" style="border-right:1px solid rgba(255,255,255,0.08); position:relative; overflow:hidden;">
+          <div class="bg-text bg-text--light" style="bottom:-0.1em; left:-0.06em; font-size:clamp(60px,10cqw,140px);">Tone</div>
+          <div class="col gap12">
+            <div class="lbl lbl--light">Editorial Philosophy</div>
+            <div class="h1" style="color:var(--white);">Brand<br>Voice</div>
+          </div>
+          <div class="col gap16">
+            <div style="font-family:var(--font-serif); font-style:italic; font-size:clamp(15px,2.1cqw,28px); color:rgba(255,255,255,0.75); line-height:1.35;">
+              "We communicate with the precision of a protocol and the clarity of a colleague."
+            </div>
+            <div class="rule rule--light"></div>
+            <div class="body body--light" style="font-size:11px;">
+              Every word we publish represents the scientific rigor and human care at the core of clinical research. We are authoritative without being cold, precise without being pedantic.
+            </div>
+          </div>
+          <div class="row gap8">
+            <div class="tag tag--light">Authoritative</div>
+            <div class="tag tag--light">Precise</div>
+            <div class="tag tag--acid">Collaborative</div>
+          </div>
+        </div>
+        <!-- Right: context matrix -->
+        <div class="col pad-sm gap16" style="justify-content:space-between;">
+          <div class="col gap8">
+            <div class="lbl lbl--light">Tone by Context Matrix</div>
+            <div class="h2" style="color:var(--white);">When &amp; How</div>
+          </div>
+          <div class="col gap0" style="flex:1; justify-content:center; gap:1px; background:rgba(255,255,255,0.05); border-radius:5px; overflow:hidden;">
+            <div class="row" style="background:rgba(255,255,255,0.04); padding:10px 14px; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-family:var(--font-mono); font-size:9px; color:var(--acid); width:100px; flex-shrink:0; letter-spacing:0.12em; text-transform:uppercase;">Sponsor RFP</div>
+              <div class="body body--light" style="font-size:11px;">Confident, technical, structured. Lead with data, follow with context.</div>
+            </div>
+            <div class="row" style="background:rgba(255,255,255,0.04); padding:10px 14px; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-family:var(--font-mono); font-size:9px; color:var(--acid); width:100px; flex-shrink:0; letter-spacing:0.12em; text-transform:uppercase;">Site PI Meeting</div>
+              <div class="body body--light" style="font-size:11px;">Collaborative, clear. Acknowledge complexity, offer solutions.</div>
+            </div>
+            <div class="row" style="background:rgba(255,255,255,0.04); padding:10px 14px; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-family:var(--font-mono); font-size:9px; color:var(--acid); width:100px; flex-shrink:0; letter-spacing:0.12em; text-transform:uppercase;">Patient ICF</div>
+              <div class="body body--light" style="font-size:11px;">Plain language, empathetic. Grade 8 reading level maximum.</div>
+            </div>
+            <div class="row" style="background:rgba(255,255,255,0.04); padding:10px 14px; gap:16px; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-family:var(--font-mono); font-size:9px; color:var(--acid); width:100px; flex-shrink:0; letter-spacing:0.12em; text-transform:uppercase;">Regulator Dossier</div>
+              <div class="body body--light" style="font-size:11px;">Formal, evidence-first. Passive voice permitted where standard.</div>
+            </div>
+            <div class="row" style="background:rgba(255,255,255,0.04); padding:10px 14px; gap:16px;">
+              <div style="font-family:var(--font-mono); font-size:9px; color:var(--acid); width:100px; flex-shrink:0; letter-spacing:0.12em; text-transform:uppercase;">LinkedIn / PR</div>
+              <div class="body body--light" style="font-size:11px;">Mission-forward, optimistic. Avoid jargon. Highlight human impact.</div>
+            </div>
+          </div>
+          <div class="caption caption--light">Full writing guide in Voice &amp; Tone chapter — slides 28–32</div>
+        </div>
+      </div>
+      <div class="chrome chrome--bottom chrome--light">
+        <div class="chrome-brand"><span class="chrome-dot"></span>ES-CR</div>
+        <div class="chrome-center">Brand Voice &amp; Tone by Context</div>
+        <div class="chrome-num">ES Clinical Research — Brand Manual 2026</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 15 — CLOSING / CONTACTS
+         ═══════════════════════════════════════════ -->
+    <section class="slide slide--plum" id="s15" data-slide="15">
+      <div class="reg-mark reg-mark--tl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--tr" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--bl" style="color:#fff;"></div>
+      <div class="reg-mark reg-mark--br" style="color:#fff;"></div>
+      <div class="cover-grid"></div>
+      <!-- geometric accent -->
+      <div style="position:absolute; right:0; top:0; bottom:0; width:35%; background:linear-gradient(180deg,#50298e 0%,#3a1a6b 100%); opacity:0.7;"></div>
+      <div class="col" style="position:absolute; inset:0; padding:clamp(28px,4%,52px) clamp(32px,5%,60px); justify-content:space-between;">
+        <div class="row jcsb aic">
+          <img src="/logo-es-cr-white.svg" alt="ES Clinical Research" style="height:40px; width:auto;" />
+          <div class="tag tag--light">Brand Guidelines v1.0 · 2026</div>
+        </div>
+        <div class="col gap20" style="max-width:600px;">
+          <div class="lbl lbl--light">End of Phase 1 Presentation</div>
+          <div class="giant" style="color:var(--white); line-height:0.88;">Thank<br>you.</div>
+          <div class="body body--light" style="max-width:440px;">
+            For questions about brand compliance, asset requests, or new application approvals, please contact the ES-CR Brand team.
+          </div>
+        </div>
+        <div class="col gap16">
+          <div class="rule rule--light"></div>
+          <div class="row gap40" style="flex-wrap:wrap;">
+            <div class="col gap4">
+              <div class="lbl lbl--accent">Contact</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:500; color:var(--white);">contact@esclinical.com</div>
+            </div>
+            <div class="col gap4">
+              <div class="lbl lbl--accent">Phone</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:500; color:var(--white);">+213 23 36 40 48</div>
+            </div>
+            <div class="col gap4">
+              <div class="lbl lbl--accent">Address</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:500; color:var(--white);">76 Dar Diaf, Cheraga, Algiers, DZ</div>
+            </div>
+            <div class="col gap4">
+              <div class="lbl lbl--accent">Web</div>
+              <div style="font-family:var(--font-sans); font-size:13px; font-weight:500; color:var(--white);">es-clinical-research.com</div>
+            </div>
+          </div>
+          <div class="caption caption--light" style="margin-top:4px;">
+            © 2026 ES Clinical Research. All rights reserved. This brand manual is confidential and intended solely for authorized partners.
+          </div>
+        </div>
+      </div>
+      <div class="cover-bottom-stripe"></div>
+    </section>
+
+
+  </div><!-- /.stage -->
+
+  <!-- FLOATING HUD NAVIGATION (Figma-grade Dock) -->
+  <nav class="hud" aria-label="Brand Book Navigation">
+    <button class="hud-btn" id="prevBtn" title="Previous Slide (Arrow Left / PageUp)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="hud-counter">
+      <span id="navCounterCurrent">01</span> / <span id="navCounterTotal">50</span>
+    </div>
+    <div class="hud-progress">
+      <div class="hud-progress-fill" id="hudProgressFill" style="width: 2%;"></div>
+    </div>
+    <button class="hud-btn" id="nextBtn" title="Next Slide (Arrow Right / Space / PageDown)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="hud-divider"></div>
+    <button class="hud-icon-btn" id="tocToggleBtn" title="Table of Contents (M)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <button class="hud-icon-btn" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+    </button>
+    <button class="hud-icon-btn" onclick="window.print()" title="Print / Export PDF (P)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+    </button>
+  </nav>
+
+</div><!-- /.pv -->
+
+<!-- TOC DRAWER OVERLAY -->
+<div class="toc-overlay" id="tocOverlay">
+  <div class="toc-backdrop" id="tocBackdrop"></div>
+  <aside class="toc-panel">
+    <div class="toc-header">
+      <div class="toc-header-info">
+        <span class="toc-header-label">BRAND SPECIFICATION MANUAL</span>
+        <span class="toc-header-brand">ES Clinical Research — 2026</span>
+      </div>
+      <button class="toc-close" id="tocCloseBtn" title="Close (ESC)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="toc-body">
+      <div class="toc-chapter-label">00 — Brand Core</div>
+      <a class="toc-item active" data-slide="1" href="#1"><span class="toc-item-num">01</span><span class="toc-item-label">Cover</span></a>
+      <a class="toc-item" data-slide="2" href="#2"><span class="toc-item-num">02</span><span class="toc-item-label">Table of Contents</span></a>
+      <a class="toc-item" data-slide="3" href="#3"><span class="toc-item-num">03</span><span class="toc-item-label">About the Brand</span></a>
+      <a class="toc-item" data-slide="4" href="#4"><span class="toc-item-num">04</span><span class="toc-item-label">Mission / Vision / Values</span></a>
+      <a class="toc-item" data-slide="5" href="#5"><span class="toc-item-num">05</span><span class="toc-item-label">Brand Personality</span></a>
+
+      <div class="toc-chapter-label">01 — Visual Identity: Logo</div>
+      <a class="toc-item" data-slide="6" href="#6"><span class="toc-item-num">06</span><span class="toc-item-label">Chapter Divider: Logo</span></a>
+      <a class="toc-item" data-slide="7" href="#7"><span class="toc-item-num">07</span><span class="toc-item-label">Primary Mark & Anatomy</span></a>
+      <a class="toc-item" data-slide="8" href="#8"><span class="toc-item-num">08</span><span class="toc-item-label">Construction Geometry</span></a>
+      <a class="toc-item" data-slide="9" href="#9"><span class="toc-item-num">09</span><span class="toc-item-label">Standalone Monogram</span></a>
+      <a class="toc-item" data-slide="10" href="#10"><span class="toc-item-num">10</span><span class="toc-item-label">Favicon & App Icon</span></a>
+      <a class="toc-item" data-slide="11" href="#11"><span class="toc-item-num">11</span><span class="toc-item-label">Clear Space Protection</span></a>
+      <a class="toc-item" data-slide="12" href="#12"><span class="toc-item-num">12</span><span class="toc-item-label">Minimum Scale Thresholds</span></a>
+      <a class="toc-item" data-slide="13" href="#13"><span class="toc-item-num">13</span><span class="toc-item-label">Logo Colorways</span></a>
+      <a class="toc-item" data-slide="14" href="#14"><span class="toc-item-num">14</span><span class="toc-item-label">Background Substrates</span></a>
+      <a class="toc-item" data-slide="15" href="#15"><span class="toc-item-num">15</span><span class="toc-item-label">Logo Do’s & Don’ts</span></a>
+
+      <div class="toc-chapter-label">02 — Color Palette</div>
+      <a class="toc-item" data-slide="16" href="#16"><span class="toc-item-num">16</span><span class="toc-item-label">Chapter Divider: Color</span></a>
+      <a class="toc-item" data-slide="17" href="#17"><span class="toc-item-num">17</span><span class="toc-item-label">Color Hierarchy & Ratios (60/30/10)</span></a>
+      <a class="toc-item" data-slide="18" href="#18"><span class="toc-item-num">18</span><span class="toc-item-label">Color Wheel & Harmonic Relationships</span></a>
+      <a class="toc-item" data-slide="19" href="#19"><span class="toc-item-num">19</span><span class="toc-item-label">Digital Codes (HEX / RGB)</span></a>
+      <a class="toc-item" data-slide="20" href="#20"><span class="toc-item-num">20</span><span class="toc-item-label">Physical Print Codes (CMYK / Pantone)</span></a>
+      <a class="toc-item" data-slide="21" href="#21"><span class="toc-item-num">21</span><span class="toc-item-label">Accessibility & Contrast Matrices</span></a>
+
+      <div class="toc-chapter-label">03 — Typography System</div>
+      <a class="toc-item" data-slide="22" href="#22"><span class="toc-item-num">22</span><span class="toc-item-label">Chapter Divider: Typography</span></a>
+      <a class="toc-item" data-slide="23" href="#23"><span class="toc-item-num">23</span><span class="toc-item-label">Primary Typeface: Urbanist Specimen</span></a>
+      <a class="toc-item" data-slide="24" href="#24"><span class="toc-item-num">24</span><span class="toc-item-label">Secondary Typeface: Libre Baskerville</span></a>
+      <a class="toc-item" data-slide="25" href="#25"><span class="toc-item-num">25</span><span class="toc-item-label">Technical Monospace & Microcopy</span></a>
+      <a class="toc-item" data-slide="26" href="#26"><span class="toc-item-num">26</span><span class="toc-item-label">Modular Typographic Scale</span></a>
+      <a class="toc-item" data-slide="27" href="#27"><span class="toc-item-num">27</span><span class="toc-item-label">Typography Do’s & Don’ts</span></a>
+
+      <div class="toc-chapter-label">04 — Editorial Voice & Tone</div>
+      <a class="toc-item" data-slide="28" href="#28"><span class="toc-item-num">28</span><span class="toc-item-label">Chapter Divider: Voice & Tone</span></a>
+      <a class="toc-item" data-slide="29" href="#29"><span class="toc-item-num">29</span><span class="toc-item-label">Brand Voice Attributes</span></a>
+      <a class="toc-item" data-slide="30" href="#30"><span class="toc-item-num">30</span><span class="toc-item-label">Tone Adaptations by Context</span></a>
+      <a class="toc-item" data-slide="31" href="#31"><span class="toc-item-num">31</span><span class="toc-item-label">Editorial Style & Glossary</span></a>
+      <a class="toc-item" data-slide="32" href="#32"><span class="toc-item-num">32</span><span class="toc-item-label">Editorial Do’s & Don’ts</span></a>
+
+      <div class="toc-chapter-label">05 — Digital Applications</div>
+      <a class="toc-item" data-slide="33" href="#33"><span class="toc-item-num">33</span><span class="toc-item-label">Chapter Divider: Digital</span></a>
+      <a class="toc-item" data-slide="34" href="#34"><span class="toc-item-num">34</span><span class="toc-item-label">Iconography System</span></a>
+      <a class="toc-item" data-slide="35" href="#35"><span class="toc-item-num">35</span><span class="toc-item-label">Photography & Art Direction</span></a>
+      <a class="toc-item" data-slide="36" href="#36"><span class="toc-item-num">36</span><span class="toc-item-label">Email Signature Architecture</span></a>
+      <a class="toc-item" data-slide="37" href="#37"><span class="toc-item-num">37</span><span class="toc-item-label">Corporate Newsletter Template</span></a>
+      <a class="toc-item" data-slide="38" href="#38"><span class="toc-item-num">38</span><span class="toc-item-label">Pitch Deck Presentation Grid</span></a>
+      <a class="toc-item" data-slide="39" href="#39"><span class="toc-item-num">39</span><span class="toc-item-label">Website UI Design System Tokens</span></a>
+      <a class="toc-item" data-slide="40" href="#40"><span class="toc-item-num">40</span><span class="toc-item-label">Social Media & LinkedIn Assets</span></a>
+      <a class="toc-item" data-slide="41" href="#41"><span class="toc-item-num">41</span><span class="toc-item-label">Digital Design Do’s & Don’ts</span></a>
+
+      <div class="toc-chapter-label">06 — Print & Collateral</div>
+      <a class="toc-item" data-slide="42" href="#42"><span class="toc-item-num">42</span><span class="toc-item-label">Chapter Divider: Print</span></a>
+      <a class="toc-item" data-slide="43" href="#43"><span class="toc-item-num">43</span><span class="toc-item-label">Executive Business Cards</span></a>
+      <a class="toc-item" data-slide="44" href="#44"><span class="toc-item-num">44</span><span class="toc-item-label">Official Corporate Letterhead</span></a>
+      <a class="toc-item" data-slide="45" href="#45"><span class="toc-item-num">45</span><span class="toc-item-label">Commercial Invoices & Estimates</span></a>
+      <a class="toc-item" data-slide="46" href="#46"><span class="toc-item-num">46</span><span class="toc-item-label">Clinical Study Contract Templates</span></a>
+      <a class="toc-item" data-slide="47" href="#47"><span class="toc-item-num">47</span><span class="toc-item-label">Stationery: Envelopes & Mailing</span></a>
+      <a class="toc-item" data-slide="48" href="#48"><span class="toc-item-num">48</span><span class="toc-item-label">Presentation Folders & Briefs</span></a>
+      <a class="toc-item" data-slide="49" href="#49"><span class="toc-item-num">49</span><span class="toc-item-label">Print Production Specifications</span></a>
+
+      <div class="toc-chapter-label">07 — Closing & Downloads</div>
+      <a class="toc-item" data-slide="50" href="#50"><span class="toc-item-num">50</span><span class="toc-item-label">Asset Library & Brand Portal</span></a>
+    </div>
+  </aside>
+</div>
+
+<script src="/brandbook/brandbook.js"></script>
+</body>
+</html>

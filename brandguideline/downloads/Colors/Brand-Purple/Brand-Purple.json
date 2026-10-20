@@ -1,0 +1,17 @@
+{
+  "id": "Brand-Purple",
+  "name": "Brand Purple",
+  "hex": "#7F2191",
+  "rgb": [
+    127,
+    33,
+    145
+  ],
+  "cmyk": [
+    55,
+    96,
+    0,
+    0
+  ],
+  "role": "Primary Accent"
+}
