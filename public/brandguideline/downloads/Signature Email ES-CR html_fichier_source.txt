@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Email</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif;">
+    
+    <table cellpadding="0" cellspacing="0" border="0" style="width: 700px; height: 138px; font-family: Arial, sans-serif; position: relative;">
+        <!-- Logo -->
+        <tr>
+            <td colspan="3" style="padding: 0;">
+                <a href="https://www.esclinical.com" target="_blank" style="text-decoration: none;">
+                    <img src="https://numerikraft.com/LOGO%20ES-CR%20PRIMARY_transparent_png.png" alt="Logo" style="width: 200px; height: 48px; display: block; border: 0;">
+                </a>
+            </td>
+        </tr>
+        
+        <!-- Espacement après logo -->
+        <tr>
+            <td colspan="3" style="height: 36px;"></td>
+        </tr>
+        
+        <!-- Nom et informations principales -->
+        <tr style="vertical-align: middle;">
+            <!-- Colonne gauche: Nom + Titre -->
+            <td style="width: 135.5px; padding: 0; padding-right: 15px; vertical-align: middle;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td style="font-size: 22px; font-weight: bold; color: #50298e; line-height: 1.2; padding: 0; white-space: nowrap; overflow: visible;">
+                            Prénom NOM
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 15px; font-weight: normal; color: #7f2191; line-height: 1.3; padding: 0; padding-top: 4px;">
+                            Poste / Fonction
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            
+            <!-- Ligne verticale 1 -->
+            <td style="width: 1.5px; min-width: 1.5px; max-width: 1.5px; background-color: #7f2191; height: 44.7px; min-height: 44.7px; max-height: 44.7px; padding: 0; margin: 0;"></td>
+            
+            <!-- Colonne centrale: Adresse -->
+            <td style="width: 130px; padding-left: 15px; padding-right: 15px; vertical-align: middle;">
+                <div style="font-size: 13px; color: #50298e; line-height: 1.5; padding: 0; margin: 0;">
+                    76, Coop Mina<br>
+                    Benhaddadi Dar Diaf<br>
+                    Cheraga, Algiers
+                </div>
+            </td>
+            
+            <!-- Ligne verticale 2 -->
+            <td style="width: 1.5px; min-width: 1.5px; max-width: 1.5px; background-color: #7f2191; height: 44.7px; min-height: 44.7px; max-height: 44.7px; padding: 0; margin: 0;"></td>
+            
+            <!-- Colonne droite: Contacts avec icônes -->
+            <td style="padding: 0; padding-left: 15px; vertical-align: top;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <!-- Téléphone -->
+                    <tr>
+                        <td style="padding: 0; vertical-align: middle;">
+                            <img src="https://numerikraft.com/PNG3.png" alt="Phone" style="width: 20px; height: 20px; display: block; border: 0;">
+                        </td>
+                        <td style="padding: 0; padding-left: 8px; font-size: 13px; color: #50298e; vertical-align: middle;">
+                            <a href="tel:+XXXXXXXXXXX" style="color: #50298e; text-decoration: none;">+213 XX XX XX XX</a>
+                        </td>
+                    </tr>
+                    
+                    <!-- Espacement -->
+                    <tr><td colspan="2" style="height: 4px;"></td></tr>
+                    
+                    <!-- Email -->
+                    <tr>
+                        <td style="padding: 0; vertical-align: middle;">
+                            <img src="https://numerikraft.com/PNG4.png" alt="Email" style="width: 20px; height: 20px; display: block; border: 0;">
+                        </td>
+                        <td style="padding: 0; padding-left: 8px; font-size: 13px; color: #50298e; vertical-align: middle;">
+                            <a href="mailto:prenom.nom@esclinical.com" style="color: #50298e; text-decoration: none;">prenom.nom@esclinical.com</a>
+                        </td>
+                    </tr>
+                    
+                    <!-- Espacement -->
+                    <tr><td colspan="2" style="height: 4px;"></td></tr>
+                    
+                    <!-- Website -->
+                    <tr>
+                        <td style="padding: 0; vertical-align: middle;">
+                            <img src="https://numerikraft.com/PNG5.png" alt="Website" style="width: 20px; height: 20px; display: block; border: 0;">
+                        </td>
+                        <td style="padding: 0; padding-left: 8px; font-size: 13px; color: #50298e; vertical-align: middle;">
+                            <a href="https://www.esclinical.com" style="color: #50298e; text-decoration: none;">www.esclinical.com</a>
+                        </td>
+                    </tr>
+                    
+                    <!-- Espacement -->
+                    <tr><td colspan="2" style="height: 4px;"></td></tr>
+                    
+                    <!-- LinkedIn -->
+                    <tr>
+                        <td style="padding: 0; vertical-align: middle;">
+                            <img src="https://numerikraft.com/PNG6.png" alt="LinkedIn" style="width: 20px; height: 20px; display: block; border: 0;">
+                        </td>
+                        <td style="padding: 0; padding-left: 8px; font-size: 13px; color: #50298e; vertical-align: middle;">
+                            <a href="https://linkedin.com/in/prenom-nom" style="color: #50298e; text-decoration: none;">linkedin.com/in/prenom-nom</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        
+        <!-- Espacement avant disclaimer -->
+        <tr>
+            <td colspan="5" style="height: 36px;"></td>
+        </tr>
+        
+        <!-- Disclaimer avec icône - Position exacte y=130.1px -->
+        <tr>
+            <td colspan="5" style="padding: 0; padding-left: 0;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td style="vertical-align: top; padding: 0; width: 11.2px;">
+                            <img src="https://numerikraft.com/PNG2.png" alt="Warning" style="width: 14px; height: 12px; display: block; border: 0;">
+                        </td>
+                        <td style="padding: 0; font-size: 11.5px; color: red; letter-spacing: -0.44px; line-height: 1.3;">
+                            The email contains confidential information. If it has reached your inbox by mistake, please delete it.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

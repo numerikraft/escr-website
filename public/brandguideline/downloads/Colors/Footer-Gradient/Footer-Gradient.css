@@ -1,0 +1,4 @@
+/* ES Clinical Research — Footer Gradient */
+:root {
+  --footer-gradient: radial-gradient(circle at 0% 0%, #7f2191 0%, #4c005a 100%);
+}

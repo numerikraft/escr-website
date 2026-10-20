@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <title>ES-CR Footer Gradient</title>
+  <defs>
+    <radialGradient id="footerGrad" cx="0%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#7f2191"/>
+      <stop offset="100%" stop-color="#4c005a"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="300" rx="16" fill="url(#footerGrad)"/>
+</svg>
