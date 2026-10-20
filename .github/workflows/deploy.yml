@@ -31,79 +31,57 @@ jobs:
       - name: 🏗️ Build + Prerender (SEO)
         run: npm run build
 
-      - name: 📦 Zip the dist folder
+      - name: 📦 Create optimized deployment archives
         run: |
           cd dist
-          zip -r ../esclinical-dist.zip .
-          cd ..
-          echo "✅ Zip created: $(du -sh esclinical-dist.zip)"
-
-      - name: 🚀 Deploy via Direct PHP Endpoint or cPanel UAPI
-        run: |
-          echo "Attempting deployment via Direct PHP Endpoint..."
-          HTTP_STATUS=$(curl -k -s -w "%{http_code}" -o deploy_response.json \
-            -H "X-Deploy-Token: esclinical_deploy_key_2026_numerikraft" \
-            -F "zip_file=@esclinical-dist.zip" \
-            "https://${{ secrets.CPANEL_HOST }}/api-deploy.php")
-          
-          cat deploy_response.json || true
-          echo ""
-
-          if [ "$HTTP_STATUS" -eq 200 ] && grep -q '"status":1' deploy_response.json; then
-            echo "🎉 Direct PHP Deployment succeeded!"
+          if [ -d "brandguideline/downloads" ]; then
+            echo "📦 Packing Part 1: Site and Brandguideline UI..."
+            zip -r ../part1-site.zip . -x "brandguideline/downloads/*"
+            
+            echo "📦 Packing Part 2: Brandguideline vector assets (Logos, Favicons, QR, Fonts, Colors)..."
+            zip -r ../part2-assets.zip brandguideline/downloads/Logo brandguideline/downloads/Favicon "brandguideline/downloads/QR Code" brandguideline/downloads/Fonts brandguideline/downloads/Colors
+            
+            echo "📦 Packing Part 3: Brandguideline documents (Presentations, Pitch decks, Templates)..."
+            find brandguideline/downloads -maxdepth 1 -type f | zip ../part3-docs.zip -@
           else
-            echo "⚠️ Direct PHP endpoint returned status $HTTP_STATUS (likely server 500 on current .htaccess). Using cPanel UAPI..."
+            zip -r ../part1-site.zip .
+          fi
+          cd ..
+          ls -lh part*.zip || true
+
+      - name: 🚀 Deploy via Direct PHP Endpoint
+        run: |
+          deploy_zip() {
+            local zip_file="$1"
+            local label="$2"
+            echo "🚀 Deploying $label ($zip_file - $(du -sh "$zip_file" | cut -f1))..."
+            HTTP_STATUS=$(curl -k -s -w "%{http_code}" --max-time 180 --connect-timeout 20 -o deploy_response.json \
+              -H "X-Deploy-Token: esclinical_deploy_key_2026_numerikraft" \
+              -F "zip_file=@$zip_file" \
+              "https://${{ secrets.CPANEL_HOST }}/api-deploy.php")
             
-            AUTH_HEADER="Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_PASSWORD }}"
-            
-            # 1. Upload Zip (dir=public_html relative to home)
-            echo "Uploading zip to cPanel..."
-            curl -k -s -o upload_response.json \
-              -H "$AUTH_HEADER" \
-              -F "dir=public_html" \
-              -F "file-1=@esclinical-dist.zip" \
-              "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/upload_files"
-            
-            echo "Upload Response:"
-            cat upload_response.json || true
+            cat deploy_response.json || true
             echo ""
             
-            if ! grep -q '"status":1' upload_response.json; then
-              echo "❌ Upload failed via cPanel UAPI!"
+            if [ "$HTTP_STATUS" -eq 200 ] && grep -q '"status":1' deploy_response.json; then
+              echo "✅ $label deployed successfully!"
+            else
+              echo "❌ $label deployment failed with HTTP status $HTTP_STATUS!"
               exit 1
             fi
+          }
 
-            # 2. Extract Archive in public_html
-            echo "Extracting archive in public_html..."
-            curl -k -s -o extract_response.json \
-              -H "$AUTH_HEADER" \
-              -G \
-              --data-urlencode "dest=public_html" \
-              --data-urlencode "file=public_html/esclinical-dist.zip" \
-              "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/extract_an_archive"
-            
-            echo "Extract Response:"
-            cat extract_response.json || true
-            echo ""
+          if [ -f "part1-site.zip" ]; then
+            deploy_zip "part1-site.zip" "Part 1 (Site + UI)"
+          fi
 
-            if ! grep -q '"status":1' extract_response.json; then
-              echo "❌ Extraction failed!"
-              exit 1
-            fi
+          if [ -f "part2-assets.zip" ]; then
+            deploy_zip "part2-assets.zip" "Part 2 (Vector Assets)"
+          fi
 
-            # 3. Delete Zip from server
-            echo "Cleaning up zip file..."
-            curl -k -s -o delete_response.json \
-              -H "$AUTH_HEADER" \
-              -G \
-              --data-urlencode "dir=public_html" \
-              --data-urlencode "files=esclinical-dist.zip" \
-              "https://${{ secrets.CPANEL_HOST }}:2083/execute/Fileman/delete_files"
-            
-            cat delete_response.json || true
-            echo ""
-            echo "🗑️ Server cleanup completed."
+          if [ -f "part3-docs.zip" ]; then
+            deploy_zip "part3-docs.zip" "Part 3 (Documents & PPTX)"
           fi
 
       - name: 🎉 Deploy complete
-        run: echo "✅ ESC Clinical Research website deployed successfully!"
+        run: echo "✅ ESC Clinical Research website and brand guidelines deployed successfully!"
